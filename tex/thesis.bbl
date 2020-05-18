@@ -1,0 +1,157 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.0 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{Hajian2019}{inbook}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=67e9decac00f5af56bcb7795c941b730}{%
+           family={Hajian},
+           familyi={H\bibinitperiod},
+           given={Majid},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Berkeley, CA}%
+      }
+      \list{publisher}{1}{%
+        {Apress}%
+      }
+      \strng{namehash}{67e9decac00f5af56bcb7795c941b730}
+      \strng{fullhash}{67e9decac00f5af56bcb7795c941b730}
+      \strng{bibnamehash}{67e9decac00f5af56bcb7795c941b730}
+      \strng{authorbibnamehash}{67e9decac00f5af56bcb7795c941b730}
+      \strng{authornamehash}{67e9decac00f5af56bcb7795c941b730}
+      \strng{authorfullhash}{67e9decac00f5af56bcb7795c941b730}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Service Workers are indeed powerful, and the Angular Service Worker is no exception. They do complex and advanced jobs for building a web application. However, based on my experience building PWAs over the years, things are not always going in a way that we like. It may happen that the Service Worker acts in unforeseen ways, and it may interrupt the user experience or even make our app completely useless and unreachable.}
+      \field{booktitle}{Progressive Web Apps with Angular: Create Responsive, Fast and Reliable PWAs Using Angular}
+      \field{isbn}{978-1-4842-4448-7}
+      \field{title}{Safety Service Worker}
+      \field{year}{2019}
+      \field{pages}{283\bibrangedash 288}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1007/978-1-4842-4448-7_11
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-1-4842-4448-7_11
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-1-4842-4448-7_11
+      \endverb
+    \endentry
+    \entry{Rojas2020}{inbook}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=68794337f5b59784a48879f9fbdce9b1}{%
+           family={Rojas},
+           familyi={R\bibinitperiod},
+           given={Carlos},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Berkeley, CA}%
+      }
+      \list{publisher}{1}{%
+        {Apress}%
+      }
+      \strng{namehash}{68794337f5b59784a48879f9fbdce9b1}
+      \strng{fullhash}{68794337f5b59784a48879f9fbdce9b1}
+      \strng{bibnamehash}{68794337f5b59784a48879f9fbdce9b1}
+      \strng{authorbibnamehash}{68794337f5b59784a48879f9fbdce9b1}
+      \strng{authornamehash}{68794337f5b59784a48879f9fbdce9b1}
+      \strng{authorfullhash}{68794337f5b59784a48879f9fbdce9b1}
+      \field{sortinit}{R}
+      \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{There are common scenarios in which web applications are limited by not having an open tab in a browser. However, if we take our app to the mobile world, this limitation does not exists, because even though a mobile app is closed, we can interact with the user by using, for example, push notifications. Service workers are the best option for adding special capabilities to web apps, which make them feel natural when they are installed from a mobile device (without users having to ``enter'' an app store or Google Play).}
+      \field{booktitle}{Building Progressive Web Applications with Vue.js : Reliable, Fast, and Engaging Apps with Vue.js}
+      \field{isbn}{978-1-4842-5334-2}
+      \field{title}{Service Workers}
+      \field{year}{2020}
+      \field{pages}{55\bibrangedash 65}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1007/978-1-4842-5334-2_3
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-1-4842-5334-2_3
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-1-4842-5334-2_3
+      \endverb
+    \endentry
+    \entry{Sheppard2017}{inbook}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=302ae07c0c882bed5b2dca05df39d331}{%
+           family={Sheppard},
+           familyi={S\bibinitperiod},
+           given={Dennis},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Berkeley, CA}%
+      }
+      \list{publisher}{1}{%
+        {Apress}%
+      }
+      \strng{namehash}{302ae07c0c882bed5b2dca05df39d331}
+      \strng{fullhash}{302ae07c0c882bed5b2dca05df39d331}
+      \strng{bibnamehash}{302ae07c0c882bed5b2dca05df39d331}
+      \strng{authorbibnamehash}{302ae07c0c882bed5b2dca05df39d331}
+      \strng{authornamehash}{302ae07c0c882bed5b2dca05df39d331}
+      \strng{authorfullhash}{302ae07c0c882bed5b2dca05df39d331}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Most of the Pirate app is fully offline-capable. There's one glaring weakness remaining, though, as far as functionality without a connection goes. If you need to make an API call while you don't have a connection, there's no mechanism in place to do that. This Pirate app is so great, we'd love for people to be able to leave comments about it. Or even have pirate-based conversations! But what if you happen to like posting Internet comments when you're out at sea where your Internet connection is choppy? That's where the Background Sync API is going to help!}
+      \field{booktitle}{Beginning Progressive Web App Development: Creating a Native App Experience on the Web}
+      \field{isbn}{978-1-4842-3090-9}
+      \field{title}{Background Sync for Offline Apps with Service Workers}
+      \field{year}{2017}
+      \field{pages}{73\bibrangedash 93}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1007/978-1-4842-3090-9_5
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-1-4842-3090-9_5
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-1-4842-3090-9_5
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

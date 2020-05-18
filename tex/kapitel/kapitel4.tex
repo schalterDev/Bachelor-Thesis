@@ -1,0 +1,93 @@
+\chapter{Konzeption}
+\label{Kap4}
+
+\section{Lokale Datenspeicherung}
+
+\subsection{Web Storage}
+
+SessionStorage: Bleibt erhalten solange der Browser nicht geschlossen wird.
+LocalStorage: Wie SessionStorage aber bleibt immer erhalten.
+Nachteil: Nur Synchron, nur strings, kein Web Worker Support
+\cite{Hajian2019}
+
+\subsection{WebSQL}
+
+Asynchron (callback-based)
+Nachteil: kein Web Worker Support, nicht in Firefox und depracated
+\autocite{Hajian2019}
+
+\subsection{File System API}
+
+Asynchron (callback-based), bietet ein virtuelles Dateisystem zum ablegen von Daten. Läuft aber in einer Sandbox und kann nicht auf das "richtige" Dateisystem zugreifen.
+Vorteil: funktioniert in Web Workers 
+Nachteil: (Fast) nur von Chrome unterstützt
+\autocite{Hajian2019}
+
+\subsection{Indexed DB}
+
+- Umfangreiche Objektdatenbank um große Datenmengen auf dem Client zu speichern. Unterstützt Indexe zum Durchsuchen. Unterstützt auch Transaktionen \autocite{Sheppard2017} 
+
+- key-value pari NoSQL Datenbank zum Speichern von vielen Daten (bis zu 20-50 \% des verfügbaren Speicherplatzes). Unterstützt viele Datentypen, ist asynchron und kann überall verwendet werden \autocite{Hajian2019}
+
+- Verfügbare Bibliotheken: LocalForage, Dexie.js, ... \autocite{Hajian2019}
+
+Transaktionelle Datenbank
+- Gut für viel Daten, die Durchsucht werden müssen
+- Asynchron
+
+\subsection{Cache API}
+
+- Service Worker: Laufen im Hintergrund (im eigenen Thread) ohne Zugriff aufs DOM \autocite{Sheppard2017}
+
+- Service Worker ist ein Mittler zwischen APP und Internet. Es übernimmt Aufgaben wie Caching, Syncing, Benachrichtigungen \autocite{Sheppard2017}
+
+Service Worker:
+- "Arbeiter" in JavaScript die im Hintergrund laufen
+- Ermöglicht es Netzwerk-Request zu unterbrechen (Proxy)
+- Benachrichtigungen zu senden
+- Cache Verwalten und vieles mehr
+- Laufen im eigenen Thread ohne DOM Zugriff, HTTPS-Only
+- Website sollte nicht auf Service Worker angewiesen sein
+\autocite{Hajian2019}
+
+Angular bietet einen einfachen Weg Service Workers zu verwenden:
+- ng add @angular/pwa
+\autocite{Hajian2019}
+
+Cache Strategien:
+- Cache only: Es wird nur der Inhalt des Caches geliefert. Wenn nicht verfügbar wird nichts geliefert
+- Netzwerk only: Es wird nur die Antwort des Requests gesendet
+- Cache-First: Cache und wenn nicht verfügbar -> Netzwerk
+- Netzwerk-First: Netzwerk und wenn nicht verfügbar -> Cache
+- Cache und Netzwerk (stale-while-revalidate): Nimm erst den Wert vom Cache und sobald das Netzwerk geantwortet hat, die Antwort vom Netzwerk. Gut für sich häufig ändernde Daten (Facebook)
+- Generic-Fallback: Zum Beispiel für ein Bild ein Standardbild liefern, wenn Netzwerk und Cache keins haben
+\autocite{Hajian2019} \autocite{Rojas2020}
+
+Bibliothek für Service Worker:
+- Workbox
+\autocite{Rojas2020}
+
+Cache storage != browser cache \autocite{Rojas2020}
+
+\section{Herunterladen der Audiodaten}
+
+\subsection{Fetch API}
+
+Einfachere XMLHttpRequests, Promise basierend
+\autocite{Rojas2020}
+
+\subsection{Background Fetch}
+
+\subsection{Background Sync}
+
+- Speichert den API Call bis eine stabile Internetverbindung besteht und schickt ihn dann raus. Sogar wenn die APP nicht aktiv ist oder läuft \autocite{Sheppard2017}
+
+- Versendet Request sobald eine Internetverbindung besteht, auch wenn die APP nicht offen ist \autocite{Rojas2020}
+
+- Man kann diese API mit IndexedDB kombinieren. Daten können in der Datenbank zwischengespeichert werden, bis eine Verbindung besteht \autocite{Rojas2020}
+
+\section{Verbindungsstaus auslesen}
+
+- navigator.onLine: ist nicht 100\% genau. Wird manchmal sagen, dass das Gerät online ist wenn es nur mit einem Netzwerk verbunden ist \autocite{Sheppard2017}
+
+
