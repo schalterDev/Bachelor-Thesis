@@ -71,7 +71,7 @@
   doi          = {10.5220/0006353703440351},
 }
 
-@Article{majchrzak2018progressive,
+@Article{majchrzak2018,
   author = {Majchrzak, Tim A and Bi{\o}rn-Hansen, Andreas and Gr{\o}nli, Tor-Morten},
   title  = {Progressive web apps: the definite approach to cross-platform development?},
   year   = {2018},
@@ -166,6 +166,41 @@
   articleno = {9},
   keywords  = {mobile web applications, user interface, mobile devices, user experience, progressive web application, native applications},
   numpages  = {11},
+}
+
+@InProceedings{biorn2017,
+  author    = {Bi{\o}rn-Hansen, Andreas and Majchrzak, Tim A and Gr{\o}nli, Tor-Morten},
+  title     = {Progressive Web Apps: The Possible Web-native Unifier for Mobile Development.},
+  booktitle = {WEBIST},
+  year      = {2017},
+  pages     = {344--351},
+}
+
+@WWW{angular-io,
+  author    = {{Google LLC}},
+  title     = {Angular},
+  year      = {2020},
+  url       = {https://angular.io/},
+  urldate   = {2020-05-20},
+  timestamp = {2020-05-20},
+}
+
+@WWW{typescript-org,
+  author    = {Microsoft},
+  title     = {Typescript - JavaScript that scales.},
+  year      = {2020},
+  url       = {https://www.typescriptlang.org/},
+  urldate   = {2020-05-20},
+  timestamp = {2020-05-20},
+}
+
+@WWW{crossload-org,
+  author    = {{biblepool gUG}},
+  title     = {Crossload - Deine Tankstelle für Wachstum im Glauben},
+  year      = {2020},
+  url       = {https://crossload.org/},
+  urldate   = {2020-05-20},
+  timestamp = {2020-05-20},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

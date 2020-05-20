@@ -19,6 +19,107 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
+    \entry{crossload-org}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=9b31ec61bd2b831439ed08d11d8bbe48}{%
+           family={{biblepool gUG}},
+           familyi={b\bibinitperiod}}}%
+      }
+      \strng{namehash}{9b31ec61bd2b831439ed08d11d8bbe48}
+      \strng{fullhash}{9b31ec61bd2b831439ed08d11d8bbe48}
+      \strng{bibnamehash}{9b31ec61bd2b831439ed08d11d8bbe48}
+      \strng{authorbibnamehash}{9b31ec61bd2b831439ed08d11d8bbe48}
+      \strng{authornamehash}{9b31ec61bd2b831439ed08d11d8bbe48}
+      \strng{authorfullhash}{9b31ec61bd2b831439ed08d11d8bbe48}
+      \field{sortinit}{b}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Crossload - Deine Tankstelle für Wachstum im Glauben}
+      \field{urlday}{20}
+      \field{urlmonth}{5}
+      \field{urlyear}{2020}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://crossload.org/
+      \endverb
+      \verb{url}
+      \verb https://crossload.org/
+      \endverb
+    \endentry
+    \entry{biorn2017}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=5c8e112d05da505cd7165215cfa04054}{%
+           family={Bi{ø}rn-Hansen},
+           familyi={B\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=3925028a8aaf685ded3c7145910ea018}{%
+           family={Majchrzak},
+           familyi={M\bibinitperiod},
+           given={Tim\bibnamedelima A},
+           giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=4bdedc4a344574bd6e841adf103f322e}{%
+           family={Gr{ø}nli},
+           familyi={G\bibinitperiod},
+           given={Tor-Morten},
+           giveni={T\bibinithyphendelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{04a9591061bb49f70b1681792fdeb810}
+      \strng{fullhash}{04a9591061bb49f70b1681792fdeb810}
+      \strng{bibnamehash}{04a9591061bb49f70b1681792fdeb810}
+      \strng{authorbibnamehash}{04a9591061bb49f70b1681792fdeb810}
+      \strng{authornamehash}{04a9591061bb49f70b1681792fdeb810}
+      \strng{authorfullhash}{04a9591061bb49f70b1681792fdeb810}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{WEBIST}
+      \field{title}{Progressive Web Apps: The Possible Web-native Unifier for Mobile Development.}
+      \field{year}{2017}
+      \field{pages}{344\bibrangedash 351}
+      \range{pages}{8}
+    \endentry
+    \entry{angular-io}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=7b568e72d25af32b0cec03e49cbf3f70}{%
+           family={{Google LLC}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{7b568e72d25af32b0cec03e49cbf3f70}
+      \strng{fullhash}{7b568e72d25af32b0cec03e49cbf3f70}
+      \strng{bibnamehash}{7b568e72d25af32b0cec03e49cbf3f70}
+      \strng{authorbibnamehash}{7b568e72d25af32b0cec03e49cbf3f70}
+      \strng{authornamehash}{7b568e72d25af32b0cec03e49cbf3f70}
+      \strng{authorfullhash}{7b568e72d25af32b0cec03e49cbf3f70}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Angular}
+      \field{urlday}{20}
+      \field{urlmonth}{5}
+      \field{urlyear}{2020}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://angular.io/
+      \endverb
+      \verb{url}
+      \verb https://angular.io/
+      \endverb
+    \endentry
     \entry{Hajian2019}{inbook}{}
       \name{author}{1}{}{%
         {{uniquename=0,uniquepart=base,hash=67e9decac00f5af56bcb7795c941b730}{%
@@ -61,6 +162,126 @@
       \endverb
       \verb{url}
       \verb https://doi.org/10.1007/978-1-4842-4448-7_11
+      \endverb
+    \endentry
+    \entry{KHAN2019289}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=a85cd36ea7444cf08121d5bcecec65cf}{%
+           family={Khan},
+           familyi={K\bibinitperiod},
+           given={Asharul\bibnamedelima Islam},
+           giveni={A\bibinitperiod\bibinitdelim I\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=f64ec84c30196002659b349fd0a0c9b2}{%
+           family={Al-Badi},
+           familyi={A\bibinithyphendelim B\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=5403f73719f53216505b7756108bb2a5}{%
+           family={Al-Kindi},
+           familyi={A\bibinithyphendelim K\bibinitperiod},
+           given={Mahmood},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9edc32efae673329ed65436df4388b91}
+      \strng{fullhash}{9edc32efae673329ed65436df4388b91}
+      \strng{bibnamehash}{9edc32efae673329ed65436df4388b91}
+      \strng{authorbibnamehash}{9edc32efae673329ed65436df4388b91}
+      \strng{authornamehash}{9edc32efae673329ed65436df4388b91}
+      \strng{authorfullhash}{9edc32efae673329ed65436df4388b91}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The development of software applications has now shifted from desktop to mobile devices. Mobile application developers have been facing hardware configuration and network communication constraints in native, hybrid, and mobile web-based software architecture for a long time. Progressive Web Application is new research in this direction, created in order to overcome the limitations of native, hybrid, and mobile web-based application architecture for mobile devices. The Progressive Web Application architecture consists of a single software application which runs on multiple operating systems (android, iOS, and window phones) efficiently, uses device memory, and is even accessible in the event of no internet connection. Many IT companies have reported overall improvement in their mobile application user base after switching to Progressive Web Application. The recent discussions about Progressive Web Application on the google platform predict a demanding future. Hence, this article seeks to investigate the validity of claims that the Progressive Web Application has the edge over native, hybrid, and mobile web application architecture. The study uses the Analytical Hierarchy Process for deciding which of the architecture types suites the development of a mobile application based on three established constraints. The study outcome will aid software development communities in comprehending the Progressive Web Application and motivate them to use it in the development of an optimized mobile application.}
+      \field{issn}{1877-0509}
+      \field{journaltitle}{Procedia Computer Science}
+      \field{note}{The 16th International Conference on Mobile Systems and Pervasive Computing (MobiSPC 2019),The 14th International Conference on Future Networks and Communications (FNC-2019),The 9th International Conference on Sustainable Energy Information Technology}
+      \field{title}{Progressive Web Application Assessment Using AHP}
+      \field{volume}{155}
+      \field{year}{2019}
+      \field{pages}{289\bibrangedash 294}
+      \range{pages}{6}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.procs.2019.08.041
+      \endverb
+      \verb{urlraw}
+      \verb http://www.sciencedirect.com/science/article/pii/S187705091930955X
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S187705091930955X
+      \endverb
+      \keyw{progressive web application,native,hybrid,mobile,software,analytical hierarchy process,offline application,multi-platform}
+    \endentry
+    \entry{majchrzak2018}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,uniquepart=base,hash=3925028a8aaf685ded3c7145910ea018}{%
+           family={Majchrzak},
+           familyi={M\bibinitperiod},
+           given={Tim\bibnamedelima A},
+           giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=5c8e112d05da505cd7165215cfa04054}{%
+           family={Bi{ø}rn-Hansen},
+           familyi={B\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=4bdedc4a344574bd6e841adf103f322e}{%
+           family={Gr{ø}nli},
+           familyi={G\bibinitperiod},
+           given={Tor-Morten},
+           giveni={T\bibinithyphendelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{369c1b992d46762b7342df3a92df6cfd}
+      \strng{fullhash}{369c1b992d46762b7342df3a92df6cfd}
+      \strng{bibnamehash}{369c1b992d46762b7342df3a92df6cfd}
+      \strng{authorbibnamehash}{369c1b992d46762b7342df3a92df6cfd}
+      \strng{authornamehash}{369c1b992d46762b7342df3a92df6cfd}
+      \strng{authorfullhash}{369c1b992d46762b7342df3a92df6cfd}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Progressive web apps: the definite approach to cross-platform development?}
+      \field{year}{2018}
+    \endentry
+    \entry{typescript-org}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=140864078aeca1c7c35b4beb33c53c34}{%
+           family={Microsoft},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{fullhash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{bibnamehash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{authorbibnamehash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{authornamehash}{140864078aeca1c7c35b4beb33c53c34}
+      \strng{authorfullhash}{140864078aeca1c7c35b4beb33c53c34}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Typescript - JavaScript that scales.}
+      \field{urlday}{20}
+      \field{urlmonth}{5}
+      \field{urlyear}{2020}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.typescriptlang.org/
+      \endverb
+      \verb{url}
+      \verb https://www.typescriptlang.org/
       \endverb
     \endentry
     \entry{Rojas2020}{inbook}{}
