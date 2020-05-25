@@ -1,18 +1,10 @@
-# Vorlage für Abschlussarbeiten mit LaTeX
+Bachelorthesis von Martin Schalter geschrieben an der [HS-Mannheim](https://www.hs-mannheim.de/) für [CROSSLOAD](https://crossload.org).
 
-Diese Vorlage ist für Abschlussarbeiten mit LaTeX an der Hochschule Mannheim gedacht. Sie erhebt keinen Anspruch darauf, den Wünschen aller Professorinnen und Professoren zu entsprechen. Klären Sie daher immer im Voraus mit Ihrer Betreuerin bzw. Ihrem Betreuer (und auch Zweitkorrektor), ob die Vorlage ihren bzw. seinen Vorstellungen entspricht.
+# Technische Informationen
 
-Wenn Sie Probleme haben oder Fehler entdecken, öffnen Sie ein [Issue](https://github.com/informatik-mannheim/thesis-template/issues). Lesen Sie aber vorher diese Anleitung und die [Erklärungen in der Hauptdatei](https://github.com/informatik-mannheim/thesis-template/blob/master/latex/tex/thesis.tex#L1) bis zum Ende, denn vielleicht klärt sich Ihre Frage dann von selbst.
+Diese Thesis wurde mithilfe der [LaTeX-Vorlage der HS-Mannheim](https://github.com/informatik-mannheim/thesis-template) erstellt.
 
-Verbesserungen können Sie jederzeit als GitHub Pull-Request an uns senden.
-
-Diese Vorlage wurde entwickelt von [Prof. Thomas Smits](http://www.smits-net.de).
-
-Wenn Ihnen die Vorlage gefällt, können Sie diesem _Repo einen Stern geben_ - dann wissen wir, wer sie benutzt.
-
-## Werkzeuge, Dateiformat
-
-### Lokale Entwicklungsumgebungen
+## Lokale Entwicklungsumgebungen
 
 Zum Erzeugen der fertigen Arbeit dienen die Skripte `create` und `clean`. Die .cmd-Version ist für Windows, die .sh für Unix/Linux.
 
@@ -33,30 +25,21 @@ Für die Verwaltung der Literaturliste wird das BibTeX-Format verwendet (Datei `
   * [JabRef](http://jabref.sourceforge.net/) für Windows, MacOS und Linux
   * [BibDesk](http://bibdesk.sourceforge.net/) für MacOS
 
-Achten Sie darauf, die Dokumente im UTF-8-Format abzulegen. Nur so ist eine plattformunabhängige Verwendung gewährleistet. Die Vorlagen hier sind ebenfalls im UTF-8-Format.
-
-### Cloud-Dienste
-
-Diese Vorlage wurde bereits von Studierenden erfolgreich bei Cloud-Diensten eingesetzt, mit denen man LaTeX-Dokumente schreiben, kompilieren und verwalten kann. Positive Erfahrungsberichte liegen bisher mit [Overleaf](https://www.overleaf.com) vor. Eine Anleitung zu Overleaf finden Sie weiter unten.
+Achten Sie darauf, die Dokumente im UTF-8-Format abzulegen. Nur so ist eine plattformunabhängige Verwendung gewährleistet. 
 
 ## Aufbau der Vorlage
 
-Die Vorlage enthält eine Reihe von Dateien, die Sie teilweise nach Ihren Bedürfnissen anpassen müssen bzw. mit Ihren Inhalten füllen.
-
-Anpassen müssen Sie die folgenden Dateien
-
-  * `thesis.tex` - Hauptdokument. Hier müssen Sie weitere Kapitel aus dem Ordner `kapitel` inkludieren.
-  * `docinfo.tex` - Bibliografische Informationen zur Arbeit, müssen Sie mit Ihren Daten füllen
+  * `thesis.tex` - Hauptdokument. Hier werden weitere Kapitel aus dem Ordner `kapitel` inkludieren.
+  * `docinfo.tex` - Bibliografische Informationen zur Arbeit
   * `kapitel/abkuerzungen.tex` - Liste der in der Arbeit verwendeten Abkürzungen
-  * `kapitel/kapitel1.tex` - Beispiel für ein Kapitel
-  * `kapitel/kapitel2.tex` - Weiteres Beispiel für ein Kapitel
-  * `kapitel/kapitel3.tex` - Weiteres Beispiel für ein Kapitel
-  * `kapitel/kapitel4.tex` - Weiteres Beispiel für ein Kapitel
-  * `kapitel/anhang-a.tex` - Beispiel für einen Anhang
-  * `kapitel/anhang-b.tex` - Beispiel für einen Anhang
+  * `kapitel/kapitel1.tex` - Einleitung
+  * `kapitel/kapitel2.tex` - Grundlagen
+  * `kapitel/kapitel3.tex` - Anforderungsanalyse
+  * `kapitel/kapitel4.tex` - Konzeption
+  * `kapitel/anhang-5.tex` - Implementierung
+  * `kapitel/anhang-6.tex` - Evaluation und Reflexion
+  * `kapitel/anhang-7.tex` - Zusammenfassung und Ausblick
   * `literatur.bib` - Literaturdatenbank im BibTeX-Format
-
-Weitere Kapitel können hinzugefügt werden und dann vom Hauptdokument `thesis.tex` inkludiert.
 
 Normalerweise nicht verändern müssen Sie
 
@@ -70,33 +53,3 @@ Es gibt drei Ordner
   * `/kapitel` - Ablageort für die einzelnen Kapitel
   * `/bilder` - Ablageort für die verwendeten Bilder
   * `/src` - Ablageort für die verwendeten Quelltexte von Programmen, die in der Arbeit gezeigt werden sollen.
-
-Die Datei `thesis-overleaf.zip` dient dem einfachen Import in [Overleaf](https://www.overleaf.com) - siehe nächstes Kapitel.
-
-## LaTeX-Projekt unter Overleaf einrichten
-
- * Laden Sie die ZIP-Version des Projektes [hier](https://github.com/informatik-mannheim/thesis-template/raw/master/latex/thesis-overleaf.zip) herunter.
- * Melden Sie sich bei [Overleaf](https://www.overleaf.com) an und loggen Sie sich ein.
- * Gehen Sie auf "New Project" und wählen Sie "Upload Project"
- * Laden Sie die ZIP-Datei hoch.
- * Sie werden jetzt Kompile-Fehler bekommen, aber keine Panik, dies liegt daran, dass Overleaf nicht weiß, welches das Hauptdokument ist
- * Wählen Sie das Overleaf Logo oben links, um das Einstellungsmenue aufzurufen und stellen Sie die Option "Main document" auf `thesis.tex`
- * Wählen Sie nun in der Dateiliste ebenfalls `thesis.tex`
- * Drücken Sie auf "Recompile" - das Projekt sollte jetzt bauen
-
-## LaTeX-Projekt unter TeXnicCenter einrichten
-
-Ab der Version 2 von TeXnicCenter wird das UTF-8-Format richtig unterstützt.
-
-  * Öffnen Sie die Datei `thesis.tex` mit TeXnicCenter
-  * Wählen Sie in Projekt "Erzeugen mit aktueller Datei als Hauptdatei"
-    * "verwendet BibTex" ankreuzen
-    * "verwendet Makeindex" ankreuzen
-    * Sprachinformation für die Rechtschreibkorrektur setzen
-  * Unter "Ausgabe" den Punkt "Ausgabeprofil definieren" wählen
-    * LaTeX => PDF auswählen
-    * "Pfade des BibTeX-Compilers" von `...\bibtex.exe` auf `...\biber.exe` ändern
-  * Unter "Ausgabe" den Punkt "Aktive Ausgabeprofil wählen" anklicken
-    * LaTeX => PDF auswählen
-
-Damit alle Referenzen und Literaturangaben im Dokument korrekt sind, müssen Sie es bis zu drei Mal erzeugen.
