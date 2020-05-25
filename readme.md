@@ -36,9 +36,9 @@ Achten Sie darauf, die Dokumente im UTF-8-Format abzulegen. Nur so ist eine plat
   * `kapitel/kapitel2.tex` - Grundlagen
   * `kapitel/kapitel3.tex` - Anforderungsanalyse
   * `kapitel/kapitel4.tex` - Konzeption
-  * `kapitel/anhang-5.tex` - Implementierung
-  * `kapitel/anhang-6.tex` - Evaluation und Reflexion
-  * `kapitel/anhang-7.tex` - Zusammenfassung und Ausblick
+  * `kapitel/kapitel-5.tex` - Implementierung
+  * `kapitel/kapitel-6.tex` - Evaluation und Reflexion
+  * `kapitel/kapitel-7.tex` - Zusammenfassung und Ausblick
   * `literatur.bib` - Literaturdatenbank im BibTeX-Format
 
 Normalerweise nicht verändern müssen Sie
