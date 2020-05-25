@@ -1,8 +1,48 @@
 \chapter{Anforderungsanalyse}
 \label{Kap3}
+Die Anforderungen die in diesem Kapitel herausgearbeitet werden, bilden die Grundlage für die Entscheidungen in den nächsten Kapiteln. Zuerst werden grundlegende Bedingungen und die Vorgehensweise erklärt. Anschließend werden einige Szenarien zur Benutzung der Offline Funktion beschrieben und daraus konkrete Anforderungen hergeleitet.
 
-\section{Randbedingungen}
+\section{Vorgehensweise und Randbedingungen}
+Da CROSSLOAD fast nur ehrenamtliche Mitarbeiter hat, gibt es niemanden der genaue Anforderungen an Features vorschreibt. Vielmehr werden die Anforderungen zusammen im Team diskutiert. Auch für die Offline Funktionalitäten gab es ein Brainstorming mit Mitarbeitern von CROSSLOAD. Daraus haben sich einige Anforderungen herausgestellt. Zusätzlich werden sich einige Szenarien überlegt, die verschiedene Nutzungen der Offline Funktionialität beleuchtet. Die Szenarien helfen beim Verstehen der Anforderungen.
 
-\section{Funktionale Anforderungen}
+Es gibt zwei Randbedingungen, die für diese Thesis relevant sind. Erstens muss das Framework Angular benutzt werden, weil das bisherige Webportal auch in Angular geschrieben ist. Eine andere Technologie zu verwenden, würde die Integration in die bestehende Platform sehr schwer gestalten. Als zweites stellt sich die Frage welche Browser unterstützt werden müssen. CROSSLOAD befindet sich in der Beta-Phase, deswegen gibt es noch nicht genügend Daten darüber, welche Browser von den Nutzern von CROSSLOAD verwendet werden. Als Anhaltspunkt dient deswegen die durchschnittliche Browsernutzung in Deutschland. Dabei kann zwischen der Nutzung der Browser auf PCs wie in \autoref{internetnutzung/browser-pc-deutschland} zu sehen und auf Mobilgeräten wie in \autoref{internetnutzung/browser-mobil-deutschland} zu sehen unterschieden werden.
 
-\section{Use Cases}
+\bild{internetnutzung/browser-pc-deutschland}{10cm}{Internetnutzung nach Browsern in Deutschland \autocite{browser-deutschland}}
+
+\bild{internetnutzung/browser-mobil-deutschland}{10cm}{Internetnutzung nach mobilen Browsern in Deutschland \autocite{mobile-browser-deutschland}}
+
+Die Offline-Funktionen für CROSSLOAD, die in dieser Thesis erarbeitet werden, sind nicht essentiel zum Benutzen des Portals. Deswegen kann auch in kauf genommen werden, dass manche Funktionen für Nutzer mit gewissen Browsern nicht zur Verfügung stehen. Natürlich ist es besser, wenn viele Nutzer von den neuen Funktionalitäten profitieren, als Zielwert gelten 90\% alle Nutzer. Dabei wird nicht berücksichtigt, welche Browserversion die Nutzer verwenden. Alle gängingen Browser verfügen über eine automatische Updatefunktion, dadurch erhalten die meisten Nutzer sehr zeitnah veröffentlichte Updates.
+
+Bei den Browsern für Mobilgeräte ist der Markanteil von Chrome, Safari und Samsung Internet zusammengerechnet über 96\%. Außerdem basiert Samsung Internet intern auf Chromium und teilt somit die allermeisten Funktionen mit Chrome \autocite{samsung-webkit}. In späteren Entscheidungen wird deswegen Samsung-Internet nur erwähnt wenn es von der Funktionalität im Chrome Browser abweicht.
+
+Für PCs gibt es mehr Browserfamilien, die relevant sein könnten. Insgesamt lassen sich alle relevanten Browser auf drei Gruppen reduzieren: Safari und Firefox haben jeweils eine eigene Render-Engine. Opera setzt schon seit einigen Jahren auf Chromium auf \autocite{opera-webkit} und auch für den Edge-Browser wurde 2018 angekündigt Chromium als Basis zu verwenden \autocite{edge-faq}. Der Internet Explorer wird immer weniger verwendet und von Microsoft nicht mehr für den normalen Endnutzer empfohlen \autocite{edge-faq}, deswegen wird der Internet Explorer hier auch nicht berücksichtigt. In den nachfolgenden Kapiteln wird der Browser Edge und Opera mit Chrome gleichgesetzt und nicht extra erwähnt, solange keine relevanten Unterschiede vorhanden sind. Die Browser Safari, Firefox und Chrome (inklusive der Chromium basierten Browser) haben einen Marktanteil von über 94\%.
+
+\section{Szenarien}
+\begin{enumerate}
+	\item Nutzer im Auto: schlechte Internetverbindung
+	\item Nutzer auf Reisen im Flugzeug: keine Internetverbindung
+	\item Pendler mit geringem Datenvolumen
+\end{enumerate}
+
+\section{Anforderungen}
+\begin{itemize}
+	\item Nutzer kann sich eine Predigt vormerken / favorisieren
+	\item Die vorgemerkte Predigt wird automatisch heruntergeladen
+	
+	\begin{itemize}
+		\item Aber nur bei WLAN (oder nachfragen)
+		\item Automatischer Download sobald WLAN verfügbar ist
+	\end{itemize}
+
+	\item Zum Inhalt einer Predigt gehört: Titel, Bibelstelle, Mitschrift, 1 Audio-Datei, ... (alles was im Content Ojekt ist)
+	\item Der Nutzer wird über den Fortschritt des Downloads informiert
+	\item Das Portal erkennt wenn ein Nutzer offline ist und leitet ihn auf eine spezielle Seite weiter
+	\item Die zurzeit heruntergeladenen Inhalte können in einer Übersicht gesehen werden
+ 	\item Die zurzeit heruntergaladenen Inhalte können gelöscht werden. Bei anderen Nutzern wurde beobachtet, dass dies nicht geschieht, wenn man die mp3-Dateien herunterlädt. Evtl. automatisches Löschen angehörtet Predigten
+	\item ?? Die zurzeit heruntergeladenen Inhalte können durchsucht / gefiltert werden ??
+	\item Die Detailseite eines heruntergeladenen Inhalts kann aufgerufen werden 
+	\item Die heruntergeladene Predigt kann angehört werden
+	\item Wenn eine Predigt angehört werden soll, die bereits heruntergeladen ist, soll die heruntergeladene genommen werden, um Traffic zu vermeiden
+	\item Später sollen die Favoriten über einen Account synchronisiert werden können	
+\end{itemize}
+
