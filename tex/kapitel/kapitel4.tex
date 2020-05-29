@@ -2,13 +2,21 @@
 \label{Kap4}
 
 \section{Lokale Datenspeicherung}
+Moderne Webbrowser stellen viele verschiedene Lösungen zum lokalen Speichern von Daten zu Verfügung. In diesem Kapitel werden einige davon mit ihren Stärken und Schwächen vorgestellt. Zuletzt wird eine passende Lösung für CROSSLOAD ausgewählt und begründet.
 
 \subsection{Web Storage}
+Der Web Storage besitzt zwei unterschiedliche Arten Daten zu speichern: LocalStorage und SessionStorage \autocite{Hajian2019} \autocite{mdn-web-storage}. Die beiden Speicher unterscheiden sich nur in der Dauer der Speicherung der Daten. Die Daten vom SessionStorage werden gelöscht sobald die Sitzung auf der Website vorbei ist, das heißt der Browser oder der Tab geschlossen wird \autocite{Hajian2019} \autocite{mdn-web-storage}. Der LocalStorage bleibt über mehrere Sitzungen erhalten und wird nicht automatisch gelöscht \autocite{Hajian2019} \autocite{mdn-web-storage}. 
 
-SessionStorage: Bleibt erhalten solange der Browser nicht geschlossen wird.
-LocalStorage: Wie SessionStorage aber bleibt immer erhalten.
-Nachteil: Nur Synchron, nur strings, kein Web Worker Support
-\cite{Hajian2019}
+Die Web Storage \ac{API} bietet die Möglichkeit Schlüssel / Wert Paare im Browser abzulegen \autocite{mdn-web-storage}. Alle relevanten Browser implementieren diese \ac{API} \autocite{mdn-web-storage}, es gibt aber auch einige Einschränkungen:
+
+\begin{itemize}
+	\item Zugriffe sind nur synchron möglich \autocite{Hajian2019}
+	\item Als Schlüssel und Werte können jeweiles nur Strings gespeichert werden \autocite{Hajian2019}
+	\item Die \ac{API} ist nicht von Web Workern aufrufbar \autocite{Hajian2019}. Service Worker haben zum Beispiel keinen Zugriff darauf
+	\item Es können maximal 5 \ac{MB} an Daten gespeichert werden \autocite{mdn-web-storage}
+\end{itemize}
+
+Aufgrund der synchronität und des geringen Datenvolumes das gespeichert werden darf, eignet sich die Web Storage \ac{API} nur zum Speichern von wenig Daten. Größere Daten und insbesondere binäre Dateien, die nicht sehr gut in eine textuelle Form übertragen werden können sollten nicht abgespeichert werden. 
 
 \subsection{WebSQL}
 
@@ -68,6 +76,31 @@ Bibliothek für Service Worker:
 \autocite{Rojas2020}
 
 Cache storage != browser cache \autocite{Rojas2020}
+
+\subsection{Überblick und Entscheidung}
+In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten zum Speichern von Daten nach folgenden Kriterien verglichen: maximale Datenmenge, mögliche Datentypen, synchron / asynchron, Browsersupport, in Web Worker aufrufbar.
+
+\begin{table}[h]
+  \caption{Vergleich der APIs zur lokalen Datenspeicherung}
+  \label{Kap4:Datenspeicherung}
+  \renewcommand{\arraystretch}{1.2}
+  \centering
+  \sffamily
+  \begin{footnotesize}
+    \begin{tabularx}{1.0\textwidth}{l l l l l l}
+      \toprule
+      \textbf{Technologie} & \textbf{Datenmenge} & \textbf{Datentypen} & \textbf{(a)synchron} & \textbf{Browsersupport} & \textbf{Web Worker} \\
+      \midrule
+      \emph{Web Storage \ac{API}} & max. 5 \ac{MB} & String & nur synchron & alle & nein \\
+      \emph{Web SQL} &  &  &  &  &  \\
+      \emph{File System \ac{API}} &  &  &  &  &  \\
+      \emph{Indexed DB} &  &  &  &  &  \\
+      \emph{Cache \ac{API}} &  &  &  &  &  \\
+      \bottomrule
+    \end{tabularx}
+  \end{footnotesize}
+  \rmfamily
+\end{table}
 
 \section{Herunterladen der Audiodaten}
 

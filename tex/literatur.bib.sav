@@ -223,4 +223,13 @@
   timestamp = {2020-05-23},
 }
 
+@WWW{mdn-web-storage,
+  title     = {Web Storage API},
+  year      = {2020},
+  date      = {2020-02-08},
+  url       = {https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API},
+  urldate   = {2020-05-29},
+  timestamp = {2020-05-29},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
