@@ -65,23 +65,29 @@ Ablauf:
 \end{enumerate}
 
 \section{Anforderungen}
+Aus den Diskussionen mit Mitarbeitern von CROSSLOAD haben sich die Anforderungen herausgestellt, die in diesem Kapitel aufgelistet sind. Für diese Thesis sind nur Audioinhalte auf CROSSLOAD relevant.
+
 \begin{itemize}
-	\item Nutzer kann sich eine Predigt vormerken / favorisieren
-	\item Die vorgemerkte Predigt wird automatisch heruntergeladen
+	\item Der Benutzer kann einen Inhalt favorisieren
+	\item Der vorgemerkte Inhalt wird automatisch anhand der Verbindungsart heruntergeladen. Der genaue Ablauf ist in einem Aktivitätsdiagramm in \autoref{diagramme/anforderung-konnektivitaet} zu sehen.
 	
 	\begin{itemize}
-		\item Aber nur bei WLAN (oder nachfragen)
-		\item Automatischer Download sobald WLAN verfügbar ist
+		\item Wenn eine WLAN-Verbindung besteht wird der Download sofort gestartet
+		\item Wenn eine mobile Datenverbindung besteht wird der Benutzer gefragt, ob er den Inhalt jetzt herunterladen möchte
+		\item Wenn der Benutzer dies verneint wird auf eine WLAN-Verbindung gewartet und der Download gestartet, sobald diese besteht
 	\end{itemize}
+	
+\bild{diagramme/anforderung-konnektivitaet}{15cm}{Aktivitätsdiagramm: Download des Inhalt abhängig von der Verbindungsart}
 
-	\item Zum Inhalt einer Predigt gehört: Titel, Bibelstelle, Mitschrift, 1 Audio-Datei, ... (alles was im Content Ojekt ist)
-	\item Der Nutzer wird über den Fortschritt des Downloads informiert
-	\item Das Portal erkennt wenn ein Nutzer offline ist und leitet ihn auf eine spezielle Seite weiter
+	\item Der Benutzer wird über den Fortschritt des Downloads informiert
+	\item Das Portal erkennt wenn ein Benutzer keine Internetverbindung hat und leitet ihn auf eine spezielle Seite weiter
 	\item Die zurzeit heruntergeladenen Inhalte können in einer Übersicht gesehen werden
- 	\item Die zurzeit heruntergaladenen Inhalte können gelöscht werden.
+ 	\item Die zurzeit heruntergaladenen Inhalte können gelöscht werden
 	\item ?? Die zurzeit heruntergeladenen Inhalte können durchsucht / gefiltert werden ??
 	\item Die Detailseite eines heruntergeladenen Inhalts kann aufgerufen werden 
-	\item Die heruntergeladene Predigt kann angehört werden
-	\item Wenn eine Predigt angehört werden soll, die bereits heruntergeladen ist, soll die heruntergeladene genommen werden, um Traffic zu vermeiden
+	\item Der heruntergeladene Inhalt kann angehört werden
+	\begin{itemize}
+		\item Wenn ein Inhalt angehört werden soll, der bereits heruntergeladen ist, sollen die heruntergeladenen Daten verwendet werden, um Traffic zu vermeiden
+	\end{itemize}
+	
 \end{itemize}
-
