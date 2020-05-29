@@ -18,21 +18,20 @@ Die Web Storage \ac{API} bietet die Möglichkeit Schlüssel / Wert Paare im Brow
 
 Aufgrund der synchronität und des geringen Datenvolumes das gespeichert werden darf, eignet sich die Web Storage \ac{API} nur zum Speichern von wenig Daten. Größere Daten und insbesondere binäre Dateien, die nicht sehr gut in eine textuelle Form übertragen werden können sollten nicht abgespeichert werden. 
 
-\subsection{WebSQL}
-
-Asynchron (callback-based)
-Nachteil: kein Web Worker Support, nicht in Firefox und depracated
-\autocite{Hajian2019}
-
 \subsection{File System API}
-
 Asynchron (callback-based), bietet ein virtuelles Dateisystem zum ablegen von Daten. Läuft aber in einer Sandbox und kann nicht auf das "richtige" Dateisystem zugreifen.
 Vorteil: funktioniert in Web Workers 
 Nachteil: (Fast) nur von Chrome unterstützt
 \autocite{Hajian2019}
 
-\subsection{Indexed DB}
+\subsection{Web SQL}
+Web SQL ist eine \ac{API}, die es erlaubt Daten in einer Datenbank zu speichern und diese Daten mit einer SQL ähnlichen Sprache zu durchsuchen \autocite{w3-web-sql}. Die Anfragen sind asynchron funktionieren aber nicht in einem Web Worker \autocite{Hajian2019}.
 
+Diese \ac{API} wurde nie von allen Browsern implementiert und ist mitlerweile deprecated, soll also nicht mehr verwendet werden \autocite{Hajian2019}.
+
+Aufgrund der Tatsache, dass Web SQL deprecated ist, wird diese Technologie auch keinen Einsatz bei CROSSLOAD finden. Als Datenbank in Browsern hat sich IndexedDB etabliert.
+
+\subsection{Indexed DB}
 - Umfangreiche Objektdatenbank um große Datenmengen auf dem Client zu speichern. Unterstützt Indexe zum Durchsuchen. Unterstützt auch Transaktionen \autocite{Sheppard2017} 
 
 - key-value pari NoSQL Datenbank zum Speichern von vielen Daten (bis zu 20-50 \% des verfügbaren Speicherplatzes). Unterstützt viele Datentypen, ist asynchron und kann überall verwendet werden \autocite{Hajian2019}
@@ -44,7 +43,6 @@ Transaktionelle Datenbank
 - Asynchron
 
 \subsection{Cache API}
-
 - Service Worker: Laufen im Hintergrund (im eigenen Thread) ohne Zugriff aufs DOM \autocite{Sheppard2017}
 
 - Service Worker ist ein Mittler zwischen APP und Internet. Es übernimmt Aufgaben wie Caching, Syncing, Benachrichtigungen \autocite{Sheppard2017}
@@ -78,7 +76,7 @@ Bibliothek für Service Worker:
 Cache storage != browser cache \autocite{Rojas2020}
 
 \subsection{Überblick und Entscheidung}
-In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten zum Speichern von Daten nach folgenden Kriterien verglichen: maximale Datenmenge, mögliche Datentypen, synchron / asynchron, Browsersupport, in Web Worker aufrufbar.
+In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten zum Speichern von Daten nach folgenden Kriterien verglichen: maximale Datenmenge, mögliche Datentypen, synchron / asynchron, Browsersupport, in Web Worker aufrufbar. Bei fehlenden Feldern in Web SQL wurde nicht weiter recherchiert, weil diese Technologie veraltet ist und nicht mehr verwendet werden soll.
 
 \begin{table}[h]
   \caption{Vergleich der APIs zur lokalen Datenspeicherung}
@@ -87,15 +85,15 @@ In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten z
   \centering
   \sffamily
   \begin{footnotesize}
-    \begin{tabularx}{1.0\textwidth}{l l l l l l}
+    \begin{tabularx}{1.0\textwidth}{l l l l l l l}
       \toprule
-      \textbf{Technologie} & \textbf{Datenmenge} & \textbf{Datentypen} & \textbf{(a)synchron} & \textbf{Browsersupport} & \textbf{Web Worker} \\
+      \textbf{Technologie} & \textbf{Datenmenge} & \textbf{Datentypen} & \textbf{(a)synchron} & \textbf{Browsersupport} & \textbf{Web Worker} & \textbf{Anmerkung} \\
       \midrule
-      \emph{Web Storage \ac{API}} & max. 5 \ac{MB} & String & nur synchron & alle & nein \\
-      \emph{Web SQL} &  &  &  &  &  \\
-      \emph{File System \ac{API}} &  &  &  &  &  \\
-      \emph{Indexed DB} &  &  &  &  &  \\
-      \emph{Cache \ac{API}} &  &  &  &  &  \\
+      \emph{Web Storage \ac{API}} & max. 5 \ac{MB} & String & nur synchron & alle & nein & \\
+      \emph{File System \ac{API}} &  &  &  &  &  & \\
+      \emph{Web SQL} & - & . & asynchron & teilweise & nein & veraltet \\
+      \emph{Indexed DB} &  &  &  &  &  & \\
+      \emph{Cache \ac{API}} &  &  &  &  &  & \\
       \bottomrule
     \end{tabularx}
   \end{footnotesize}

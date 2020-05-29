@@ -232,4 +232,14 @@
   timestamp = {2020-05-29},
 }
 
+@WWW{w3-web-sql,
+  author    = {Ian Hickson},
+  title     = {Web SQL Database},
+  year      = {2010},
+  date      = {2010-11-18},
+  url       = {https://www.w3.org/TR/webdatabase/},
+  urldate   = {2020-05-29},
+  timestamp = {2020-05-29},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
