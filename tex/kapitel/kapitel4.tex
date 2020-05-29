@@ -19,10 +19,11 @@ Die Web Storage \ac{API} bietet die Möglichkeit Schlüssel / Wert Paare im Brow
 Aufgrund der synchronität und des geringen Datenvolumes das gespeichert werden darf, eignet sich die Web Storage \ac{API} nur zum Speichern von wenig Daten. Größere Daten und insbesondere binäre Dateien, die nicht sehr gut in eine textuelle Form übertragen werden können sollten nicht abgespeichert werden. 
 
 \subsection{File System API}
-Asynchron (callback-based), bietet ein virtuelles Dateisystem zum ablegen von Daten. Läuft aber in einer Sandbox und kann nicht auf das "richtige" Dateisystem zugreifen.
-Vorteil: funktioniert in Web Workers 
-Nachteil: (Fast) nur von Chrome unterstützt
-\autocite{Hajian2019}
+Die File System \ac{API} und FileWrite \ac{API} bieten dem Browser die Möglichkeit Dateien in ein virtuelles Dateisystem abzulegen und von dort wieder zu laden \autocite{Hajian2019} \autocite{storage-for-the-web}. Dieses virtuelle Dateisystem unterstützt viele gängige Funktionen wie Ordner und Dateimanipulationen, wie man sie von herkömmlichen Dateisystem gewohnt ist \autocite{mdn-file-system}. MDN nennt diese \ac{API} File and Directory Entries \ac{API} \autocite{mdn-file-system}. 
+
+Der Vorteil dieser \ac{API} ist der Umgang mit \acp{blob}, wie zum Beispiel Audiodateien. Diese können leicht gespeichert, geladen und manipuliert werden \autocite{mdn-file-system}. Außerdem gibt es eine \ac{API} für synchrone und asynchrone Zugriffe und ist ebenso in Web Workern verfügbar \autocite{Hajian2019}. 
+
+Es gibt keinen offiziellen Standard \autocite{mdn-file-system} \autocite{caniuse-filesystem}. Deswegen unterstützen noch nicht sehr viele Browser diese \ac{API}, bisher ist in Chrome und in allen Chromium basierten Browser diese Funktion verfügbar \autocite{caniuse-filesystem}.
 
 \subsection{Web SQL}
 Web SQL ist eine \ac{API}, die es erlaubt Daten in einer Datenbank zu speichern und diese Daten mit einer SQL ähnlichen Sprache zu durchsuchen \autocite{w3-web-sql}. Die Anfragen sind asynchron funktionieren aber nicht in einem Web Worker \autocite{Hajian2019}.
@@ -90,8 +91,8 @@ In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten z
       \textbf{Technologie} & \textbf{Datenmenge} & \textbf{Datentypen} & \textbf{(a)synchron} & \textbf{Browsersupport} & \textbf{Web Worker} & \textbf{Anmerkung} \\
       \midrule
       \emph{Web Storage \ac{API}} & max. 5 \ac{MB} & String & nur synchron & alle & nein & \\
-      \emph{File System \ac{API}} &  &  &  &  &  & \\
-      \emph{Web SQL} & - & . & asynchron & teilweise & nein & veraltet \\
+      \emph{File System \ac{API}} & quota  & \acp{blob} und weitere & synchron und asynchron & nur Chrome & Ja &  \\
+      \emph{Web SQL} & - & . & synchron und asynchron & teilweise & nein & veraltet \\
       \emph{Indexed DB} &  &  &  &  &  & \\
       \emph{Cache \ac{API}} &  &  &  &  &  & \\
       \bottomrule

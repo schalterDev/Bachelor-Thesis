@@ -242,4 +242,30 @@
   timestamp = {2020-05-29},
 }
 
+@WWW{storage-for-the-web,
+  author    = {Pete LePage},
+  title     = {Storage for the web},
+  year      = {2020},
+  date      = {2020-04-27},
+  url       = {https://web.dev/storage-for-the-web/},
+  urldate   = {2020-05-29},
+  timestamp = {2020-05-29},
+}
+
+@WWW{mdn-file-system,
+  title     = {Introduction to the File and Directory Entries API},
+  year      = {2019},
+  date      = {2019-09-24},
+  url       = {https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API/Introduction},
+  urldate   = {2020-05-29},
+  timestamp = {2020-05-29},
+}
+
+@WWW{caniuse-filesystem,
+  title     = {Filesystem \& FileWriter API},
+  url       = {https://caniuse.com/#feat=filesystem},
+  urldate   = {2020-05-29},
+  timestamp = {2020-05-29},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
