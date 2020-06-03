@@ -11,7 +11,7 @@ Es gibt zwei Randbedingungen, die für diese Thesis relevant sind. Erstens muss 
 
 \bild{internetnutzung/browser-mobil-deutschland}{10cm}{Internetnutzung nach mobilen Browsern in Deutschland \autocite{mobile-browser-deutschland}}
 
-Die Offline-Funktionen für CROSSLOAD, die in dieser Thesis erarbeitet werden, sind nicht essentiel zum Benutzen des Portals. Deswegen kann auch in kauf genommen werden, dass manche Funktionen für Nutzer mit gewissen Browsern nicht zur Verfügung stehen. Natürlich ist es besser, wenn viele Nutzer von den neuen Funktionalitäten profitieren, als Zielwert gelten 90\% alle Nutzer. Dabei wird nicht berücksichtigt, welche Browserversion die Nutzer verwenden. Alle gängingen Browser verfügen über eine automatische Updatefunktion, dadurch erhalten die meisten Nutzer sehr zeitnah veröffentlichte Updates.
+Die Offline-Funktionen für CROSSLOAD, die in dieser Thesis erarbeitet werden, sind nicht essentiel zum Benutzen des Portals. Deswegen kann auch in kauf genommen werden, dass manche Funktionen für Nutzer mit gewissen Browsern nicht zur Verfügung stehen. Natürlich ist es besser, wenn viele Nutzer von den neuen Funktionalitäten profitieren. Wichtig ist nur, dass iOS und Android unterstützt werden. Dabei wird nicht berücksichtigt, welche Browserversion die Nutzer verwenden. Alle gängingen Browser verfügen über eine automatische Updatefunktion, dadurch erhalten die meisten Nutzer sehr zeitnah veröffentlichte Updates.
 
 Bei den Browsern für Mobilgeräte ist der Markanteil von Chrome, Safari und Samsung Internet zusammengerechnet über 96\%. Außerdem basiert Samsung Internet intern auf Chromium und teilt somit die allermeisten Funktionen mit Chrome \autocite{samsung-webkit}. In späteren Entscheidungen wird deswegen Samsung-Internet nur erwähnt wenn es von der Funktionalität im Chrome Browser abweicht.
 
@@ -68,7 +68,7 @@ Ablauf:
 Aus den Diskussionen mit Mitarbeitern von CROSSLOAD haben sich die Anforderungen herausgestellt, die in diesem Kapitel aufgelistet sind. Für diese Thesis sind nur Audioinhalte auf CROSSLOAD relevant.
 
 \begin{itemize}
-	\item Der Benutzer kann einen Inhalt favorisieren
+	\item Der Benutzer kann sich einen Inhalt vormerken
 	\item Der vorgemerkte Inhalt wird automatisch anhand der Verbindungsart heruntergeladen. Der genaue Ablauf ist in einem Aktivitätsdiagramm in \autoref{diagramme/anforderung-konnektivitaet} zu sehen.
 	
 	\begin{itemize}
@@ -83,8 +83,8 @@ Aus den Diskussionen mit Mitarbeitern von CROSSLOAD haben sich die Anforderungen
 	\item Das Portal erkennt wenn ein Benutzer keine Internetverbindung hat und leitet ihn auf eine spezielle Seite weiter
 	\item Die zurzeit heruntergeladenen Inhalte können in einer Übersicht gesehen werden
  	\item Die zurzeit heruntergaladenen Inhalte können gelöscht werden
-	\item ?? Die zurzeit heruntergeladenen Inhalte können durchsucht / gefiltert werden ??
-	\item Die Detailseite eines heruntergeladenen Inhalts kann aufgerufen werden 
+	\item Es soll möglich sein, für einen bestimmten Inhalt herauszufinden, ob dieser Offline verfügbar ist
+	\item Die Inhalte der Detailseite eines heruntergeladenen Inhalts werden gespeichert
 	\item Der heruntergeladene Inhalt kann angehört werden
 	\begin{itemize}
 		\item Wenn ein Inhalt angehört werden soll, der bereits heruntergeladen ist, sollen die heruntergeladenen Daten verwendet werden, um Traffic zu vermeiden
