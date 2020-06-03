@@ -268,4 +268,22 @@
   timestamp = {2020-05-29},
 }
 
+@WWW{mdn-indexeddb,
+  title     = {IndexedDB Grundlagen},
+  year      = {2020},
+  date      = {2020-01-12},
+  url       = {https://developer.mozilla.org/de/docs/Web/API/IndexedDB_API/Grundkonzepte_hinter_IndexedDB},
+  urldate   = {2020-06-30},
+  timestamp = {2020-06-30},
+}
+
+@WWW{mdn-indexeddb-api,
+  title     = {IndexedDB},
+  year      = {2020},
+  date      = {2020-02-18},
+  url       = {https://developer.mozilla.org/de/docs/Web/API/IndexedDB_API},
+  urldate   = {2020-06-03},
+  timestamp = {2020-06-03},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}

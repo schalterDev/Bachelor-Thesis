@@ -33,15 +33,15 @@ Diese \ac{API} wurde nie von allen Browsern implementiert und ist mitlerweile de
 Aufgrund der Tatsache, dass Web SQL deprecated ist, wird diese Technologie auch keinen Einsatz bei CROSSLOAD finden. Als Datenbank in Browsern hat sich IndexedDB etabliert.
 
 \subsection{Indexed DB}
-- Umfangreiche Objektdatenbank um große Datenmengen auf dem Client zu speichern. Unterstützt Indexe zum Durchsuchen. Unterstützt auch Transaktionen \autocite{Sheppard2017} 
+Indexed DB ist eine key-value NoSQL objekt-orientierte Datenbank zum Speichern von großen und vielen Dateien \autocite{Hajian2019}. Konkret heißt das, dass Objekte mit einem Schlüssel in die Datenbank abgelegt werden können und diese über den angegebenen Schlüssel wieder auffindbar sind. Dabei werden viele unterschiedliche Datentypen (boolean, number, string, date, object, array, regexp, undefined, null, \ac{blob}) \autocite{mdn-indexeddb}, Transaktionen und Indexe zum schnelleren durchsuchen unterstützt \autocite{Sheppard2017}. 
 
-- key-value pari NoSQL Datenbank zum Speichern von vielen Daten (bis zu 20-50 \% des verfügbaren Speicherplatzes). Unterstützt viele Datentypen, ist asynchron und kann überall verwendet werden \autocite{Hajian2019}
+Einschränkungen in der Verwendung der \ac{API} gibt es nicht, da IndexedDB auch in Web Worker zur Verfügung steht und asynchron verwendet werden kann \autocite{Hajian2019} \autocite{mdn-indexeddb}. Alle relevanten Browser unterstützen Indexed DB \autocite{mdn-indexeddb-api}. Die maximale Speicherkapazität der Datenbank hängt vom Browser ab und wird in Kapitel ???näher behandelt.
 
-- Verfügbare Bibliotheken: LocalForage, Dexie.js, ... \autocite{Hajian2019}
+Anfragen an die Datenbank können direkt eine Sortierung oder Suchkriterien enthalten \autocite{mdn-indexeddb}. Dabei ist zu beachten, dass die Textsuche limitiert ist und keine Anfragen zum Finden eines einzelnen Wortes in einem ganzen Text unterstützt \autocite{mdn-indexeddb}. 
 
-Transaktionelle Datenbank
-- Gut für viel Daten, die Durchsucht werden müssen
-- Asynchron
+Die Verwendung von Indexed DB ist komplex, deswegen existieren viele Bibliotheken, die eine Verwendung der \ac{API} erleichtern wollen, wie zum Beispiel LocalForage oder Dexie.js \autocite{Hajian2019} \autocite{mdn-indexeddb}.
+
+Indexed DB ist ein sehr flexibler Speicher für den Client, weil in einer Anfrage direkt gesucht und sortiert werden kann. Außerdem können simple Datentypen, Objekte und sogar \acp{blob} (binäre Dateien) gespeichert werden. Ein Nachteil ist die Komplexität in der Verwendung der \ac{API}.
 
 \subsection{Cache API}
 - Service Worker: Laufen im Hintergrund (im eigenen Thread) ohne Zugriff aufs DOM \autocite{Sheppard2017}
@@ -79,7 +79,7 @@ Cache storage != browser cache \autocite{Rojas2020}
 \subsection{Überblick und Entscheidung}
 In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten zum Speichern von Daten nach folgenden Kriterien verglichen: maximale Datenmenge, mögliche Datentypen, synchron / asynchron, Browsersupport, in Web Worker aufrufbar. Bei fehlenden Feldern in Web SQL wurde nicht weiter recherchiert, weil diese Technologie veraltet ist und nicht mehr verwendet werden soll.
 
-\begin{table}[h]
+\begin{sidewaystable}[h]
   \caption{Vergleich der APIs zur lokalen Datenspeicherung}
   \label{Kap4:Datenspeicherung}
   \renewcommand{\arraystretch}{1.2}
@@ -93,13 +93,13 @@ In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten z
       \emph{Web Storage \ac{API}} & max. 5 \ac{MB} & String & nur synchron & alle & nein & \\
       \emph{File System \ac{API}} & quota  & \acp{blob} und weitere & synchron und asynchron & nur Chrome & Ja &  \\
       \emph{Web SQL} & - & . & synchron und asynchron & teilweise & nein & veraltet \\
-      \emph{Indexed DB} &  &  &  &  &  & \\
+      \emph{Indexed DB} & quota? & einfache Datentypen, Objekte, \acp{blob} & asynchron & alle & Ja & Inhalt durchsuch- und filterbar \\
       \emph{Cache \ac{API}} &  &  &  &  &  & \\
       \bottomrule
     \end{tabularx}
   \end{footnotesize}
   \rmfamily
-\end{table}
+\end{sidewaystable}
 
 \section{Herunterladen der Audiodaten}
 
