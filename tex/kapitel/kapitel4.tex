@@ -35,7 +35,7 @@ Aufgrund der Tatsache, dass Web SQL deprecated ist, wird diese Technologie auch 
 \subsection{Indexed DB}
 Indexed DB ist eine key-value NoSQL objekt-orientierte Datenbank zum Speichern von großen und vielen Dateien \autocite{Hajian2019}. Konkret heißt das, dass Objekte mit einem Schlüssel in die Datenbank abgelegt werden können und diese über den angegebenen Schlüssel wieder auffindbar sind. Dabei werden viele unterschiedliche Datentypen (boolean, number, string, date, object, array, regexp, undefined, null, \ac{blob}) \autocite{mdn-indexeddb}, Transaktionen und Indexe zum schnelleren durchsuchen unterstützt \autocite{Sheppard2017}. 
 
-Einschränkungen in der Verwendung der \ac{API} gibt es nicht, da IndexedDB auch in Web Worker zur Verfügung steht und asynchron verwendet werden kann \autocite{Hajian2019} \autocite{mdn-indexeddb}. Alle relevanten Browser unterstützen Indexed DB \autocite{mdn-indexeddb-api}. Die maximale Speicherkapazität der Datenbank hängt vom Browser ab und wird in Kapitel ???näher behandelt.
+Einschränkungen in der Verwendung der \ac{API} gibt es nicht, da IndexedDB auch in Web Worker zur Verfügung steht und asynchron verwendet werden kann \autocite{Hajian2019} \autocite{mdn-indexeddb}. Alle relevanten Browser unterstützen Indexed DB \autocite{mdn-indexeddb-api}. Die maximale Speicherkapazität der Datenbank hängt vom Browser ab und wird in Kapitel~\ref{Kap4:Datenmenge} näher behandelt.
 
 Anfragen an die Datenbank können direkt eine Sortierung oder Suchkriterien enthalten \autocite{mdn-indexeddb}. Dabei ist zu beachten, dass die Textsuche limitiert ist und keine Anfragen zum Finden eines einzelnen Wortes in einem ganzen Text unterstützt \autocite{mdn-indexeddb}. 
 
@@ -44,37 +44,45 @@ Die Verwendung von Indexed DB ist komplex, deswegen existieren viele Bibliotheke
 Indexed DB ist ein sehr flexibler Speicher für den Client, weil in einer Anfrage direkt gesucht und sortiert werden kann. Außerdem können simple Datentypen, Objekte und sogar \acp{blob} (binäre Dateien) gespeichert werden. Ein Nachteil ist die Komplexität in der Verwendung der \ac{API}.
 
 \subsection{Cache API}
-- Service Worker: Laufen im Hintergrund (im eigenen Thread) ohne Zugriff aufs DOM \autocite{Sheppard2017}
+Die Cache \ac{API} bietet die Möglichkeit Netzwerkanfragen zwischenzuspeichern \autocite{mdn-cache-api}. Über Request-Objekte können Response-Objekte gespeichert und gefunden werden \autocite{mdn-cache-api}. Die \ac{API} kann über das window-Ojekt und in Web-Workern verwendet werden und ist in allen relevanten Browsern verfügbar \autocite{mdn-cache-api}.
 
-- Service Worker ist ein Mittler zwischen APP und Internet. Es übernimmt Aufgaben wie Caching, Syncing, Benachrichtigungen \autocite{Sheppard2017}
+Oft wird die Cache \ac{API} in Verbindung mit Service Workern verwendet. Service Worker laufen im Hintergrund, sogar wenn die Webseite geschlossen wurde, haben aber keinen Zugriff aufs DOM \autocite{Sheppard2017}. Ein Service Worker ist wie ein Mittler zwischen APP und Internet, dabei wird meistens auf die Cache API zurückgegriffen \autocite{Sheppard2017}. \autoref{service-worker-funktionsweise} zeigt die Architektur von Service Workern. Wenn die Website eine Netzwerkanfrage schickt kann der Service Worker diese Anfrage abfangen. Die abgefangene Abfrage kann nun verändert werden, weitergeleitet werden oder mithilfe der Anfrage eine Antwort aus dem Cache geholt werden.
 
-Service Worker:
-- "Arbeiter" in JavaScript die im Hintergrund laufen
-- Ermöglicht es Netzwerk-Request zu unterbrechen (Proxy)
-- Benachrichtigungen zu senden
-- Cache Verwalten und vieles mehr
-- Laufen im eigenen Thread ohne DOM Zugriff, HTTPS-Only
-- Website sollte nicht auf Service Worker angewiesen sein
-\autocite{Hajian2019}
+\bild{service-worker-funktionsweise}{10cm}{Service Worker Architektur \autocite{Sheppard2017}}
 
-Angular bietet einen einfachen Weg Service Workers zu verwenden:
-- ng add @angular/pwa
-\autocite{Hajian2019}
+Die maximale Speicherkapazität des Caches hängt vom Browser ab und wird in Kapitel~\ref{Kap4:Datenmenge} näher erläutert. 
 
-Cache Strategien:
-- Cache only: Es wird nur der Inhalt des Caches geliefert. Wenn nicht verfügbar wird nichts geliefert
-- Netzwerk only: Es wird nur die Antwort des Requests gesendet
-- Cache-First: Cache und wenn nicht verfügbar -> Netzwerk
-- Netzwerk-First: Netzwerk und wenn nicht verfügbar -> Cache
-- Cache und Netzwerk (stale-while-revalidate): Nimm erst den Wert vom Cache und sobald das Netzwerk geantwortet hat, die Antwort vom Netzwerk. Gut für sich häufig ändernde Daten (Facebook)
-- Generic-Fallback: Zum Beispiel für ein Bild ein Standardbild liefern, wenn Netzwerk und Cache keins haben
-\autocite{Hajian2019} \autocite{Rojas2020}
+Zusammengefasst ist die Cache API eine gute Möglichkeit Netzwerkanfragen zu cachen und somit die Website Offlinefähig zu machen. Außerdem kann dadurch auch die Geschindigkeit der Seite verbessert werden und eine gute Nutzererfahrung gewährleistet werden. Ein Nachteil ist, dass nur Request- und Response-Objekte gespeichert werden können. 
 
-Bibliothek für Service Worker:
-- Workbox
-\autocite{Rojas2020}
+\subsection{Maximale Datenmenge}
+\label{Kap4:Datenmenge}
+Es gibt keine einheitliche Regelung wie viel Speicher von einer Webseite genutzt werden darf, deswegen hat jeder Browser seine eigenen Regeln \autocite{storage-for-the-web}. 
 
-Cache storage != browser cache \autocite{Rojas2020}
+Chrome und Firefox verfolgen die gleiche Strategie beim vergeben von Speicherplatz: Es gibt einen shared pool, den sich alle Websiten teilen \autocite{storage-for-the-web} \autocite{mdn-browser-storage-limit}. Also eine maximale Datenmenge, die der Browser generell speichert. Außerdem gibt es dann noch ein group limit, wobei jede \ac{TLD} eine eigene Gruppe darstellt \autocite{mdn-browser-storage-limit}. Zu einer Gruppe würden also hs-mannheim.de, www.hs-mannheim.de und bib.hs-mannheim.de gehören. Eine weiter Gruppe wäre zum Beispiel uni-mannheim.de Das group limit hängt unter anderem vom shared pool ab. Die genauen Limits sind in \autoref{Kap4:Speicherlimits} angegeben.
+
+Safari erlaubt eine Nutzung von bis zu 1 \ac{GB}, wenn dieses Limit erreicht ist wird der Nutzer gefragt, ob er mehr Speicher erlauben möchte \autocite{storage-for-the-web}. 
+
+\begin{table}
+\caption{Speicherlimits der Browser}
+  \label{Kap4:Speicherlimits}
+  \renewcommand{\arraystretch}{1.2}
+  \centering
+  \sffamily
+  \begin{footnotesize}
+    \begin{tabular}{l l l}
+      \toprule
+      \textbf{Browser} & \textbf{shared pool} & \textbf{group limit} \\
+      \midrule
+      \emph{Chrome} & bis zu 60\% der Festplattengröße & 100\% des shared pools \\
+      \emph{Firefox} & bis zu 50\% der Festplattengröße & 20\% vom shared pool aber maximal 2 \ac{GB} \\
+      \emph{Safari} & nicht bekannt & bis zu 1 \ac{GB}, durch Nutzerbestätigung erweiterbar \\
+      \bottomrule
+    \end{tabular}
+  \end{footnotesize}
+  \rmfamily
+\end{table}
+
+Die StorageManager \ac{API} kann verwendet werden, um den verfügbaren Speicherplatz abzufragen und den bisher genutzen Speicherplatz abzufragen \autocite{storage-for-the-web}. Diese Angaben müssen nicht genau sein, sondern bieten nur einen Richtwert \autocite{storage-for-the-web}. Diese Funktion wird aber nicht von allen Browsern unterstützt. Im Moment wird die \ac{API} von Firefox und Chrome aber nicht von Safari unterstützt \autocite{mdn-storage-api}.
 
 \subsection{Überblick und Entscheidung}
 In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten zum Speichern von Daten nach folgenden Kriterien verglichen: maximale Datenmenge, mögliche Datentypen, synchron / asynchron, Browsersupport, in Web Worker aufrufbar. Bei fehlenden Feldern in Web SQL wurde nicht weiter recherchiert, weil diese Technologie veraltet ist und nicht mehr verwendet werden soll.
@@ -86,15 +94,15 @@ In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten z
   \centering
   \sffamily
   \begin{footnotesize}
-    \begin{tabularx}{1.0\textwidth}{l l l l l l l}
+    \begin{tabularx}{1.0\textwidth}{l l L L l l L}
       \toprule
       \textbf{Technologie} & \textbf{Datenmenge} & \textbf{Datentypen} & \textbf{(a)synchron} & \textbf{Browsersupport} & \textbf{Web Worker} & \textbf{Anmerkung} \\
       \midrule
       \emph{Web Storage \ac{API}} & max. 5 \ac{MB} & String & nur synchron & alle & nein & \\
-      \emph{File System \ac{API}} & quota  & \acp{blob} und weitere & synchron und asynchron & nur Chrome & Ja &  \\
+      \emph{File System \ac{API}} & max. Speicherkapazität des Browsers & \acp{blob} und weitere & synchron und asynchron & nur Chrome & Ja &  \\
       \emph{Web SQL} & - & . & synchron und asynchron & teilweise & nein & veraltet \\
-      \emph{Indexed DB} & quota? & einfache Datentypen, Objekte, \acp{blob} & asynchron & alle & Ja & Inhalt durchsuch- und filterbar \\
-      \emph{Cache \ac{API}} &  &  &  &  &  & \\
+      \emph{Indexed DB} & max. Speicherkapazität des Browsers & einfache Datentypen, Objekte, \acp{blob} & asynchron & alle & Ja & Inhalt durchsuch- und filterbar \\
+      \emph{Cache \ac{API}} & max. Speicherkapazität des Browsers & Request- und Response-Objekte & asynchron & alle & Ja & \\
       \bottomrule
     \end{tabularx}
   \end{footnotesize}
