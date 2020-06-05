@@ -84,8 +84,10 @@ Safari erlaubt eine Nutzung von bis zu 1 \ac{GB}, wenn dieses Limit erreicht ist
 
 Die StorageManager \ac{API} kann verwendet werden, um den verfügbaren Speicherplatz abzufragen und den bisher genutzen Speicherplatz abzufragen \autocite{storage-for-the-web}. Diese Angaben müssen nicht genau sein, sondern bieten nur einen Richtwert \autocite{storage-for-the-web}. Diese Funktion wird aber nicht von allen Browsern unterstützt. Im Moment wird die \ac{API} von Firefox und Chrome aber nicht von Safari unterstützt \autocite{mdn-storage-api}.
 
-\subsection{Überblick und Entscheidung}
+\subsection{Mögliche Architekturen}
 In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten zum Speichern von Daten nach folgenden Kriterien verglichen: maximale Datenmenge, mögliche Datentypen, synchron / asynchron, Browsersupport, in Web Worker aufrufbar. Bei fehlenden Feldern in Web SQL wurde nicht weiter recherchiert, weil diese Technologie veraltet ist und nicht mehr verwendet werden soll.
+
+Durch die bisherigen Nachforschungen ist klar, dass in CROSSLOAD entweder Indexed DB oder die Cache \ac{API} verwendet werden sollte. Es ist auch möglich beides zu verwenden. Alle anderen vorgestellten Technologien werden entweder nicht von allen kompatiblen Browsern unterstützt oder können nur eine geringe Datenmenge speichern. Diese Technologien können als Ergänzung eingesetzt werden, zum Speichern der großen Datenmengen sind sie jedoch nicht geeignet.
 
 \begin{sidewaystable}[h]
   \caption{Vergleich der APIs zur lokalen Datenspeicherung}
@@ -94,7 +96,7 @@ In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten z
   \centering
   \sffamily
   \begin{footnotesize}
-    \begin{tabularx}{1.0\textwidth}{l l L L l l L}
+    \begin{tabularx}{1.0\textwidth}{l L L L l l L}
       \toprule
       \textbf{Technologie} & \textbf{Datenmenge} & \textbf{Datentypen} & \textbf{(a)synchron} & \textbf{Browsersupport} & \textbf{Web Worker} & \textbf{Anmerkung} \\
       \midrule
@@ -108,6 +110,64 @@ In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten z
   \end{footnotesize}
   \rmfamily
 \end{sidewaystable}
+
+Es werden nun mögliche Architekturen vorgestellt und miteinander verglichen. 
+
+\subsubsection{Cache API und Web Storage}
+Die erste Architektur benutzt die Cache \ac{API} zum Speichern der Audio-Dateien und den Web Storage zum Speichern der Metadaten. Metadaten sind in diesem Fall alle Information, die zu einem Inhalt gehören abgesehen von der Audio-Datei. In \autoref{diagramme/architektur-storage-cache} ist der Ablauf dargestellt wenn ein Nutzer einen Inhalt favorisiert oder sich alle Inhalte anschaut und einen davon auswählen möchte. 
+
+\bild{diagramme/architektur-storage-cache}{13cm}{Architektur mit Cache API und Web Storage}
+
+\clearpage
+
+Beim Speichern der Daten im Web Storage gibt es zwei verschiedene Ansätze. Der erste Ansatz speichert alle Daten in einem Array wie in \autoref{metadaten-array} zu sehen. Der zweite Ansatz speichert alle favorisierten Ids in einem Array und jede Id ist ein Schlüssel im Web Storage über den dann die eigentlichen Metadaten abgerufen werden können. Dies ist in \autoref{metadaten-ids-array} veranschaulicht.
+Der erste Ansatz ist besser wenn alle Daten auf einmal angefragt werden. Wenn aber nur geprüft werden soll, ob ein Element favorisiert ist, muss das ganze Array durchsucht werden. Umgekehrt ist der zweite Ansatz sehr schlecht wenn es darum geht alle Daten zu holen, weil sehr viele Anfragen benötigt werden. Das Anfragen eines einzelnen Inhalts ist jedoch sehr schnell. Außerdem ist es beim zweiten Ansatz effizienter einen Inhalt zu aktualisieren, weil nicht das ganze Array erneut gespeichert werden muss sondern nur ein Objekt.
+
+\begin{lstlisting}[language=JavaScript,caption={Speichern der Metadaten in einem Array},label={metadaten-array}]
+    favoriten: [
+    	{
+    		id: "id1",
+    		titel: "Titel des Inhalts",
+    		erstelltAm: "05.06.2020",
+    		// weitere Metadaten
+    	},
+    	{
+    		id: "id2",
+    		// weitere Metadaten
+    	}
+    ]
+\end{lstlisting}
+
+\begin{lstlisting}[language=JavaScript,caption={Speichern der Ids in einem Array},label={metadaten-ids-array}]
+    favoriten: ["id1", "id2"]
+    id1: {
+    	titel: "Titel des 1. Inhalts",
+    	erstelltAm: "05.06.2020",
+    	// weitere Metadaten
+    }
+    id2: { 
+    	// Metadatan
+    }
+\end{lstlisting}
+
+Der Vorteil dieser Architektur liegt in der Einfachheit der benutzten \acp{API}. Sowohl die WebStorage \ac{API}, sowie die Cache \ac{API} sind sehr einfach zu verstehen und zu verwenden. Die Nachteile dieser Architektur überwiegen jedoch:
+
+\begin{itemize}
+\item Der Zugriff auf den Web Storage ist synchron. Bei vielen Daten kann dies zu längeren Ladzeiten kommen und währenddessen ist das Portal nicht bedienbar. 
+\item Durch die Verwendung des Web Storages werden entweder Aktualisierungen der Metadaten oder das Abrufen aller Daten innefizient. 
+\end{itemize}
+
+Als Alternative zum Web Storage kann Indexed DB verwendet werden, was in der nächsten Architektur vorgestellt wird.
+
+\subsubsection{Cache API und Indexed DB}
+Die Architektur bleibt wie in \autoref{diagramme/architektur-storage-cache}, mit dem Unterschied, dass Web Storage durch Indexed DB ersetzt wird. Durch das Ersetzen vom Web Storage durch Indexed DB, fallen viele Nachteile weg. Das Abrufen und Speichern der Metadaten ist nicht synchron, sondern asynchron. Außerdem bietet Indexed DB die Möglichkeit Inhalte zu sortieren und zu filtern, was für CROSSLOAD auch interessant ist. Der Nachteil ist die hinzugekommene Komplexität. 
+
+Die Komplexität kann verringert werden, indem weniger verschiedene \acp{API} eingesetzt werden. Auf Indexed DB soll nicht verzichtet werden, weil diese Vorteile wie Sortierung und Filterung bietet. 
+
+\subsubsection{Indexed DB}
+\bild{diagramme/architektur-indexed-db}{13cm}{Architektur nur mit Indexed DB} zeigt die Architektur nur mit Indexed DB zum Speichern der Daten. 
+
+??? FRAGE: Hat die Cache API irgendwelche Vorteile, die in dieser Architektur nicht mehr genutzt werden können ???
 
 \section{Herunterladen der Audiodaten}
 
