@@ -16,7 +16,7 @@ Die Web Storage \ac{API} bietet die Möglichkeit Schlüssel / Wert Paare im Brow
 	\item Es können maximal 5 \ac{MB} an Daten gespeichert werden \autocite{mdn-web-storage}
 \end{itemize}
 
-Aufgrund der synchronität und des geringen Datenvolumes das gespeichert werden darf, eignet sich die Web Storage \ac{API} nur zum Speichern von wenig Daten. Größere Daten und insbesondere binäre Dateien, die nicht sehr gut in eine textuelle Form übertragen werden können sollten nicht abgespeichert werden. 
+Aufgrund der Synchronität und des geringen Datenvolumes das gespeichert werden darf, eignet sich die Web Storage \ac{API} nur zum Speichern von wenig Daten. Größere Daten und insbesondere binäre Dateien, die nicht sehr gut in eine textuelle Form übertragen werden können sollten nicht abgespeichert werden. 
 
 \subsection{File System API}
 Die File System \ac{API} und FileWrite \ac{API} bieten dem Browser die Möglichkeit Dateien in ein virtuelles Dateisystem abzulegen und von dort wieder zu laden \autocite{Hajian2019} \autocite{storage-for-the-web}. Dieses virtuelle Dateisystem unterstützt viele gängige Funktionen wie Ordner und Dateimanipulationen, wie man sie von herkömmlichen Dateisystem gewohnt ist \autocite{mdn-file-system}. MDN nennt diese \ac{API} File and Directory Entries \ac{API} \autocite{mdn-file-system}. 
@@ -118,10 +118,10 @@ Die erste Architektur benutzt die Cache \ac{API} zum Speichern der Audio-Dateien
 
 \bild{diagramme/architektur-storage-cache}{13cm}{Architektur mit Cache API und Web Storage}
 
-\clearpage
-
 Beim Speichern der Daten im Web Storage gibt es zwei verschiedene Ansätze. Der erste Ansatz speichert alle Daten in einem Array wie in \autoref{metadaten-array} zu sehen. Der zweite Ansatz speichert alle favorisierten Ids in einem Array und jede Id ist ein Schlüssel im Web Storage über den dann die eigentlichen Metadaten abgerufen werden können. Dies ist in \autoref{metadaten-ids-array} veranschaulicht.
 Der erste Ansatz ist besser wenn alle Daten auf einmal angefragt werden. Wenn aber nur geprüft werden soll, ob ein Element favorisiert ist, muss das ganze Array durchsucht werden. Umgekehrt ist der zweite Ansatz sehr schlecht wenn es darum geht alle Daten zu holen, weil sehr viele Anfragen benötigt werden. Das Anfragen eines einzelnen Inhalts ist jedoch sehr schnell. Außerdem ist es beim zweiten Ansatz effizienter einen Inhalt zu aktualisieren, weil nicht das ganze Array erneut gespeichert werden muss sondern nur ein Objekt.
+
+\clearpage
 
 \begin{lstlisting}[language=JavaScript,caption={Speichern der Metadaten in einem Array},label={metadaten-array}]
     favoriten: [
@@ -154,7 +154,7 @@ Der Vorteil dieser Architektur liegt in der Einfachheit der benutzten \acp{API}.
 
 \begin{itemize}
 \item Der Zugriff auf den Web Storage ist synchron. Bei vielen Daten kann dies zu längeren Ladzeiten kommen und währenddessen ist das Portal nicht bedienbar. 
-\item Durch die Verwendung des Web Storages werden entweder Aktualisierungen der Metadaten oder das Abrufen aller Daten innefizient. 
+\item Durch die Verwendung des Web Storages werden entweder Aktualisierungen der Metadaten oder das Abrufen aller Metadaten innefizient. 
 \end{itemize}
 
 Als Alternative zum Web Storage kann Indexed DB verwendet werden, was in der nächsten Architektur vorgestellt wird.
@@ -165,26 +165,41 @@ Die Architektur bleibt wie in \autoref{diagramme/architektur-storage-cache}, mit
 Die Komplexität kann verringert werden, indem weniger verschiedene \acp{API} eingesetzt werden. Auf Indexed DB soll nicht verzichtet werden, weil diese Vorteile wie Sortierung und Filterung bietet. 
 
 \subsubsection{Indexed DB}
-\bild{diagramme/architektur-indexed-db}{13cm}{Architektur nur mit Indexed DB} zeigt die Architektur nur mit Indexed DB zum Speichern der Daten. 
+\autoref{diagramme/architektur-indexed-db} zeigt die Architektur nur mit Indexed DB zum Speichern der Daten. Sowohl Metadaten als auch die Audio-Datei werden in der Datenbank abgespeichert. 
 
-??? FRAGE: Hat die Cache API irgendwelche Vorteile, die in dieser Architektur nicht mehr genutzt werden können ???
+\bild{diagramme/architektur-indexed-db}{13cm}{Architektur nur mit Indexed DB}
+
+Durch das Ersetzen von der Cache \ac{API} durch Indexed DB sind keine Nachteile entstanden. Die Komplexität des Webportals wird nicht erhöht, sondern eher etwas verringert, weil nicht mehr so viele verschiedene \acp{API} verwendet werden.
+
+\clearpage
+
+\subsubsection{Entscheidung}
+Zum Speichern der Daten wird allein auf Indexed DB gesetzt. Die zusätzliche Verwendung von der Cache \ac{API} bietet keine weiteren Vorteile und die Verwendung vom Web Storage wird aufgrund der Synchronität abgelehnt.  
 
 \section{Herunterladen der Audiodaten}
+Favorisierte Inhalten, sollen für den Offline-Gebrauch heruntergeladen werden. Dafür gibt es verschiedene Möglichkeiten. In diesem Kapitel werden verschiedene Funktionen vorgestellt und miteinander verglichen. 
 
 \subsection{Fetch API}
+Die Fetch \ac{API} bietet die Möglichkeit XMLHttpRequests zu verschicken, also Ressourcen von einem Server anzufragen \autocite{Rojas2020}. Verwendet wird die \ac{API} mit Promises, ist also asynchron und bietet eine einfachere Fehlerbehandlung \autocite{Rojas2020} \autocite{mdn-fetch}. 
 
-Einfachere XMLHttpRequests, Promise basierend
-\autocite{Rojas2020}
+Diese \ac{API} ist sehr flexibel und kann deswegen sehr gut in service workern oder mit der Cache \ac{API} verwendet werden \autocite{mdn-fetch}. Außerdem unterstütz jeder relevante Browser diese Funktion \autocite{mdn-fetch}.
 
-\subsection{Background Fetch}
+Damit eine Netzwerkfrage abgeschickt und empfangen werden kann muss das Browserfenster aber geöffnet sein. Es ist nicht möglich eine Anfrage zu schicken und dann den Browser zu verlassen.
 
 \subsection{Background Sync}
+Mit Background Sync können Netzwerk Anfragen abgeschickt werden, selbst wenn keine Internetverbindung besteht. Die Anfrage wird gespeichert, bis eine Internetverbindung besteht und dann abgeschickt \autocite{wicg-background-sync}. Diese Funktionalität ist Teil von Service Workern und funktioniert solange ein Service Worker läuft \autocite{wicg-background-sync}. 
 
-- Speichert den API Call bis eine stabile Internetverbindung besteht und schickt ihn dann raus. Sogar wenn die APP nicht aktiv ist oder läuft \autocite{Sheppard2017}
+Im Moment wird diese Funktion nur von Chrome unterstützt \autocite{caniuse-background-sync}, in Firefox ist sie aber schon in Entwicklung \autocite{status-mozilla-background-sync}.
 
-- Versendet Request sobald eine Internetverbindung besteht, auch wenn die APP nicht offen ist \autocite{Rojas2020}
+\subsection{Background Fetch}
+Diese \ac{API} bietet die Möglichkeit große Dateien hoch- oder herunterzuladen und zeigt dem Nutzer dabei Informationen über den Fortschritt \autocite{google-background-fetch}. Der Unterschied zu Background Sync liegt auch darin, dass der Download / Upload funktioniert wenn der Browser geschlossen wird und kein Service Worker aktiv ist \autocite{google-background-fetch}. \autoref{screenshots/background-fetch-benachrichtigung-android} zeigt die Fortschrittsanzeige auf einem Android Smartphone. Viele nützliche Funktionen, wie pausieren und fortsetzen des Downloads bei Verbindungsunterbrechungen werden ebenso von Background Fetch übernommen \autocite{google-background-fetch}. 
 
-- Man kann diese API mit IndexedDB kombinieren. Daten können in der Datenbank zwischengespeichert werden, bis eine Verbindung besteht \autocite{Rojas2020}
+\bild{screenshots/background-fetch-benachrichtigung-android}{8cm}{Benachrichtigung auf Android bei Benutzung der Background Fetch \ac{API}}
+
+Diese \ac{API} ist im Moment nur in Chrome verfügbar \autocite{google-background-fetch}.
+
+\subsection{Entscheidung}
+Die einzige \ac{API}, die von allen relevanten Browsern unterstützt wird, ist die Fetch \ac{API} und wird deswegen auch verwendet. Als Ergänzung kann später Background Sync oder Background Fetch implementiert werden. Background Sync wird wahrscheinlich schneller eine größere Browserunterstützung finden und sollte deswegen bevorzugt werden.
 
 \section{Verbindungsstaus auslesen}
 

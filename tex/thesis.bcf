@@ -2274,10 +2274,19 @@
     <bcf:citekey order="89">storage-for-the-web</bcf:citekey>
     <bcf:citekey order="90">mdn-storage-api</bcf:citekey>
     <bcf:citekey order="91">Rojas2020</bcf:citekey>
-    <bcf:citekey order="92">Sheppard2017</bcf:citekey>
-    <bcf:citekey order="93">Rojas2020</bcf:citekey>
-    <bcf:citekey order="94">Rojas2020</bcf:citekey>
-    <bcf:citekey order="95">Sheppard2017</bcf:citekey>
+    <bcf:citekey order="92">Rojas2020</bcf:citekey>
+    <bcf:citekey order="93">mdn-fetch</bcf:citekey>
+    <bcf:citekey order="94">mdn-fetch</bcf:citekey>
+    <bcf:citekey order="95">mdn-fetch</bcf:citekey>
+    <bcf:citekey order="96">wicg-background-sync</bcf:citekey>
+    <bcf:citekey order="97">wicg-background-sync</bcf:citekey>
+    <bcf:citekey order="98">caniuse-background-sync</bcf:citekey>
+    <bcf:citekey order="99">status-mozilla-background-sync</bcf:citekey>
+    <bcf:citekey order="100">google-background-fetch</bcf:citekey>
+    <bcf:citekey order="101">google-background-fetch</bcf:citekey>
+    <bcf:citekey order="102">google-background-fetch</bcf:citekey>
+    <bcf:citekey order="103">google-background-fetch</bcf:citekey>
+    <bcf:citekey order="104">Sheppard2017</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">
