@@ -1,6 +1,6 @@
 \chapter{Anforderungsanalyse}
 \label{Kap3}
-Die Anforderungen die in diesem Kapitel herausgearbeitet werden, bilden die Grundlage für die Entscheidungen in den nächsten Kapiteln. Zuerst werden grundlegende Bedingungen und die Vorgehensweise erklärt. Anschließend werden einige Szenarien zur Benutzung der Offline Funktion beschrieben und daraus konkrete Anforderungen hergeleitet.
+Die Anforderungen die in diesem Kapitel herausgearbeitet werden, bilden die Grundlage für die Entscheidungen in den nächsten Kapiteln. Zuerst werden grundlegende Bedingungen und die Vorgehensweise erklärt. Anschließend werden einige Szenarien zur Benutzung der Offline Funktion beschrieben. Diese sollen beim Verstehen der Anforderungen, die im darauffolgenden Kapitel aufgelistet werden, helfen.
 
 \section{Vorgehensweise und Randbedingungen}
 Da CROSSLOAD fast nur ehrenamtliche Mitarbeiter hat, gibt es niemanden der genaue Anforderungen an Features vorschreibt. Vielmehr werden die Anforderungen zusammen im Team diskutiert. Auch für die Offline Funktionalitäten gab es ein Brainstorming mit Mitarbeitern von CROSSLOAD. Daraus haben sich einige Anforderungen herausgestellt. Zusätzlich werden sich einige Szenarien überlegt, die verschiedene Nutzungen der Offline Funktionialität beleuchtet. Die Szenarien helfen beim Verstehen der Anforderungen.
@@ -68,7 +68,7 @@ Ablauf:
 Aus den Diskussionen mit Mitarbeitern von CROSSLOAD haben sich die Anforderungen herausgestellt, die in diesem Kapitel aufgelistet sind. Für diese Thesis sind nur Audioinhalte auf CROSSLOAD relevant.
 
 \begin{itemize}
-	\item Der Benutzer kann sich einen Inhalt vormerken
+	\item Der Benutzer kann sich einen Inhalt vormerken, auch favorisieren genannt
 	\item Der vorgemerkte Inhalt wird automatisch anhand der Verbindungsart heruntergeladen. Der genaue Ablauf ist in einem Aktivitätsdiagramm in \autoref{diagramme/anforderung-konnektivitaet} zu sehen.
 	
 	\begin{itemize}
@@ -82,9 +82,12 @@ Aus den Diskussionen mit Mitarbeitern von CROSSLOAD haben sich die Anforderungen
 	\item Der Benutzer wird über den Fortschritt des Downloads informiert
 	\item Das Portal erkennt wenn ein Benutzer keine Internetverbindung hat und leitet ihn auf eine spezielle Seite weiter
 	\item Die zurzeit heruntergeladenen Inhalte können in einer Übersicht gesehen werden
+	\begin{itemize}
+		\item Schön wäre es wenn die Inhalte auch gefiltert oder sortiert werden könnten. Zum Beispiel nach Downloaddatum. Diese Anforderung muss aber nicht erfüllt werden.
+	\end{itemize}
  	\item Die zurzeit heruntergaladenen Inhalte können gelöscht werden
 	\item Es soll möglich sein, für einen bestimmten Inhalt herauszufinden, ob dieser Offline verfügbar ist
-	\item Die Inhalte der Detailseite eines heruntergeladenen Inhalts werden gespeichert
+	\item Die Inhalte der Detailseite eines heruntergeladenen Inhalts werden gespeichert. Dazu gehören zum Beispiel: Id, Titel, Autor oder Vorschaubild
 	\item Der heruntergeladene Inhalt kann angehört werden
 	\begin{itemize}
 		\item Wenn ein Inhalt angehört werden soll, der bereits heruntergeladen ist, sollen die heruntergeladenen Daten verwendet werden, um Traffic zu vermeiden

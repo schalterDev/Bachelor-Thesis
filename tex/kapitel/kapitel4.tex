@@ -171,10 +171,10 @@ Die Komplexität kann verringert werden, indem weniger verschiedene \acp{API} ei
 
 Durch das Ersetzen von der Cache \ac{API} durch Indexed DB sind keine Nachteile entstanden. Die Komplexität des Webportals wird nicht erhöht, sondern eher etwas verringert, weil nicht mehr so viele verschiedene \acp{API} verwendet werden.
 
-\clearpage
-
 \subsubsection{Entscheidung}
 Zum Speichern der Daten wird allein auf Indexed DB gesetzt. Die zusätzliche Verwendung von der Cache \ac{API} bietet keine weiteren Vorteile und die Verwendung vom Web Storage wird aufgrund der Synchronität abgelehnt.  
+
+\clearpage
 
 \section{Herunterladen der Audiodaten}
 Favorisierte Inhalten, sollen für den Offline-Gebrauch heruntergeladen werden. Dafür gibt es verschiedene Möglichkeiten. In diesem Kapitel werden verschiedene Funktionen vorgestellt und miteinander verglichen. 
@@ -199,10 +199,13 @@ Diese \ac{API} bietet die Möglichkeit große Dateien hoch- oder herunterzuladen
 Diese \ac{API} ist im Moment nur in Chrome verfügbar \autocite{google-background-fetch}.
 
 \subsection{Entscheidung}
-Die einzige \ac{API}, die von allen relevanten Browsern unterstützt wird, ist die Fetch \ac{API} und wird deswegen auch verwendet. Als Ergänzung kann später Background Sync oder Background Fetch implementiert werden. Background Sync wird wahrscheinlich schneller eine größere Browserunterstützung finden und sollte deswegen bevorzugt werden.
+Die einzige \ac{API}, die von allen relevanten Browsern unterstützt wird, ist die Fetch \ac{API} und wird deswegen auch verwendet. Als Ergänzung kann später Background Sync oder Background Fetch implementiert werden, da diese auch wenn die Website geschlossen ist Inhalte herunterladen können. Background Sync wird wahrscheinlich schneller eine größere Browserunterstützung finden und sollte deswegen bevorzugt werden.
 
 \section{Verbindungsstaus auslesen}
+Um eine gute Nutzererfahrung bieten zu können, muss man zu jeder Zeit wissen, ob gerade eine Internetverbindung besteht oder nicht. Außerdem möchte man so schnell wie möglich eine Änderung der Verbindung mitbekommen.
 
-- navigator.onLine: ist nicht 100\% genau. Wird manchmal sagen, dass das Gerät online ist wenn es nur mit einem Netzwerk verbunden ist \autocite{Sheppard2017}
+Mit \emph{navigator.onLine} gibt es in allen relevanten Browsern \autocite{caniuse-online} eine Funktion, um zu überprüfen ob eine Internetverbindung besteht oder nicht \autocite{Sheppard2017} \autocite{mdn-online}. Diese \ac{API} arbeitet nicht ganz genau. Wenn eine Verbindung zu einem Netzwerk besteht, in diesem Netzwerk aber kein Internetzugriff möglich ist gibt \emph{navigator.onLine} in manchen Fällen true zurück und signalisiert eine Internetverbindung\autocite{Sheppard2017}. Es kann aber nicht vorkommen, dass der Nutzer offline ist und die \ac{API} true zurück liefert. Dies ist eine zu vernachlässigende Ungenauigkeit, weil dieser Fall nur sehr selten auftritt. 
 
+Wenn eine zuverlässigere Methode benötigt kann einen einfachen Request abschicken. Wenn ein Ergebnis zurück kommt existiert eine Verbindung, wenn ein Fehler geworfen wird, existiert keine Verbindung. 
 
+Desweiteren gibt es auch eine Möglichkeit einen Verbindungsstausuwechsel mitzubekommen. Auf dem <body> Element werden zwei Events gefeuert: \emph{online} wenn der Browser eine Internetverbindung herstellen konnte und \emph{offline} wenn eine bestehende Internetverbindung abbricht \autocite{mdn-online}. Auch hier treffen die Limitierungen von \emph{navigator.onLine} zu.

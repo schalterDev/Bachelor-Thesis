@@ -2286,7 +2286,13 @@
     <bcf:citekey order="101">google-background-fetch</bcf:citekey>
     <bcf:citekey order="102">google-background-fetch</bcf:citekey>
     <bcf:citekey order="103">google-background-fetch</bcf:citekey>
-    <bcf:citekey order="104">Sheppard2017</bcf:citekey>
+    <bcf:citekey order="104">caniuse-online</bcf:citekey>
+    <bcf:citekey order="105">Sheppard2017</bcf:citekey>
+    <bcf:citekey order="106">mdn-online</bcf:citekey>
+    <bcf:citekey order="107">Sheppard2017</bcf:citekey>
+    <bcf:citekey order="108">mdn-online</bcf:citekey>
+    <bcf:citekey order="109">angular-service-worker</bcf:citekey>
+    <bcf:citekey order="110">angular-service-worker</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">
