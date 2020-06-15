@@ -22,19 +22,19 @@ Damit aus einer Website eine \ac{PWA} wird sind mindestens zwei Dinge erforderli
 
 
 \section{Angular und Typescript}
-Angular ist ein Framework zum Entwickeln von Webanwendungen für alle Platformen \autocite{angular-io}. Es ist Open-Source, getrieben von einer großen Community aber auch von Firmen wie Google weiterentwickelt und selbst viel genutzt \autocite{angular-io}. Als Programmiersprache ist Typescript vorgesehen. 
+Angular ist ein Framework zum Entwickeln von Webanwendungen für alle Platformen \autocite{angular-io}. Es ist Open-Source, getrieben von einer großen Community aber auch von Firmen wie Google weiterentwickelt und selbst viel genutzt \autocite{angular-io}. Angularanwendung bestehtn unter anderem aus Modulen, Komponenten und Services \autocite{angular-start}. Module fassen mehrere Komponenten zusammen, um diese zu verwalten \autocite{angular-start}. Komponenten sind kleine Bestandteile der Anwendung, die sich vor allem um die Darstellung eines bestimmten Bereichs auf der Seite kümmern \autocite{angular-start}. In Servicen liegt die Logik der Anwendung \autocite{angular-start}. Dort werden zum Beispiel Netzwerkanfragen gesendet oder Daten zwischengespeichert. Als Programmiersprache ist Typescript vorgesehen. 
 
-Typescript erweitert JavaScript um einige Funktionen wie zum Beispiel Typisierung \autocite{typescript-org}. Typescript kann vor dem Ausliefern in reines JavaScript kompiliert werden und ist somit in allen gängigen Browsern oder auch auf Servern mit Node.js ausführbar \autocite{typescript-org}.
+Typescript erweitert JavaScript um einige Funktionen wie zum Beispiel Typisierung \autocite{typescript-org}. Die Flexibilität von JavaScript bleibt trotzdem erhalten, weil der Nutzer selbst entscheiden kann wann er typisieren möchte oder nicht \autocite{typescript-org}. Typescript kann vor dem Ausliefern in reines JavaScript kompiliert werden und ist somit in allen gängigen Browsern oder auch auf Servern mit Node.js ausführbar \autocite{typescript-org}.
 
 Die Kombination aus Angular und Typescript bietet eine sehr gute Basis zum Entwickeln von großen, schnellen und skalierbaren Anwendungen \autocite{angular-io}. Durch die statische Typisierung sind zum Beispiel Refactorings mit den vielen verfügbaren Tools schnell und sicher durchzuführen \autocite{typescript-org} \autocite{angular-io}. In der großen Community findet man auf sehr viele Fragen sofort eine Antwort.
 
 \section{CROSSLOAD}
 CROSSLOAD ist ein Webportal das christliche Medien, im Moment hauptsächlich Predigten, zur Verfügung stellt \autocite{crossload-org}. Diese Medien können durchsucht, angehört und heruntergeladen werden. Die Entwicklung befindet sich im Moment in der Beta-Phase (https://beta.crossload.org) und wird vor allem von Ehrenamtlichen vorangetrieben. In \autoref{crossload-mobil-neuste-inhalte} ist die mobile Seite mit den neusten Inhalten auf CROSSLOAD zu sehen. \autoref{crossload-detailansicht} zeigt die Detailansicht einer Predigt.
 
-\bild{crossload-mobil-neuste-inhalte}{5cm}{CROSSLOAD - Mobile Ansicht der neusten Inhalte}
-
-\bild{crossload-detailansicht}{5cm}{CROSSLOAD - Dateilansicht einer Predigt}
-
 Im Frontend wird Angular mit Typescript zum Entwickeln verwendet und das Backend besteht aus vielen verschiedenen Services, die mit unterschiedlichen Sprachen und Frameworks entwickelt werden. Für diese Arbeit ist nur die Technologie für das Frontend interessant. 
 
 Das Webportal erfüllt bereits alle Anforderungen einer \ac{PWA}: Es besitzt eine Manifest-Datei und kann somit auf den Startbildschirm des Smartphones hinzugefügt werden. Statische Inhalte werden mit Hilfe eines Service Workers gecached und sind somit auch offline Verfügbar. 
+
+\bild{crossload-mobil-neuste-inhalte}{5cm}{CROSSLOAD - Mobile Ansicht der neusten Inhalte}
+
+\bild{crossload-detailansicht}{5cm}{CROSSLOAD - Dateilansicht einer Predigt}

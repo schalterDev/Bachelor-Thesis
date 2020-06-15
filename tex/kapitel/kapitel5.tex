@@ -1,7 +1,7 @@
 \chapter{Implementierung}
 \label{Kap5}
 
-\section{Offline Inhalt}
+\section{Offline Metadaten}
 
 \subsection{Detailseite}
 Im Webportal CROSSLOAD wird bereits ein Service Worker verwendet, der einerseits statische Inhalte zwischenspeicher aber auch dynamische Requests cached. Für dynamische Request wurde bislang die Cache Strategy freshness verwendet. Das heißt, dass der Cache nur verwendet wird wenn der Netzwerk-Request fehlschlägt \autocite{angular-service-worker}. Angular Service Worker unterstützten noch eine zweite Cache Strategie, die immer den Wert aus dem Cache zurück gibt wenn er verfügbar ist \autocite{angular-service-worker}. Die momentane Lösung ist nicht optimal. Sie ermöglicht zwar eine Offlineverfügbarkeit der Daten aber bietet nicht die optimale Geschindigkeit für den Nutzer. In vielen Fällen wird sich der Inhalt im Cache nicht mit der Anwort aus der Netzwerkanfrage unterscheiden, trotzdem muss der Nutzer auf die Antwort vom Netzwerk warten. Eine bessere Lösung ist folgende:
@@ -23,5 +23,15 @@ In \autoref{diagramme/inhalt-sequenzdiagramm} wird der Ablauf für das Suchen au
 
 \section{Lokale Datenspeicherung}
 \label{Kap5:Speicherung}
+Für die Speicherung von Offlinedaten wurde sich bereits für Indexed DB entschieden. Die Verwendung von Indexed Db ist nicht trivial, weil mit Events gearbeitet wird und nicht wie in moderneren APIs mit Promises \autocite{mdn-indexeddb}. Es gibt aber einige Bibliotheken, die das Arbeiten mit Indexed DB erleichtern. Für diese Arbeit wurde Dexie ausgewählt. Dexie ist ein minimaler Wrapper für Indexed DB, zum Arbeiten mit Promises \autocite{dexie}. Es gibt auch noch andere Bibliotheken wie LocalForage. Dexie wurde ausgewählt, weil mehrere Indexe in der Datenbank unterstützt werden und generell ist die Bibliothek sehr flexibel und trotzdem klein.
+
+Die ganze Logik befindet sich in der Angularanwendung in einem Service. Dieser Service abstrahiert alle Datenzugriffe, sodass falls später notwendig Dexie auch durch eine andere Bibliothek ausgetauscht werden kann. 
+
+Indexed DB besitzt kein Schema wie von relationalen Datenbanken bekannt. Es können beliebige Objekte gespeichert werden, die nicht alle die gleiche Struktur haben. Wenn man diese Objekte aber durchsuchen möchte, sollte man einen Index auf die durchsuchten Eigenschaften legen. Diese Indexe muss man beim Erstellen der Tabellen angeben. Für diese Anwendung werden zwei Tabellen angelegt: \emph{content} und \emph{downloads}. 
+
+Die Tabelle \emph{content} enthält alle Metadaten zu einem Inhalt. Für diese Daten besteht schon ein Datenobjekt, welches in die Datenbank gespeichert wird. Als Index wird vorerst nur die \emph{id} des Inhalts festgelegt. Später wenn auch nach anderen Kriterien gesucht oder gefiltert werden soll, kann ein weiterer Index hinzugefügt werden. 
+
+Die Tabelle \emph{downloads} speichert eine id und die Audiodatei. Es ist nicht möglich zu einer id mehrere Dateien zu speichern. Es wäre auch möglich gewesen die Audiodatei mit dem content-Objekt zu speichern. Dies hätte aber den Nachteil das jedesmal die große Audiodatei aus der Datenbank geladen werden muss wenn die Metadaten zu einem Inhalt geladen werden. In Indexed DB gibt es keine Möglichkeit nur einen Teil eines Objektes zu laden. Durch die Trennung von Metadaten und Audiodaten wird die Anwendung also schneller. Der Nachteil dabei ist, dass dadurch eine Anfrage mehr and die Datenbank gestellt werden muss, um herauszufinden ob eine Audio-Datei für einen Inhalt verfügbar ist.
 
 \section{Herunterladen der Audiodaten}
+Auch das Herunterladen der Audiodaten wird in einem Angular-Service umgesetzt. Der Serivce ist dafür zuständig abzufragen welche APIs auf dem aktuellen Gerät unterstützt werden und startet dann den Download. 
