@@ -182,9 +182,11 @@ Favorisierte Inhalten, sollen für den Offline-Gebrauch heruntergeladen werden. 
 \subsection{Fetch API}
 Die Fetch \ac{API} bietet die Möglichkeit XMLHttpRequests zu verschicken, also Ressourcen von einem Server anzufragen \autocite{Rojas2020}. Verwendet wird die \ac{API} mit Promises, ist also asynchron und bietet eine einfachere Fehlerbehandlung \autocite{Rojas2020} \autocite{mdn-fetch}. 
 
-Diese \ac{API} ist sehr flexibel und kann deswegen sehr gut in service workern oder mit der Cache \ac{API} verwendet werden \autocite{mdn-fetch}. Außerdem unterstütz jeder relevante Browser diese Funktion \autocite{mdn-fetch}.
+Diese \ac{API} ist sehr flexibel und kann deswegen sehr gut in service workern oder mit der Cache \ac{API} verwendet werden \autocite{mdn-fetch}. Außerdem unterstütz jeder relevante Browser diese Funktion \autocite{mdn-fetch}. 
 
 Damit eine Netzwerkfrage abgeschickt und empfangen werden kann muss das Browserfenster aber geöffnet sein. Es ist nicht möglich eine Anfrage zu schicken und dann den Browser zu verlassen.
+
+In Angular werden Netzwerkanfragen mit dem HttpService verschickt. Dies ist in diesem Vergleich mit der Fetch \ac{API} gleichzusetzen, weil die gleichen Funktionen vorhanden sind und auch die gleichen Einschränkungen gelten.
 
 \subsection{Background Sync}
 Mit Background Sync können Netzwerk Anfragen abgeschickt werden, selbst wenn keine Internetverbindung besteht. Die Anfrage wird gespeichert, bis eine Internetverbindung besteht und dann abgeschickt \autocite{wicg-background-sync}. Diese Funktionalität ist Teil von Service Workern und funktioniert solange ein Service Worker läuft \autocite{wicg-background-sync}. 
