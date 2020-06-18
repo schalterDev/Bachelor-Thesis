@@ -1,19 +1,19 @@
 \chapter{Anforderungsanalyse}
 \label{Kap3}
-Die Anforderungen die in diesem Kapitel herausgearbeitet werden, bilden die Grundlage für die Entscheidungen in den nächsten Kapiteln. Zuerst werden grundlegende Bedingungen und die Vorgehensweise erklärt. Anschließend werden einige Szenarien zur Benutzung der Offline Funktion beschrieben. Diese sollen beim Verstehen der Anforderungen, die im darauffolgenden Kapitel aufgelistet werden, helfen.
+Die Anforderungen die in diesem Kapitel herausgearbeitet werden, bilden die Grundlage für die Entscheidungen in den nächsten Kapiteln. Zuerst werden grundlegende Bedingungen und die Vorgehensweise erklärt. Anschließend werden einige Szenarien zur Benutzung der Offline Funktion beschrieben. Diese sollen beim Verstehen der Anforderungen, die im darauf folgenden Kapitel aufgelistet werden, helfen.
 
 \section{Vorgehensweise und Randbedingungen}
-Da CROSSLOAD fast nur ehrenamtliche Mitarbeiter hat, gibt es niemanden der genaue Anforderungen an Features vorschreibt. Vielmehr werden die Anforderungen zusammen im Team diskutiert. Auch für die Offline Funktionalitäten gab es ein Brainstorming mit Mitarbeitern von CROSSLOAD. Daraus haben sich einige Anforderungen herausgestellt. Zusätzlich werden sich einige Szenarien überlegt, die verschiedene Nutzungen der Offline Funktionialität beleuchtet. Die Szenarien helfen beim Verstehen der Anforderungen.
+Da CROSSLOAD fast nur ehrenamtliche Mitarbeiter hat, gibt es niemanden der genaue Anforderungen an Features vorschreibt. Vielmehr werden die Anforderungen zusammen im Team diskutiert. Auch für die Offline Funktionalitäten gab es ein Brainstorming mit Mitarbeitern von CROSSLOAD. Daraus haben sich einige Anforderungen herausgestellt. Zusätzlich werden sich einige Szenarien überlegt, die verschiedene Nutzungen der Offline Funktionalität beleuchtet. Die Szenarien helfen beim Verstehen der Anforderungen.
 
-Es gibt zwei Randbedingungen, die für diese Thesis relevant sind. Erstens muss das Framework Angular benutzt werden, weil das bisherige Webportal auch in Angular geschrieben ist. Eine andere Technologie zu verwenden, würde die Integration in die bestehende Platform sehr schwer gestalten. Als zweites stellt sich die Frage welche Browser unterstützt werden müssen. CROSSLOAD befindet sich in der Beta-Phase, deswegen gibt es noch nicht genügend Daten darüber, welche Browser von den Nutzern von CROSSLOAD verwendet werden. Als Anhaltspunkt dient deswegen die durchschnittliche Browsernutzung in Deutschland. Dabei kann zwischen der Nutzung der Browser auf PCs wie in \autoref{internetnutzung/browser-pc-deutschland} zu sehen und auf Mobilgeräten wie in \autoref{internetnutzung/browser-mobil-deutschland} zu sehen unterschieden werden.
+Es gibt zwei Randbedingungen, die für diese Thesis relevant sind. Erstens muss das Framework Angular benutzt werden, weil das bisherige Webportal auch in Angular geschrieben ist. Eine andere Technologie zu verwenden, würde die Integration in die bestehende Plattform sehr schwer gestalten. Als zweites stellt sich die Frage welche Browser unterstützt werden müssen. CROSSLOAD befindet sich in der Beta-Phase, deswegen gibt es noch nicht genügend Daten darüber, welche Browser von den Nutzern von CROSSLOAD verwendet werden. Als Anhaltspunkt dient deswegen die durchschnittliche Browsernutzung in Deutschland. Dabei kann zwischen der Nutzung der Browser auf PCs wie in \autoref{internetnutzung/browser-pc-deutschland} zu sehen und auf Mobilgeräten wie in \autoref{internetnutzung/browser-mobil-deutschland} zu sehen unterschieden werden.
 
 \bild{internetnutzung/browser-pc-deutschland}{10cm}{Internetnutzung nach Browsern in Deutschland \autocite{browser-deutschland}}
 
 \bild{internetnutzung/browser-mobil-deutschland}{10cm}{Internetnutzung nach mobilen Browsern in Deutschland \autocite{mobile-browser-deutschland}}
 
-Die Offline-Funktionen für CROSSLOAD, die in dieser Thesis erarbeitet werden, sind nicht essentiel zum Benutzen des Portals. Deswegen kann auch in kauf genommen werden, dass manche Funktionen für Nutzer mit gewissen Browsern nicht zur Verfügung stehen. Natürlich ist es besser, wenn viele Nutzer von den neuen Funktionalitäten profitieren. Wichtig ist nur, dass iOS und Android unterstützt werden. Dabei wird nicht berücksichtigt, welche Browserversion die Nutzer verwenden. Alle gängingen Browser verfügen über eine automatische Updatefunktion, dadurch erhalten die meisten Nutzer sehr zeitnah veröffentlichte Updates.
+Die Offline-Funktionen für CROSSLOAD, die in dieser Thesis erarbeitet werden, sind nicht essentiell zum Benutzen des Portals. Deswegen kann auch in kauf genommen werden, dass manche Funktionen für Nutzer mit gewissen Browsern nicht zur Verfügung stehen. Natürlich ist es besser, wenn viele Nutzer von den neuen Funktionalitäten profitieren. Wichtig ist nur, dass iOS und Android unterstützt werden. Dabei wird nicht berücksichtigt, welche Browserversion die Nutzer verwenden. Alle gängigen Browser verfügen über eine automatische Updatefunktion, dadurch erhalten die meisten Nutzer sehr zeitnah veröffentlichte Updates.
 
-Bei den Browsern für Mobilgeräte ist der Markanteil von Chrome, Safari und Samsung Internet zusammengerechnet über 96\%. Außerdem basiert Samsung Internet intern auf Chromium und teilt somit die allermeisten Funktionen mit Chrome \autocite{samsung-webkit}. In späteren Entscheidungen wird deswegen Samsung-Internet nur erwähnt wenn es von der Funktionalität im Chrome Browser abweicht.
+Bei den Browsern für Mobilgeräte ist der Marktanteil von Chrome, Safari und Samsung Internet zusammengerechnet über 96\%. Außerdem basiert Samsung Internet intern auf Chromium und teilt somit die allermeisten Funktionen mit Chrome \autocite{samsung-webkit}. In späteren Entscheidungen wird deswegen Samsung-Internet nur erwähnt wenn es von der Funktionalität im Chrome Browser abweicht.
 
 Für PCs gibt es mehr Browserfamilien, die relevant sein könnten. Insgesamt lassen sich alle relevanten Browser auf drei Gruppen reduzieren: Safari und Firefox haben jeweils eine eigene Render-Engine. Opera setzt schon seit einigen Jahren auf Chromium auf \autocite{opera-webkit} und auch für den Edge-Browser wurde 2018 angekündigt Chromium als Basis zu verwenden \autocite{edge-faq}. Der Internet Explorer wird immer weniger verwendet und von Microsoft nicht mehr für den normalen Endnutzer empfohlen \autocite{edge-faq}, deswegen wird der Internet Explorer hier auch nicht berücksichtigt. In den nachfolgenden Kapiteln wird der Browser Edge und Opera mit Chrome gleichgesetzt und nicht extra erwähnt, solange keine relevanten Unterschiede vorhanden sind. Die Browser Safari, Firefox und Chrome (inklusive der Chromium basierten Browser) haben einen Marktanteil von über 94\%.
 
@@ -42,7 +42,7 @@ Ablauf:
 \begin{enumerate}
 	\item Benutzer ist am Flughafen und steht kurz vor einem Flug
 	\item Benutzer favorisiert sich einen Inhalt auf CROSSLOAD
-	\item CROSSLOAD fragt den Benutzer, ob er den Inhalt auch über mobiles Inernet herunterladen möchte
+	\item CROSSLOAD fragt den Benutzer, ob er den Inhalt auch über mobiles Internet herunterladen möchte
 	\item Der Benutzer bestätigt diese Anfrage
 	\item Der Download beginnt
 	\item Sobald der Download fertig ist, wird das dem Benutzer angezeigt
@@ -55,8 +55,8 @@ Akteur: Benutzer
 Ablauf:
 \begin{enumerate}
 	\item Benutzer ist unterwegs und bekommt einen Inhalt auf CROSSLOAD empfohlen
-	\item Benutzer favorisiert diesen Inahlt
-	\item CROSSLOAD fragt den Benutzer, ob er den Inhalt auch über mobiles Inernet herunterladen möchte
+	\item Benutzer favorisiert diesen Inhalt
+	\item CROSSLOAD fragt den Benutzer, ob er den Inhalt auch über mobiles Internet herunterladen möchte
 	\item Der Benutzer verneint diese Anfrage
 	\item Der Benutzer kommt nach Hause und ist mit dem eigenen WLAN verbunden
 	\item Der Download der favorisierten Predigt beginnt
@@ -83,14 +83,14 @@ Aus den Diskussionen mit Mitarbeitern von CROSSLOAD haben sich die Anforderungen
 	\item Das Portal erkennt wenn ein Benutzer keine Internetverbindung hat und leitet ihn auf eine spezielle Seite weiter
 	\item Die zurzeit heruntergeladenen Inhalte können in einer Übersicht gesehen werden
 	\begin{itemize}
-		\item Schön wäre es wenn die Inhalte auch gefiltert oder sortiert werden könnten. Zum Beispiel nach Downloaddatum. Diese Anforderung muss aber nicht erfüllt werden.
+		\item Schön wäre es wenn die Inhalte auch gefiltert oder sortiert werden könnten. Zum Beispiel nach Download-Datum. Diese Anforderung muss aber nicht erfüllt werden.
 	\end{itemize}
- 	\item Die zurzeit heruntergaladenen Inhalte können gelöscht werden
+ 	\item Die zurzeit heruntergeladenen Inhalte können gelöscht werden
 	\item Es soll möglich sein, für einen bestimmten Inhalt herauszufinden, ob dieser Offline verfügbar ist
 	\item Die Inhalte der Detailseite eines heruntergeladenen Inhalts werden gespeichert. Dazu gehören zum Beispiel: Id, Titel, Autor oder Vorschaubild
 	\item Der heruntergeladene Inhalt kann angehört werden
 	\begin{itemize}
-		\item Wenn ein Inhalt angehört werden soll, der bereits heruntergeladen ist, sollen die heruntergeladenen Daten verwendet werden, um Traffic zu vermeiden
+		\item Wenn ein Inhalt angehört werden soll, der bereits heruntergeladen ist, sollen die heruntergeladenen Daten verwendet werden, um Netzwerkverkehr zu vermeiden
 	\end{itemize}
 	
 \end{itemize}
