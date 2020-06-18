@@ -17,3 +17,6 @@
 *.lyx~
 *.synctex.gz
 *-474.lyx
+tex/thesis.bcf
+
+tex/thesis.run.xml
