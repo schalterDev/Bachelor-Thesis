@@ -5,11 +5,19 @@ Die Anforderungen die in diesem Kapitel herausgearbeitet werden, bilden die Grun
 \section{Vorgehensweise und Randbedingungen}
 Da CROSSLOAD fast nur ehrenamtliche Mitarbeiter hat, gibt es niemanden der genaue Anforderungen an Features vorschreibt. Vielmehr werden die Anforderungen zusammen im Team diskutiert. Auch für die Offline Funktionalitäten gab es ein Brainstorming mit Mitarbeitern von CROSSLOAD. Daraus haben sich einige Anforderungen herausgestellt. Zusätzlich werden sich einige Szenarien überlegt, die verschiedene Nutzungen der Offline Funktionalität beleuchtet. Die Szenarien helfen beim Verstehen der Anforderungen.
 
-Es gibt zwei Randbedingungen, die für diese Thesis relevant sind. Erstens muss das Framework Angular benutzt werden, weil das bisherige Webportal auch in Angular geschrieben ist. Eine andere Technologie zu verwenden, würde die Integration in die bestehende Plattform sehr schwer gestalten. Als zweites stellt sich die Frage welche Browser unterstützt werden müssen. CROSSLOAD befindet sich in der Beta-Phase, deswegen gibt es noch nicht genügend Daten darüber, welche Browser von den Nutzern von CROSSLOAD verwendet werden. Als Anhaltspunkt dient deswegen die durchschnittliche Browsernutzung in Deutschland. Dabei kann zwischen der Nutzung der Browser auf PCs wie in \autoref{internetnutzung/browser-pc-deutschland} zu sehen und auf Mobilgeräten wie in \autoref{internetnutzung/browser-mobil-deutschland} zu sehen unterschieden werden.
+Es gibt zwei Randbedingungen, die für diese Thesis relevant sind. Erstens muss das Framework Angular benutzt werden, weil das bisherige Webportal auch in Angular geschrieben ist. Eine andere Technologie zu verwenden, würde die Integration in die bestehende Plattform sehr schwer gestalten. 
 
-\bild{internetnutzung/browser-pc-deutschland}{10cm}{Internetnutzung nach Browsern in Deutschland \autocite{browser-deutschland}}
+Als zweites stellt sich die Frage welche Browser unterstützt werden müssen. CROSSLOAD befindet sich in der Beta-Phase und hat noch keine große Nutzerbasis. Für die ersten zwanzig Tage im Juni wurden 800 Besucher gezählt. Die Verteilung der Browser dieser 800 Nutzer ist in \autoref{internetnutzung/crossload-mobil.png} und \autoref{internetnutzung/crossload-desktop.png} zu sehen.
 
-\bild{internetnutzung/browser-mobil-deutschland}{10cm}{Internetnutzung nach mobilen Browsern in Deutschland \autocite{mobile-browser-deutschland}}
+\bild{internetnutzung/crossload-mobil.png}{10cm}{Nutzung von CROSSLOAD nach Webbrowser auf Mobilgeräten}
+
+\bild{internetnutzung/crossload-desktop.png}{10cm}{Nutzung von CROSSLOAD nach Webbrowser auf dem Desktop}
+
+Da diese Daten noch nicht sehr aussagekräftig sind, weil eine zu geringe Nutzerbasis vorhanden ist, wird die durchschnittliche Browsernutzung in Deutschland betrachtet. Dabei kann zwischen der Nutzung der Browser auf PCs wie in \autoref{internetnutzung/browser-pc-deutschland} zu sehen und auf Mobilgeräten wie in \autoref{internetnutzung/browser-mobil-deutschland} zu sehen unterschieden werden. Wenn man die durchschnittliche Browsernutzung in Deutschland und die von CROSSLOAD vergleicht erkennt man, dass auf CROSSLOAD mehr Nutzer den Safari Browser benutzen und weniger Samsung Internet. 
+
+\bild{internetnutzung/browser-pc-deutschland}{13cm}{Internetnutzung nach Browsern in Deutschland \autocite{browser-deutschland}}
+
+\bild{internetnutzung/browser-mobil-deutschland}{13cm}{Internetnutzung nach mobilen Browsern in Deutschland \autocite{mobile-browser-deutschland}}
 
 Die Offline-Funktionen für CROSSLOAD, die in dieser Thesis erarbeitet werden, sind nicht essentiell zum Benutzen des Portals. Deswegen kann auch in kauf genommen werden, dass manche Funktionen für Nutzer mit gewissen Browsern nicht zur Verfügung stehen. Natürlich ist es besser, wenn viele Nutzer von den neuen Funktionalitäten profitieren. Wichtig ist nur, dass iOS und Android unterstützt werden. Dabei wird nicht berücksichtigt, welche Browserversion die Nutzer verwenden. Alle gängigen Browser verfügen über eine automatische Updatefunktion, dadurch erhalten die meisten Nutzer sehr zeitnah veröffentlichte Updates.
 
