@@ -14,15 +14,18 @@ Vergleichskriterien zur lokalen Datenspeicherung ergeben sich aus den Anforderun
 \end{enumerate}
 
 \subsection{Web Storage}
-Die Web Storage \ac{API} bietet die Möglichkeit Schlüssel / Wert Paare im Browser abzulegen \autocite{mdn-web-storage}. Werte werden immer mit einem Schlüssel gespeichert oder über einen Schlüssel geladen \autocite{mdn-web-storage}. Alle relevanten Browser implementieren diese \ac{API} \autocite{mdn-web-storage}, es gibt aber auch einige Einschränkungen:
+Die Web Storage \ac{API} bietet die Möglichkeit Schlüssel / Wert Paare im Browser abzulegen \autocite{mdn-web-storage}. Werte werden immer mit einem Schlüssel gespeichert oder über einen Schlüssel geladen \autocite{mdn-web-storage}.
 
+Alle relevanten Browser implementieren diese \ac{API} \autocite{mdn-web-storage}, es gibt aber auch einige Einschränkungen:
 \begin{itemize}
 	\item Zugriffe sind nur synchron möglich \autocite{Hajian2019}. Das heißt: wenn große Datenmengen gespeichert oder geladen werden, kann das Browserfenster für eine Zeit lang einfrieren
-	\item Als Schlüssel und Werte können jeweils nur Strings gespeichert werden \autocite{Hajian2019}
+	\item Als Schlüssel und Werte können jeweils nur Strings gespeichert werden \autocite{Hajian2019}. Sollen JavaScript-Objekte gespeichert werden müssen diese in JSON umgewandelt werden.
 	\item Es können maximal 5 \ac{MB} an Daten gespeichert werden \autocite{mdn-web-storage}
 \end{itemize}
 
-Der Web Storage besitzt zwei unterschiedliche Arten Daten zu speichern: LocalStorage und SessionStorage \autocite{Hajian2019} \autocite{mdn-web-storage}. Die beiden Speicher unterscheiden sich nur in der Dauer der Speicherung der Daten. Die Daten vom SessionStorage werden gelöscht sobald die Sitzung auf der Website vorbei ist, das heißt der Browser oder der Tab geschlossen wird \autocite{Hajian2019} \autocite{mdn-web-storage}. Der LocalStorage bleibt über mehrere Sitzungen erhalten und wird nicht automatisch gelöscht \autocite{Hajian2019} \autocite{mdn-web-storage}.
+\bild{architekturen/web-storage}{14cm}{Architektur von der Web Storage \ac{API}}
+
+\autoref{architekturen/web-storage} zeigt die Web Storage \ac{API} mit SessionStorage und LocalStorage. Diese beiden Speicher unterscheiden sich nur darin wie lange Daten gespeichert werden \autocite{Hajian2019} \autocite{mdn-web-storage}. Die Daten vom SessionStorage werden gelöscht sobald die Sitzung auf der Website vorbei ist, das heißt der Browser oder der Tab geschlossen wird \autocite{Hajian2019} \autocite{mdn-web-storage}. Der LocalStorage bleibt über mehrere Sitzungen erhalten und wird nicht automatisch gelöscht \autocite{Hajian2019} \autocite{mdn-web-storage}.
 
 \subsection{File System API}
 Die File System \ac{API} und FileWrite \ac{API} bieten dem Browser die Möglichkeit Dateien in ein virtuelles Dateisystem abzulegen und von dort wieder zu laden \autocite{Hajian2019} \autocite{storage-for-the-web}. Dieses virtuelle Dateisystem unterstützt viele gängige Funktionen wie Ordner und Dateimanipulationen, wie man sie von herkömmlichen Dateisystem gewohnt ist \autocite{mdn-file-system}. \ac{MDN} nennt diese \ac{API} File and Directory Entries \ac{API} \autocite{mdn-file-system}. 
