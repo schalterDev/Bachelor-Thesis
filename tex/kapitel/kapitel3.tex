@@ -1,31 +1,58 @@
 \chapter{Anforderungsanalyse}
 \label{Kap3}
-Die Anforderungen die in diesem Kapitel herausgearbeitet werden, bilden die Grundlage für die Entscheidungen in den nächsten Kapiteln. Zuerst werden grundlegende Bedingungen und die Vorgehensweise erklärt. Anschließend werden einige Szenarien zur Benutzung der Offline Funktion beschrieben. Diese sollen beim Verstehen der Anforderungen, die im darauf folgenden Kapitel aufgelistet werden, helfen.
+Die Anforderungen die in diesem Kapitel herausgearbeitet werden, bilden die Grundlage für die Entscheidungen in den nächsten Kapiteln. Zuerst werden grundlegende Bedingungen und die Vorgehensweise erklärt. Anschließend werden einige Szenarien zur Benutzung der Offline-Funktion beschrieben. Diese sollen beim Verstehen der Anforderungen, die im darauf folgenden Kapitel aufgelistet werden, helfen.
 
 \section{Vorgehensweise und Randbedingungen}
-Da CROSSLOAD fast nur ehrenamtliche Mitarbeiter hat, gibt es niemanden der genaue Anforderungen an Features vorschreibt. Vielmehr werden die Anforderungen zusammen im Team diskutiert. Auch für die Offline Funktionalitäten gab es ein Brainstorming mit Mitarbeitern von CROSSLOAD. Daraus haben sich einige Anforderungen herausgestellt. Zusätzlich werden sich einige Szenarien überlegt, die verschiedene Nutzungen der Offline Funktionalität beleuchtet. Die Szenarien helfen beim Verstehen der Anforderungen.
+Da CROSSLOAD fast nur ehrenamtliche Mitarbeiter hat, gibt es niemanden der genaue Anforderungen an Features vorschreibt. Vielmehr werden die Anforderungen gemeinsam im Team erarbeitet und diskutiert. In einem ersten Brainstorming wurden die gewünschten Funktionalitäten anhand einiger Beispielszenarien diskutiert und dokumentiert. In den Kapiteln~\ref{Kap3:Szenarien} und \ref{Kap3:Anforderungen} werden diese näher ausgearbeitet und beschrieben.
 
-Es gibt zwei Randbedingungen, die für diese Thesis relevant sind. Erstens muss das Framework Angular benutzt werden, weil das bisherige Webportal auch in Angular geschrieben ist. Eine andere Technologie zu verwenden, würde die Integration in die bestehende Plattform sehr schwer gestalten. 
+Es gibt zwei Randbedingungen, die Weiterentwicklung der \ac{PWA} relevant sind:
 
-Als zweites stellt sich die Frage welche Browser unterstützt werden müssen. CROSSLOAD befindet sich in der Beta-Phase und hat noch keine große Nutzerbasis. Für die ersten zwanzig Tage im Juni wurden 800 Besucher gezählt. Die Verteilung der Browser dieser 800 Nutzer ist in \autoref{internetnutzung/crossload-mobil.png} und \autoref{internetnutzung/crossload-desktop.png} zu sehen.
+Erstens muss das Framework Angular benutzt werden, weil das bisherige Webportal auch in Angular geschrieben ist. Eine andere Technologie zu verwenden, würde die Integration in die bestehende Plattform sehr schwer gestalten. 
+
+Als zweites stellt sich die Frage welche Browser unterstützt werden müssen. CROSSLOAD befindet sich in der Beta-Phase und hat noch keine große Nutzerbasis. Für die ersten zwanzig Tage im Juni wurden 800 Besucher gezählt. Die Verteilung der Browser dieser 800 Nutzer ist in \autoref{internetnutzung/crossload-mobil.png} und \autoref{internetnutzung/crossload-desktop.png} zu sehen. Auf Mobilgeräten dominieren eindeutig Safari und Chrome mit einem Anteil von über 90\%. Auf Desktopgeräten teilt sich die Nutzung fast gleichmäßig zwischen Safari, Firefox und Chrome auf. Chrome hat etwas mehr Anteil und Firefox etwas weniger. Der Browser Edge wird noch sehr selten benutzt.
 
 \bild{internetnutzung/crossload-mobil.png}{10cm}{Nutzung von CROSSLOAD nach Webbrowser auf Mobilgeräten}
 
 \bild{internetnutzung/crossload-desktop.png}{10cm}{Nutzung von CROSSLOAD nach Webbrowser auf dem Desktop}
 
-Da diese Daten noch nicht sehr aussagekräftig sind, weil eine zu geringe Nutzerbasis vorhanden ist, wird die durchschnittliche Browsernutzung in Deutschland betrachtet. Dabei kann zwischen der Nutzung der Browser auf PCs wie in \autoref{internetnutzung/browser-pc-deutschland} zu sehen und auf Mobilgeräten wie in \autoref{internetnutzung/browser-mobil-deutschland} zu sehen unterschieden werden. Wenn man die durchschnittliche Browsernutzung in Deutschland und die von CROSSLOAD vergleicht erkennt man, dass auf CROSSLOAD mehr Nutzer den Safari Browser benutzen und weniger Samsung Internet. 
-
-\bild{internetnutzung/browser-pc-deutschland}{13cm}{Internetnutzung nach Browsern in Deutschland \autocite{browser-deutschland}}
+Da diese Daten noch nicht sehr aussagekräftig sind, weil eine zu geringe Nutzerbasis vorhanden ist, wird die durchschnittliche Browsernutzung in Deutschland betrachtet. Dabei kann zwischen der Nutzung der Browser auf PCs wie in \autoref{internetnutzung/browser-pc-deutschland} zu sehen und auf Mobilgeräten wie in \autoref{internetnutzung/browser-mobil-deutschland} zu sehen unterschieden werden. 
 
 \bild{internetnutzung/browser-mobil-deutschland}{13cm}{Internetnutzung nach mobilen Browsern in Deutschland \autocite{mobile-browser-deutschland}}
 
-Die Offline-Funktionen für CROSSLOAD, die in dieser Thesis erarbeitet werden, sind nicht essentiell zum Benutzen des Portals. Deswegen kann auch in kauf genommen werden, dass manche Funktionen für Nutzer mit gewissen Browsern nicht zur Verfügung stehen. Natürlich ist es besser, wenn viele Nutzer von den neuen Funktionalitäten profitieren. Wichtig ist nur, dass iOS und Android unterstützt werden. Dabei wird nicht berücksichtigt, welche Browserversion die Nutzer verwenden. Alle gängigen Browser verfügen über eine automatische Updatefunktion, dadurch erhalten die meisten Nutzer sehr zeitnah veröffentlichte Updates.
+Der führende Browser auf Mobilgeräten ist Chrome mit über 50\% Marktanteil. Gefolgt von Safari und Samsung Internet. Andere Browser spielen eine sehr untergeordnete Rolle. Im Vergleich zu den Daten von CROSSLOAD ist Samsung Internet öfter genutzt dagegen Safari weniger oft.
 
-Bei den Browsern für Mobilgeräte ist der Marktanteil von Chrome, Safari und Samsung Internet zusammengerechnet über 96\%. Außerdem basiert Samsung Internet intern auf Chromium und teilt somit die allermeisten Funktionen mit Chrome \autocite{samsung-webkit}. In späteren Entscheidungen wird deswegen Samsung-Internet nur erwähnt wenn es von der Funktionalität im Chrome Browser abweicht.
+\bild{internetnutzung/browser-pc-deutschland}{13cm}{Internetnutzung auf PCs nach Browsern in Deutschland \autocite{browser-deutschland}}
 
-Für PCs gibt es mehr Browserfamilien, die relevant sein könnten. Insgesamt lassen sich alle relevanten Browser auf drei Gruppen reduzieren: Safari und Firefox haben jeweils eine eigene Render-Engine. Opera setzt schon seit einigen Jahren auf Chromium auf \autocite{opera-webkit} und auch für den Edge-Browser wurde 2018 angekündigt Chromium als Basis zu verwenden \autocite{edge-faq}. Der Internet Explorer wird immer weniger verwendet und von Microsoft nicht mehr für den normalen Endnutzer empfohlen \autocite{edge-faq}, deswegen wird der Internet Explorer hier auch nicht berücksichtigt. In den nachfolgenden Kapiteln wird der Browser Edge und Opera mit Chrome gleichgesetzt und nicht extra erwähnt, solange keine relevanten Unterschiede vorhanden sind. Die Browser Safari, Firefox und Chrome (inklusive der Chromium basierten Browser) haben einen Marktanteil von über 94\%.
+Der am häufigst genutzte Browser auf dem PC in Deutschland ist Chrome mit über 40\%. Firefox steht an Platz zwei. Safari erreicht noch einen Wert von 10\%. Zu beobachten ist auch der Abwärtstrend vom Internet Explorer, der die letzten Jahre viel Marktanteile verlor. In den Daten von CROSSLOAD hat Safari mehr Anteile und Chrome etwas weniger.
+
+Auch wenn die Offline-Funktionen des Webportals für dessen Nutzung nicht essenziell sind, sollen diese möglichst vielen Nutzern zur Verfügung stehen. Dies bedingt zumindest die Unterstützung der am weitesten verbreiteten Web Browser Google Chrome, Firefox, Safari und Samsung Internet auf Android und iOS. Dabei wird nur die aktuelle Version des jeweiligen Browsers unterstützt, weil alle gängigen Browser über eine automatische Updatefunktion verfügen. Dadurch erhalten die meisten Nutzer sehr zeitnah die neuste Version.
+
+Samsung Internet basiert intern auf Chromium und teilt somit die allermeisten Funktionen mit Chrome \autocite{samsung-webkit}.Für den Edge-Browser wurde bereits 2018 angekündigt Chromium als Basis zu verwenden \autocite{edge-faq}. In späteren Entscheidungen wird deswegen Samsung-Internet und Edge nur erwähnt wenn es von der Funktionalität im Chrome Browser abweicht.
+
+In \autoref{Kap3:Browser} ist zusammengefasst welche Browser unter welchen Plattformen unterstützt werden sollen.
+
+\begin{table}
+  \renewcommand{\arraystretch}{1.2}
+  \centering
+  \sffamily
+  \begin{footnotesize}
+    \begin{tabular}{l l}
+      \toprule
+      \textbf{Plattform} & \textbf{unterstützte Browser} \\
+      \midrule
+      \emph{Android} & Chrome, Samsung Internet \\
+      \emph{iOS} & Safari, Chrome \\
+      \emph{Windows, Mac, Linux} & Chrome, Firefox, Edge \\
+      \bottomrule
+    \end{tabular}
+  \end{footnotesize}
+  \rmfamily
+  \caption{Unterstützte Browser und Plattformen}
+  \label{Kap3:Browser}
+\end{table}
 
 \section{Szenarien}
+\label{Kap3:Szenarien}
 Jedes Szenario beschreibt eine konkrete Interaktion mit dem Webportal ohne Sonderfälle abzubilden. Sie dienen dazu die Anforderungen besser zu verstehen. Im folgenden werden drei Szenarien beschrieben.
 
 \subsection{Predigt im Auto anhören}
@@ -73,10 +100,12 @@ Ablauf:
 \end{enumerate}
 
 \section{Anforderungen}
-Aus den Diskussionen mit Mitarbeitern von CROSSLOAD haben sich die Anforderungen herausgestellt, die in diesem Kapitel aufgelistet sind. Für diese Thesis sind nur Audioinhalte auf CROSSLOAD relevant.
+\label{Kap3:Anforderungen}
+Aus den Diskussionen mit Mitarbeitern von CROSSLOAD haben sich die Anforderungen herausgestellt, die in diesem Kapitel aufgelistet sind. Für diese Thesis sind nur Audioinhalte auf CROSSLOAD relevant. 
 
-\begin{itemize}
-	\item Der Benutzer kann sich einen Inhalt vormerken, auch favorisieren genannt
+\begin{enumerate}
+    \item Die Länge der Audioinhalte liegt zwischen wenigen Minuten bis zu 90 Minuten. Eine Audiodatei ist bis zu 100 \ac{MB} groß. 
+	\item Der Benutzer kann sich einen Inhalt vormerken, auch favorisieren genannt. Dabei gibt es keine Begrenzung wie viele Inhalt insgesamt favorisiert werden können. 
 	\item Der vorgemerkte Inhalt wird automatisch anhand der Verbindungsart heruntergeladen. Der genaue Ablauf ist in einem Aktivitätsdiagramm in \autoref{diagramme/anforderung-konnektivitaet} zu sehen.
 	
 	\begin{itemize}
@@ -87,18 +116,21 @@ Aus den Diskussionen mit Mitarbeitern von CROSSLOAD haben sich die Anforderungen
 	
 \bild{diagramme/anforderung-konnektivitaet}{15cm}{Aktivitätsdiagramm: Download des Inhalt abhängig von der Verbindungsart}
 
-	\item Der Benutzer wird über den Fortschritt des Downloads informiert
-	\item Das Portal erkennt wenn ein Benutzer keine Internetverbindung hat und leitet ihn auf eine spezielle Seite weiter
+	\item Ein Download findet im Hintergrund statt ohne die Bedienung des Portals einzuschränken wie zum Beispiel durch einfrieren der Oberfläche
+	\item Der Benutzer wird über den Fortschritt des Downloads informiert. Folgende Status sind möglich: gestartet, wird heruntergeladen, heruntergeladen, Fehler
+	\item Das Portal erkennt wenn die Internetverbindung unterbrochen wird und zeigt dem Benutzer einen Hinweis an
 	\item Die zurzeit heruntergeladenen Inhalte können in einer Übersicht gesehen werden
-	\begin{itemize}
-		\item Schön wäre es wenn die Inhalte auch gefiltert oder sortiert werden könnten. Zum Beispiel nach Download-Datum. Diese Anforderung muss aber nicht erfüllt werden.
-	\end{itemize}
- 	\item Die zurzeit heruntergeladenen Inhalte können gelöscht werden
-	\item Es soll möglich sein, für einen bestimmten Inhalt herauszufinden, ob dieser Offline verfügbar ist
-	\item Die Inhalte der Detailseite eines heruntergeladenen Inhalts werden gespeichert. Dazu gehören zum Beispiel: Id, Titel, Autor oder Vorschaubild
+	\item Die Inhalte sollen gefiltert oder sortiert werden könnten. Zum Beispiel nach Download-Datum
+ 	\item Die zurzeit heruntergeladenen Inhalte können gelöscht werden. Einzeln oder alle auf einmal
+	\item Es soll möglich sein für einen bestimmten Inhalt herauszufinden ob dieser Offline verfügbar ist
+	\item Die Inhalte der Detailseite eines heruntergeladenen Inhalts werden gespeichert. Dazu gehören zum Beispiel: Id, Titel, Autor oder Vorschaubild. Diese Daten sind pro Inhalt bis zu 50 \ac{kB} groß.
 	\item Der heruntergeladene Inhalt kann angehört werden
 	\begin{itemize}
 		\item Wenn ein Inhalt angehört werden soll, der bereits heruntergeladen ist, sollen die heruntergeladenen Daten verwendet werden, um Netzwerkverkehr zu vermeiden
 	\end{itemize}
 	
-\end{itemize}
+\end{enumerate}
+
+\autoref{diagramme/use-cases} zeigt alle Use Cases in einem Diagramm. Netzwerk-Service steht für eine \ac{API} zum Herunterladen eines Inhalts. Welche \ac{API} das sein wird, wird in den nächsten Kapiteln erarbeitet. Auch welche \ac{API} zur Datenverwaltung benutzt wird steht noch nicht fest. Inhalte können vorgemerkt und dadurch heruntergeladen werden. Außerdem gespeichert, abgerufen, durchsucht, gelöscht und angehört werden.
+
+\bild{diagramme/use-cases}{14cm}{Use Case Diagramm der Offline-Funktionalitäten von CROSSLOAD}

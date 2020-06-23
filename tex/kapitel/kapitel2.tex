@@ -3,23 +3,27 @@
 
 Alle relevanten Grundlagen zum Verständnis dieser Thesis werden in diesem Kapitel erklärt. Dabei geht es um verwendete Begriffe, Technologien sowie Frameworks. Zuletzt wird CROSSLOAD, das zu erweiternde Webportal beschrieben und gezeigt.
 
+\section{Service Worker}
+Service Worker laufen in einem Browser und können JavaScript ausführen \autocite{Sheppard2017}. Sie sind im Hintergrund aktiv, sogar wenn die Webseite geschlossen wurde, haben aber keinen Zugriff aufs \ac{DOM} \autocite{Sheppard2017}. Ein Service Worker ist wie ein Mittler zwischen App und Internet, dabei wird meistens auf die Cache \ac{API} zurückgegriffen \autocite{Sheppard2017}. \autoref{service-worker-funktionsweise} zeigt die Architektur von Service Workern. Wenn die Website eine Netzwerkanfrage schickt kann der Service Worker diese Anfrage abfangen. Die abgefangene Abfrage kann nun verändert werden, weitergeleitet werden oder mithilfe der Anfrage eine Antwort aus dem Cache geholt werden.
+
+\bild{service-worker-funktionsweise}{10cm}{Service Worker Architektur \autocite{Sheppard2017}}
+
 \section{Progressive Web App}
 Eine \ac{PWA} ist eine Anwendung, die in modernen Webbrowsern läuft und dem Nutzer dabei eine Erfahrung ähnlich zu bekannten nativen Apps bietet \autocite{Sheppard2017} \autocite{Rojas2020}. Die wichtigsten Funktionen dabei sind:
 
 \begin{itemize}
   \item Schnell: Die App startet schnell und bietet schnell die Möglichkeit zur Interaktion \autocite{Hajian2019} \autocite{Sheppard2017}
-  \item Zuverlässig: auf älteren Geräten funktionsfähig und auch ohne Internet nutzbar. Außerdem passt sich das Design an verschiedene Bildschirmgrößen an (responsive design) \autocite{Hajian2019} \autocite{Sheppard2017}
+  \item Zuverlässig: auf älteren Geräten funktionsfähig und auch ohne Internetverbindung nutzbar. Außerdem passt sich das Design an verschiedene Bildschirmgrößen an (responsive design) \autocite{Hajian2019} \autocite{Sheppard2017}
   \item Installierbar: nach dem Installieren wird ein Icon auf dem Homescreen angezeigt \autocite{Hajian2019} \autocite{Sheppard2017} \autocite{Rojas2020}
-  \item Benachrichtigungen: der Nutzer kann Benachrichtigungen bekommen, obwohl er die App nicht offen hat und aktiv benutzt \autocite{Hajian2019} \autocite{Sheppard2017} 
+  \item Benachrichtigungen: der Nutzer kann Benachrichtigungen empfangen, obwohl er die App nicht offen hat \autocite{Hajian2019} \autocite{Sheppard2017}. Eine Messenger-App könnte zum Beispiel eine Benachrichtigung schicken, sobald der Nutzer eine Nachricht bekommt. Dafür ist es nicht erforderlich, dass der Bildschirm an ist oder die App geöffnet ist.
   \item Native-like Funktionen: Zugriff auf Hardware wie zum Beispiel die Kamera \autocite{Hajian2019}
 \end{itemize}
 
 Bei der Nutzung bzw. der Entwicklung einer \ac{PWA} entstehen viele Vorteile für die Entwickler und Nutzer. Webtechnologien sind weit verbreitet und für jedes Betriebssystem sind moderne Browser verfügbar, dadurch kann die Anwendung sehr leicht an eine große Nutzergruppe ausgeliefert werden \autocite{Rojas2020}. Das Ausliefern an die Nutzer ist auch sehr einfach, weil diese nur eine URL benötigen \autocite{KHAN2019289} und eine neue Version der App automatisch beim Start der App heruntergeladen wird \autocite{Rojas2020}. Außerdem ist die Entwicklung mit Webtechnologien weit verbreitet, man findet viele Ressourcen und Tools, die bei der Entwicklung helfen \autocite{Rojas2020}. Beim Vergleichen von nativen Apps zu einer \ac{PWA} fällt zudem auf, dass die \ac{PWA} sehr wenig Speicherplatz nach der Installation benötigt \autocite{biorn2017} \autocite{KHAN2019289}. Die Geschwindigkeit einer \ac{PWA} auf Android kann im Vergleich zu anderen Cross-Plattform Ansätzen mithalten oder ist sogar schneller \autocite{biorn2017}.
 
-Eine \ac{PWA} hat nicht nur Vorteile, sondern auch Nachteile. Einer davon ist die Limitierung auf die Funktionen die der Webbrowser zur Verfügung stellt. Hinzu kommt, dass einige Funktionen in den Webbrowsern noch nicht standardisiert sind und / oder noch nicht von allen gängigen Browsern unterstützt werden \autocite{majchrzak2018} \autocite{biorn2017}. Wenn die Performance der App eine große Rolle spielt, wie etwa bei Spielen, ist eine \ac{PWA} nicht sehr gut geeignet \autocite{biorn2017}.
+Eine \ac{PWA} hat nicht nur Vorteile, sondern auch Nachteile. Einer davon ist die Limitierung auf die Funktionen die der Webbrowser zur Verfügung stellt. Über den Webbrowser ist es zum Beispiel nicht möglich Sensoren wie den Beschleunigungssensor auszulesen oder direkt auf das Dateisystem zuzugreifen. Zum Tracken von Fitnessaktivitäten ist eine \ac{PWA} auch nicht geeignet, weil diese nur eine kurze Zeit im Hintergrund laufen kann. Hinzu kommt, dass einige Funktionen in den Webbrowsern noch nicht standardisiert sind und / oder noch nicht von allen gängigen Browsern unterstützt werden \autocite{majchrzak2018} \autocite{biorn2017}. Wenn die Performance der App eine große Rolle spielt, wie etwa bei Spielen, ist eine \ac{PWA} nicht sehr gut geeignet \autocite{biorn2017}.
 
-Damit aus einer Website eine \ac{PWA} wird sind mindestens zwei Dinge erforderlich. Erstens wird eine Manifest-Datei benötigt, die Informationen über das Icon, den Namen und vielen mehr enthält \autocite{Hajian2019} \autocite{Rojas2020}. Als zweites wird ein Service Worker benötigt, der unter anderem für die Offline-Fähigkeit verantwortlich ist \autocite{Rojas2020}. 
-
+Damit aus einer Website eine \ac{PWA} wird sind mindestens zwei Dinge erforderlich. Erstens wird eine Manifest-Datei benötigt, die Informationen über das Icon, den Namen und vielen mehr enthält, um die App installieren zu können \autocite{Hajian2019} \autocite{Rojas2020}. Als zweites wird ein Service Worker benötigt, der unter anderem für die Offline-Fähigkeit verantwortlich ist \autocite{Rojas2020}. Der Service Worker cached alle nötigen Dateien einer Website und stellt diese zur Verfügung wenn keine Internetverbindung besteht \autocite{Rojas2020}.
 
 \section{Angular und Typescript}
 Angular ist ein Framework zum Entwickeln von Webanwendungen für alle Plattformen \autocite{angular-io}. Es ist Open-Source, getrieben von einer großen Community aber auch von Firmen wie Google weiterentwickelt und selbst viel genutzt \autocite{angular-io}. Angularanwendungen bestehen unter anderem aus Modulen, Komponenten und Services \autocite{angular-start}. Module fassen mehrere Komponenten zusammen, um diese zu verwalten \autocite{angular-start}. Komponenten sind kleine Bestandteile der Anwendung, die sich vor allem um die Darstellung eines bestimmten Bereichs auf der Seite kümmern \autocite{angular-start}. In Services liegt die Logik der Anwendung \autocite{angular-start}. Dort werden zum Beispiel Netzwerkanfragen gesendet oder Daten zwischengespeichert. Als Programmiersprache ist Typescript vorgesehen. 
@@ -31,10 +35,18 @@ Die Kombination aus Angular und Typescript bietet eine sehr gute Basis zum Entwi
 \section{CROSSLOAD}
 CROSSLOAD ist ein Webportal das christliche Medien, im Moment hauptsächlich Predigten, zur Verfügung stellt \autocite{crossload-org}. Diese Medien können durchsucht, angehört und heruntergeladen werden. Die Entwicklung befindet sich im Moment in der Beta-Phase (https://beta.crossload.org) und wird vor allem von Ehrenamtlichen vorangetrieben. In \autoref{crossload-mobil-neuste-inhalte} ist die mobile Seite mit den neusten Inhalten auf CROSSLOAD zu sehen. \autoref{crossload-detailansicht} zeigt die Detailansicht einer Predigt.
 
-Im Frontend wird Angular mit Typescript zum Entwickeln verwendet und das Backend besteht aus vielen verschiedenen Services, die mit unterschiedlichen Sprachen und Frameworks entwickelt werden. Für diese Arbeit ist nur die Technologie für das Frontend interessant. 
+Im Frontend wird Angular mit Typescript zum Entwickeln verwendet und das Backend besteht aus mehreren Services, die mit unterschiedlichen Sprachen und Frameworks entwickelt werden. \autoref{diagramme/crossload-architektur} zeigt die Architektur. Das Frontend ist in drei Teile aufgeteilt:
+\begin{itemize}
+\item Components zeigen dem Nutzer Inhalte an. In Components werden keine Berechnungen durchgeführt oder Daten manipuliert
+\item Pages sind für die Datenaufbereitung zuständig, bekommen Daten von Services und geben Daten an Components weiter
+\item Services sind die Schnittstelle zu externen \acp{API} um Daten abzurufen
+\end{itemize}
+Viele Bilder von CROSSLOAD werden von Unsplash zur Verfügung gestellt. Für die Suche wird Solr verwendet und Dateien werden in Amazon S3 abgelegt.
 
-Das Webportal erfüllt bereits alle Anforderungen einer \ac{PWA}: Es besitzt eine Manifest-Datei und kann somit auf den Startbildschirm des Smartphones hinzugefügt werden. Statische Inhalte werden mit Hilfe eines Service Workers gecached und sind somit auch offline Verfügbar. 
+\bild{diagramme/crossload-architektur}{14cm}{Architektur von CROSSLOAD}
 
-\bild{crossload-mobil-neuste-inhalte}{5cm}{CROSSLOAD - Mobile Ansicht der neusten Inhalte}
+Das Webportal erfüllt bereits alle Anforderungen einer \ac{PWA}: Es besitzt eine Manifest-Datei und kann somit auf den Startbildschirm des Smartphones hinzugefügt werden. Statische Inhalte werden mit Hilfe eines Service Workers gecached und sind somit auch offline verfügbar. 
 
-\bild{crossload-detailansicht}{5cm}{CROSSLOAD - Detailansicht einer Predigt}
+\bild{crossload-mobil-neuste-inhalte}{8cm}{CROSSLOAD - Mobile Ansicht der neusten Inhalte}
+
+\bild{crossload-detailansicht}{7cm}{CROSSLOAD - Detailansicht einer Predigt}

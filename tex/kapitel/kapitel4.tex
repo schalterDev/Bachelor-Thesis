@@ -2,57 +2,59 @@
 \label{Kap4}
 
 \section{Lokale Datenspeicherung}
-Moderne Webbrowser stellen viele verschiedene Lösungen zum lokalen Speichern von Daten zu Verfügung. In diesem Kapitel werden einige davon mit ihren Stärken und Schwächen vorgestellt. Zuletzt wird eine passende Lösung für CROSSLOAD ausgewählt und begründet.
+Moderne Webbrowser stellen viele verschiedene Lösungen zum lokalen Speichern von Daten zu Verfügung. In diesem Kapitel werden diese vorgestellt und miteinander verglichen. Zuletzt wird eine Entscheidung für CROSSLOAD getroffen.
+
+Vergleichskriterien zur lokalen Datenspeicherung ergeben sich aus den Anforderungen. Hinter jedem Kriterium steht in Klammern die Nummer der Anforderung aus \autoref{Kap3:Anforderungen}:
+\begin{enumerate}
+	\item Ist die \ac{API} asynchron oder nur synchron nutzbar? Eine nur synchron nutzbare Lösung könnte zum einfrieren der Nutzeroberfläche führen (Anforderung 4)
+	\item Maximale Speichermenge (Anforderung 1, 2, und 11)
+	\item Mögliche Datentypen. Können Bilder, Audiodateien und Text abgespeichert werden? (Anforderung 1 und 11)
+	\item Wie aufwändig ist das Durchsuchen, Filtern und Löschen von Inhalten? (Anforderung 7, 8, 9 und 10)
+	\item Welche Browser unterstützten diese Funktionalitäten?
+\end{enumerate}
 
 \subsection{Web Storage}
-Der Web Storage besitzt zwei unterschiedliche Arten Daten zu speichern: LocalStorage und SessionStorage \autocite{Hajian2019} \autocite{mdn-web-storage}. Die beiden Speicher unterscheiden sich nur in der Dauer der Speicherung der Daten. Die Daten vom SessionStorage werden gelöscht sobald die Sitzung auf der Website vorbei ist, das heißt der Browser oder der Tab geschlossen wird \autocite{Hajian2019} \autocite{mdn-web-storage}. Der LocalStorage bleibt über mehrere Sitzungen erhalten und wird nicht automatisch gelöscht \autocite{Hajian2019} \autocite{mdn-web-storage}. 
-
-Die Web Storage \ac{API} bietet die Möglichkeit Schlüssel / Wert Paare im Browser abzulegen \autocite{mdn-web-storage}. Alle relevanten Browser implementieren diese \ac{API} \autocite{mdn-web-storage}, es gibt aber auch einige Einschränkungen:
+Die Web Storage \ac{API} bietet die Möglichkeit Schlüssel / Wert Paare im Browser abzulegen \autocite{mdn-web-storage}. Werte werden immer mit einem Schlüssel gespeichert oder über einen Schlüssel geladen \autocite{mdn-web-storage}. Alle relevanten Browser implementieren diese \ac{API} \autocite{mdn-web-storage}, es gibt aber auch einige Einschränkungen:
 
 \begin{itemize}
-	\item Zugriffe sind nur synchron möglich \autocite{Hajian2019}
+	\item Zugriffe sind nur synchron möglich \autocite{Hajian2019}. Das heißt: wenn große Datenmengen gespeichert oder geladen werden, kann das Browserfenster für eine Zeit lang einfrieren
 	\item Als Schlüssel und Werte können jeweils nur Strings gespeichert werden \autocite{Hajian2019}
-	\item Die \ac{API} ist nicht von Web Workern aufrufbar \autocite{Hajian2019}. Service Worker haben zum Beispiel keinen Zugriff darauf
 	\item Es können maximal 5 \ac{MB} an Daten gespeichert werden \autocite{mdn-web-storage}
 \end{itemize}
 
-Aufgrund der Synchronität und des geringen Datenvolumens das gespeichert werden darf, eignet sich die Web Storage \ac{API} nur zum Speichern von wenig Daten. Größere Daten und insbesondere binäre Dateien, die nicht sehr gut in eine textuelle Form übertragen werden können sollten nicht abgespeichert werden. 
+Der Web Storage besitzt zwei unterschiedliche Arten Daten zu speichern: LocalStorage und SessionStorage \autocite{Hajian2019} \autocite{mdn-web-storage}. Die beiden Speicher unterscheiden sich nur in der Dauer der Speicherung der Daten. Die Daten vom SessionStorage werden gelöscht sobald die Sitzung auf der Website vorbei ist, das heißt der Browser oder der Tab geschlossen wird \autocite{Hajian2019} \autocite{mdn-web-storage}. Der LocalStorage bleibt über mehrere Sitzungen erhalten und wird nicht automatisch gelöscht \autocite{Hajian2019} \autocite{mdn-web-storage}.
 
 \subsection{File System API}
 Die File System \ac{API} und FileWrite \ac{API} bieten dem Browser die Möglichkeit Dateien in ein virtuelles Dateisystem abzulegen und von dort wieder zu laden \autocite{Hajian2019} \autocite{storage-for-the-web}. Dieses virtuelle Dateisystem unterstützt viele gängige Funktionen wie Ordner und Dateimanipulationen, wie man sie von herkömmlichen Dateisystem gewohnt ist \autocite{mdn-file-system}. \ac{MDN} nennt diese \ac{API} File and Directory Entries \ac{API} \autocite{mdn-file-system}. 
 
-Der Vorteil dieser \ac{API} ist der Umgang mit \acp{blob}, wie zum Beispiel Audiodateien. Diese können leicht gespeichert, geladen und manipuliert werden \autocite{mdn-file-system}. Außerdem gibt es eine \ac{API} für synchrone und asynchrone Zugriffe und ist ebenso in Web Workern verfügbar \autocite{Hajian2019}. 
+Der Vorteil dieser \ac{API} ist der Umgang mit \acp{blob}, wie zum Beispiel Audiodateien. Diese können leicht gespeichert, geladen und manipuliert werden \autocite{mdn-file-system}. Es können ebenso andere Datentypen wie Strings gespeichert werden \autocite{mdn-file-system}. Außerdem gibt es eine \ac{API} für synchrone und asynchrone Zugriffe \autocite{Hajian2019}. 
 
 Es gibt keinen offiziellen Standard \autocite{mdn-file-system} \autocite{caniuse-filesystem}. Deswegen unterstützen noch nicht sehr viele Browser diese \ac{API}, bisher ist in Chrome und in allen Chromium basierten Browser diese Funktion verfügbar \autocite{caniuse-filesystem}.
 
 \subsection{Web SQL}
-Web SQL ist eine \ac{API}, die es erlaubt Daten in einer Datenbank zu speichern und diese Daten mit einer SQL ähnlichen Sprache zu durchsuchen \autocite{w3-web-sql}. Die Anfragen sind asynchron funktionieren aber nicht in einem Web Worker \autocite{Hajian2019}.
+Web SQL ist eine \ac{API}, die es erlaubt Daten in einer Datenbank zu speichern und diese Daten mit einer SQL ähnlichen Sprache zu durchsuchen \autocite{w3-web-sql}. Alle Anfragen sind asynchron \autocite{Hajian2019}.
 
 Diese \ac{API} wurde nie von allen Browsern implementiert und ist mittlerweile deprecated, soll also nicht mehr verwendet werden \autocite{Hajian2019}.
 
-Aufgrund der Tatsache, dass Web SQL deprecated ist, wird diese Technologie auch keinen Einsatz bei CROSSLOAD finden. Als Datenbank in Browsern hat sich IndexedDB etabliert.
+Aufgrund der Tatsache, dass Web SQL deprecated ist, wird diese Technologie auch keinen Einsatz bei CROSSLOAD finden. 
 
 \subsection{IndexedDB}
-IndexedDB ist eine key-value NoSQL objekt-orientierte Datenbank zum Speichern von großen und vielen Dateien \autocite{Hajian2019}. Konkret heißt das, dass Objekte mit einem Schlüssel in die Datenbank abgelegt werden können und diese über den angegebenen Schlüssel wieder auffindbar sind. Dabei werden viele unterschiedliche Datentypen (boolean, number, string, date, object, array, regexp, undefined, null, \ac{blob}) \autocite{mdn-indexeddb}, Transaktionen und Indexe zum schnelleren durchsuchen unterstützt \autocite{Sheppard2017}. 
+IndexedDB ist eine key-value NoSQL objekt-orientierte Datenbank zum Speichern von großen und vielen Dateien \autocite{Hajian2019}. Konkret heißt das, dass Objekte mit einem Schlüssel in die Datenbank abgelegt werden können und diese über den angegebenen Schlüssel wieder auffindbar sind. Dabei werden viele unterschiedliche Datentypen (boolean, number, string, date, object, array, regexp, undefined, null, \ac{blob}) \autocite{mdn-indexeddb}, Transaktionen und Indexe zum schnelleren Durchsuchen und Filtern unterstützt \autocite{Sheppard2017}. 
 
-Einschränkungen in der Verwendung der \ac{API} gibt es nicht, da IndexedDB auch in Web Worker zur Verfügung steht und asynchron verwendet werden kann \autocite{Hajian2019} \autocite{mdn-indexeddb}. Alle relevanten Browser unterstützen IndexedDB \autocite{mdn-indexeddb-api}. Die maximale Speicherkapazität der Datenbank hängt vom Browser ab und wird in Kapitel~\ref{Kap4:Datenmenge} näher behandelt.
+\autoref{architekturen/indexedDB} zeigt den Aufbau von IndexedDB. Es können mehrere Datenbanken erstellt werden und jede Datenbank hat mehrere Object stores. Ein Object store ist mit einer Tabelle in einer relationalen Datenbank vergleichbar. Transaktionen sind innerhalb einer Datenbank über mehrere Object stores möglich. Jeder Object store kann key-value Paare speichern. Als Werte können JavaScript Objekte, Zahlen, Texte, Bilder, Audiodateien und vieles mehr gespeichert werden. Wenn Werte JavaScript Objekte sind kann auf ein Attribut ein Index gelegt werden. In diesem Beispiel könnte das Attribut \textit{id} oder \textit{titel} oder auch beide indexiert werden.
+
+\bild{architekturen/indexedDB}{14cm}{Architektur der IndexedDB}
+
+IndexedDB kann asynchron verwendet werden \autocite{Hajian2019} \autocite{mdn-indexeddb} und alle relevanten Browser unterstützen die \ac{API} \autocite{mdn-indexeddb-api}. Die maximale Speicherkapazität der Datenbank hängt vom Browser ab und wird in Kapitel~\ref{Kap4:Datenmenge} näher behandelt.
 
 Anfragen an die Datenbank können direkt eine Sortierung oder Suchkriterien enthalten \autocite{mdn-indexeddb}. Dabei ist zu beachten, dass die Textsuche limitiert ist und keine Anfragen zum Finden eines einzelnen Wortes in einem ganzen Text unterstützt \autocite{mdn-indexeddb}. 
 
-Die Verwendung von IndexedDB ist komplex, deswegen existieren viele Bibliotheken, die eine Verwendung der \ac{API} erleichtern wollen, wie zum Beispiel LocalForage oder Dexie.js \autocite{Hajian2019} \autocite{mdn-indexeddb}.
-
-IndexedDB ist ein sehr flexibler Speicher für den Client, weil in einer Anfrage direkt gesucht und sortiert werden kann. Außerdem können simple Datentypen, Objekte und sogar \acp{blob} (binäre Dateien) gespeichert werden. Ein Nachteil ist die Komplexität in der Verwendung der \ac{API}.
+Die \ac{API} von IndexedDB ist komplex, weil mit Events gearbeitet wird und nicht wie in modernen \acp{API} mit Promises \autocite{Hajian2019}. Deswegen existieren viele Bibliotheken, die eine Verwendung der \ac{API} erleichtern, wie zum Beispiel LocalForage oder Dexie.js \autocite{Hajian2019} \autocite{mdn-indexeddb}.
 
 \subsection{Cache API}
-Die Cache \ac{API} bietet die Möglichkeit Netzwerkanfragen zwischenzuspeichern \autocite{mdn-cache-api}. Über Request-Objekte können Response-Objekte gespeichert und gefunden werden \autocite{mdn-cache-api}. Die \ac{API} kann über das window-Ojekt und in Web-Workern verwendet werden und ist in allen relevanten Browsern verfügbar \autocite{mdn-cache-api}.
-
-Oft wird die Cache \ac{API} in Verbindung mit Service Workern verwendet. Service Worker laufen im Hintergrund, sogar wenn die Webseite geschlossen wurde, haben aber keinen Zugriff aufs DOM \autocite{Sheppard2017}. Ein Service Worker ist wie ein Mittler zwischen App und Internet, dabei wird meistens auf die Cache API zurückgegriffen \autocite{Sheppard2017}. \autoref{service-worker-funktionsweise} zeigt die Architektur von Service Workern. Wenn die Website eine Netzwerkanfrage schickt kann der Service Worker diese Anfrage abfangen. Die abgefangene Abfrage kann nun verändert werden, weitergeleitet werden oder mithilfe der Anfrage eine Antwort aus dem Cache geholt werden.
-
-\bild{service-worker-funktionsweise}{10cm}{Service Worker Architektur \autocite{Sheppard2017}}
+Die Cache \ac{API} bietet die Möglichkeit Netzwerkanfragen zwischenzuspeichern \autocite{mdn-cache-api}. Über Request-Objekte können Response-Objekte gespeichert und gefunden werden \autocite{mdn-cache-api}. Die \ac{API} kann über das window-Ojekt und in Web-Workern verwendet werden und ist in allen relevanten Browsern verfügbar \autocite{mdn-cache-api}. Oft wird die Cache \ac{API} in Verbindung mit Service Workern verwendet.
 
 Die maximale Speicherkapazität des Caches hängt vom Browser ab und wird in Kapitel~\ref{Kap4:Datenmenge} näher erläutert. 
-
-Zusammengefasst ist die Cache API eine gute Möglichkeit Netzwerkanfragen zu cachen und somit die Website offline-fähig zu machen. Außerdem kann dadurch auch die Geschwindigkeit der Seite verbessert werden und eine gute Nutzererfahrung gewährleistet werden. Ein Nachteil ist, dass nur Request- und Response-Objekte gespeichert werden können. 
 
 \subsection{Maximale Datenmenge}
 \label{Kap4:Datenmenge}
@@ -63,8 +65,6 @@ Chrome und Firefox verfolgen die gleiche Strategie beim vergeben von Speicherpla
 Safari erlaubt eine Nutzung von bis zu 1 \ac{GB}, wenn dieses Limit erreicht ist wird der Nutzer gefragt, ob er mehr Speicher erlauben möchte \autocite{storage-for-the-web}. 
 
 \begin{table}
-\caption{Speicherlimits der Browser}
-  \label{Kap4:Speicherlimits}
   \renewcommand{\arraystretch}{1.2}
   \centering
   \sffamily
@@ -80,36 +80,38 @@ Safari erlaubt eine Nutzung von bis zu 1 \ac{GB}, wenn dieses Limit erreicht ist
     \end{tabular}
   \end{footnotesize}
   \rmfamily
+  \caption{Speicherlimits der Browser}
+  \label{Kap4:Speicherlimits}
 \end{table}
 
 Die StorageManager \ac{API} kann verwendet werden, um den verfügbaren Speicherplatz abzufragen und den bisher genutzten Speicherplatz abzufragen \autocite{storage-for-the-web}. Diese Angaben müssen nicht genau sein, sondern bieten nur einen Richtwert \autocite{storage-for-the-web}. Diese Funktion wird aber nicht von allen Browsern unterstützt. Im Moment wird die \ac{API} von Firefox und Chrome aber nicht von Safari unterstützt \autocite{mdn-storage-api}.
 
 \subsection{Mögliche Architekturen}
-In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten zum Speichern von Daten nach folgenden Kriterien verglichen: maximale Datenmenge, mögliche Datentypen, synchron / asynchron, Browsersupport, in Web Worker aufrufbar. Bei fehlenden Feldern in Web SQL wurde nicht weiter recherchiert, weil diese Technologie veraltet ist und nicht mehr verwendet werden soll.
-
-Durch die bisherigen Nachforschungen ist klar, dass in CROSSLOAD entweder IndexedDB oder die Cache \ac{API} verwendet werden sollte. Es ist auch möglich beides zu verwenden. Alle anderen vorgestellten Technologien werden entweder nicht von allen kompatiblen Browsern unterstützt oder können nur eine geringe Datenmenge speichern. Diese Technologien können als Ergänzung eingesetzt werden, zum Speichern der großen Datenmengen sind sie jedoch nicht geeignet.
+In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten zum Speichern von Daten nach bereits genannten Kriterien verglichen: maximale Datenmenge, mögliche Datentypen, synchron / asynchron, Browsersupport, Aufwand für Suchen und Filtern. Bei fehlenden Feldern in Web SQL wurde nicht weiter recherchiert, weil diese Technologie veraltet ist und nicht mehr verwendet werden soll.
 
 \begin{sidewaystable}[h]
-  \caption{Vergleich der APIs zur lokalen Datenspeicherung}
-  \label{Kap4:Datenspeicherung}
   \renewcommand{\arraystretch}{1.2}
   \centering
   \sffamily
   \begin{footnotesize}
     \begin{tabularx}{1.0\textwidth}{l L L L l l L}
       \toprule
-      \textbf{Technologie} & \textbf{Datenmenge} & \textbf{Datentypen} & \textbf{(a)synchron} & \textbf{Browsersupport} & \textbf{Web Worker} & \textbf{Anmerkung} \\
+      \textbf{Technologie} & \textbf{Datenmenge} & \textbf{Datentypen} & \textbf{(a)synchron} & \textbf{Browsersupport} & \textbf{Aufwand für Suchen und Filtern} & \textbf{Anmerkung} \\
       \midrule
-      \emph{Web Storage \ac{API}} & max. 5 \ac{MB} & String & nur synchron & alle & nein & \\
-      \emph{File System \ac{API}} & max. Speicherkapazität des Browsers & \acp{blob} und weitere & synchron und asynchron & nur Chrome & Ja &  \\
-      \emph{Web SQL} & - & . & synchron und asynchron & teilweise & nein & veraltet \\
-      \emph{IndexedDB} & max. Speicherkapazität des Browsers & einfache Datentypen, Objekte, \acp{blob} & asynchron & alle & Ja & Inhalt durchsuch- und filterbar \\
-      \emph{Cache \ac{API}} & max. Speicherkapazität des Browsers & Request- und Response-Objekte & asynchron & alle & Ja & \\
+      \emph{Web Storage \ac{API}} & max. 5 \ac{MB} & String & nur synchron & alle & aufwändig & \\
+      \emph{File System \ac{API}} & max. Speicherkapazität des Browsers & \acp{blob} und weitere & synchron und asynchron & nur Chrome & aufwändig &  \\
+      \emph{Web SQL} & - & . & synchron und asynchron & teilweise & nicht aufwändig & veraltet \\
+      \emph{IndexedDB} & max. Speicherkapazität des Browsers & einfache Datentypen, Objekte, \acp{blob} & asynchron & alle & nicht aufwändig & \\
+      \emph{Cache \ac{API}} & max. Speicherkapazität des Browsers & Request- und Response-Objekte & asynchron & alle & aufwändig & \\
       \bottomrule
     \end{tabularx}
   \end{footnotesize}
   \rmfamily
+  \caption{Vergleich der APIs zur lokalen Datenspeicherung}
+  \label{Kap4:Datenspeicherung}
 \end{sidewaystable}
+
+Web SQL ist deprecated und soll deswegen in CROSSLOAD keine Anwendung finden. Außerdem ist das Speichern von großen Datenmengen dringend erforderlich, weshalb jede Architektur mindestens eine der folgenden Technologien benutzen muss: File System \ac{API}, IndexedDB, Cache \ac{API}.
 
 Es werden nun mögliche Architekturen vorgestellt und miteinander verglichen. 
 
