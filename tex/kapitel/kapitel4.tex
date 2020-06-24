@@ -9,7 +9,7 @@ Vergleichskriterien zur lokalen Datenspeicherung ergeben sich aus den Anforderun
 	\item Ist die \ac{API} asynchron oder nur synchron nutzbar? Eine nur synchron nutzbare Lösung könnte zum einfrieren der Nutzeroberfläche führen (Anforderung 4)
 	\item Maximale Speichermenge (Anforderung 1, 2, und 11)
 	\item Mögliche Datentypen. Können Bilder, Audiodateien und Text abgespeichert werden? (Anforderung 1 und 11)
-	\item Wie aufwändig ist das Durchsuchen, Filtern und Löschen von Inhalten? (Anforderung 7, 8, 9 und 10)
+	\item Wie gut wird das Durchsuchen, Filtern und Löschen von Inhalten unterstützt? (Anforderung 7, 8, 9 und 10)
 	\item Welche Browser unterstützten diese Funktionalitäten?
 \end{enumerate}
 
@@ -23,12 +23,16 @@ Alle relevanten Browser implementieren diese \ac{API} \autocite{mdn-web-storage}
 	\item Es können maximal 5 \ac{MB} an Daten gespeichert werden \autocite{mdn-web-storage}
 \end{itemize}
 
-\bild{architekturen/web-storage}{14cm}{Architektur von der Web Storage \ac{API}}
+\bild{architekturen/web-storage}{14cm}{Aufbau der Web Storage \ac{API}}
 
 \autoref{architekturen/web-storage} zeigt die Web Storage \ac{API} mit SessionStorage und LocalStorage. Diese beiden Speicher unterscheiden sich nur darin wie lange Daten gespeichert werden \autocite{Hajian2019} \autocite{mdn-web-storage}. Die Daten vom SessionStorage werden gelöscht sobald die Sitzung auf der Website vorbei ist, das heißt der Browser oder der Tab geschlossen wird \autocite{Hajian2019} \autocite{mdn-web-storage}. Der LocalStorage bleibt über mehrere Sitzungen erhalten und wird nicht automatisch gelöscht \autocite{Hajian2019} \autocite{mdn-web-storage}.
 
 \subsection{File System API}
-Die File System \ac{API} und FileWrite \ac{API} bieten dem Browser die Möglichkeit Dateien in ein virtuelles Dateisystem abzulegen und von dort wieder zu laden \autocite{Hajian2019} \autocite{storage-for-the-web}. Dieses virtuelle Dateisystem unterstützt viele gängige Funktionen wie Ordner und Dateimanipulationen, wie man sie von herkömmlichen Dateisystem gewohnt ist \autocite{mdn-file-system}. \ac{MDN} nennt diese \ac{API} File and Directory Entries \ac{API} \autocite{mdn-file-system}. 
+Die File System \ac{API} und FileWrite \ac{API} bieten dem Browser die Möglichkeit Dateien in ein virtuelles Dateisystem abzulegen und von dort wieder zu laden \autocite{Hajian2019} \autocite{storage-for-the-web}. Das \ac{MDN} nennt diese \ac{API} File and Directory Entries \ac{API} \autocite{mdn-file-system}. 
+
+\bild{architekturen/file-system-api}{14cm}{Struktur der File System \ac{API}}
+
+In \autoref{architekturen/file-system-api} ist die Struktur der File System \ac{API} zu sehen. Es gibt Ordner und Dateien. Ein Ordner kann Dateien und Unterordner enthalten. Die \ac{API} erlaubt eine Navigation in den Ordnern, wie zum Beispiel: gehe in den übergeordneten Ordner \autocite{mdn-file-system}. Außerdem lassen sich alle Dateien und Unterordner eines Ordners auflisten \autocite{mdn-file-system}. Dateien können geladen und gespeichert werden \autocite{mdn-file-system}. Diese Dateien und Ordner liegen nur in einem virtuellen Dateisystem und sind in dieser Ordnerstruktur nicht auf der Festplatte des Benutzers wiederzufinden \autocite{mdn-file-system}.
 
 Der Vorteil dieser \ac{API} ist der Umgang mit \acp{blob}, wie zum Beispiel Audiodateien. Diese können leicht gespeichert, geladen und manipuliert werden \autocite{mdn-file-system}. Es können ebenso andere Datentypen wie Strings gespeichert werden \autocite{mdn-file-system}. Außerdem gibt es eine \ac{API} für synchrone und asynchrone Zugriffe \autocite{Hajian2019}. 
 
@@ -52,10 +56,16 @@ IndexedDB kann asynchron verwendet werden \autocite{Hajian2019} \autocite{mdn-in
 
 Anfragen an die Datenbank können direkt eine Sortierung oder Suchkriterien enthalten \autocite{mdn-indexeddb}. Dabei ist zu beachten, dass die Textsuche limitiert ist und keine Anfragen zum Finden eines einzelnen Wortes in einem ganzen Text unterstützt \autocite{mdn-indexeddb}. 
 
-Die \ac{API} von IndexedDB ist komplex, weil mit Events gearbeitet wird und nicht wie in modernen \acp{API} mit Promises \autocite{Hajian2019}. Deswegen existieren viele Bibliotheken, die eine Verwendung der \ac{API} erleichtern, wie zum Beispiel LocalForage oder Dexie.js \autocite{Hajian2019} \autocite{mdn-indexeddb}.
+Das Programmieren mit der \ac{API} von IndexedDB ist komplex, weil mit Events gearbeitet wird und nicht wie in modernen \acp{API} mit Promises \autocite{Hajian2019}. Deswegen existieren viele Bibliotheken, die eine Verwendung der \ac{API} erleichtern, wie zum Beispiel LocalForage oder Dexie.js \autocite{Hajian2019} \autocite{mdn-indexeddb}.
 
 \subsection{Cache API}
-Die Cache \ac{API} bietet die Möglichkeit Netzwerkanfragen zwischenzuspeichern \autocite{mdn-cache-api}. Über Request-Objekte können Response-Objekte gespeichert und gefunden werden \autocite{mdn-cache-api}. Die \ac{API} kann über das window-Ojekt und in Web-Workern verwendet werden und ist in allen relevanten Browsern verfügbar \autocite{mdn-cache-api}. Oft wird die Cache \ac{API} in Verbindung mit Service Workern verwendet.
+Die Cache \ac{API} bietet die Möglichkeit Netzwerkanfragen zwischenzuspeichern \autocite{mdn-cache-api}. Über Request-Objekte können Response-Objekte gespeichert und gefunden werden \autocite{mdn-cache-api}.
+
+\bild{architekturen/cache-api}{14cm}{Aufbau der Cache \ac{API}}
+
+\autoref{architekturen/cache-api} zeigt den Aufbau der Cache \ac{API}: Es können mehrere Caches angelegt werden. In einem Cache können mehrere Request-Response Paare gespeichert werden. Ein Request-Objekt enthält die URL, die Methode (GET, POST, PUT, ...), einen body und optional noch mehr Parameter \autocite{mdn-request}. Das Response-Objekt ist ähnlich aufgebaut, enthält aber zum Beispiel auch einen Statuscode \autocite{mdn-response}.
+
+Die \ac{API} kann über das window-Ojekt und in Web-Workern verwendet werden und ist in allen relevanten Browsern verfügbar \autocite{mdn-cache-api}. Oft wird die Cache \ac{API} in Verbindung mit Service Workern verwendet.
 
 Die maximale Speicherkapazität des Caches hängt vom Browser ab und wird in Kapitel~\ref{Kap4:Datenmenge} näher erläutert. 
 
@@ -99,13 +109,13 @@ In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten z
   \begin{footnotesize}
     \begin{tabularx}{1.0\textwidth}{l L L L l l L}
       \toprule
-      \textbf{Technologie} & \textbf{Datenmenge} & \textbf{Datentypen} & \textbf{(a)synchron} & \textbf{Browsersupport} & \textbf{Aufwand für Suchen und Filtern} & \textbf{Anmerkung} \\
+      \textbf{Technologie} & \textbf{Datenmenge} & \textbf{Datentypen} & \textbf{(a)synchron} & \textbf{Browsersupport} & \textbf{Unterstützung für Suchen und Filtern} & \textbf{Anmerkung} \\
       \midrule
-      \emph{Web Storage \ac{API}} & max. 5 \ac{MB} & String & nur synchron & alle & aufwändig & \\
-      \emph{File System \ac{API}} & max. Speicherkapazität des Browsers & \acp{blob} und weitere & synchron und asynchron & nur Chrome & aufwändig &  \\
-      \emph{Web SQL} & - & . & synchron und asynchron & teilweise & nicht aufwändig & veraltet \\
-      \emph{IndexedDB} & max. Speicherkapazität des Browsers & einfache Datentypen, Objekte, \acp{blob} & asynchron & alle & nicht aufwändig & \\
-      \emph{Cache \ac{API}} & max. Speicherkapazität des Browsers & Request- und Response-Objekte & asynchron & alle & aufwändig & \\
+      \emph{Web Storage \ac{API}} & max. 5 \ac{MB} & String & nur synchron & alle & nicht vorhanden & \\
+      \emph{File System \ac{API}} & max. Speicherkapazität des Browsers & \acp{blob} und weitere & synchron und asynchron & nur Chrome & nicht vorhanden &  \\
+      \emph{Web SQL} & - & . & synchron und asynchron & teilweise & vorhanden & veraltet \\
+      \emph{IndexedDB} & max. Speicherkapazität des Browsers & einfache Datentypen, Objekte, \acp{blob} & asynchron & alle & vorhanden & \\
+      \emph{Cache \ac{API}} & max. Speicherkapazität des Browsers & Request- und Response-Objekte & asynchron & alle & nicht vorhanden & \\
       \bottomrule
     \end{tabularx}
   \end{footnotesize}
