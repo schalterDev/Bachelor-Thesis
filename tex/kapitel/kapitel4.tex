@@ -126,7 +126,7 @@ In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten z
 
 Web SQL ist deprecated und soll deswegen in CROSSLOAD keine Anwendung finden. Außerdem ist das Speichern von großen Datenmengen dringend erforderlich, weshalb jede Architektur mindestens eine der folgenden Technologien benutzen muss: File System \ac{API}, IndexedDB, Cache \ac{API}.
 
-Es werden nun mögliche Architekturen vorgestellt und miteinander verglichen. 
+Es werden nun mögliche Architekturen vorgestellt und miteinander verglichen. Als Kriterien gelten die gleichen wie bisher: maximale Datenmenge, mögliche Datentypen, synchron / asynchron, Browsersupport, Aufwand für Suchen und Filtern.
 
 \subsubsection{Cache API und Web Storage}
 Die erste Architektur ist in \autoref{architekturen/architektur-cache-api-web-storage} zu sehen. Es wird die Cache \ac{API} zum Speichern der Audio-Dateien und den Web Storage zum Speichern der Metadaten verwendet. Metadaten sind in diesem Fall alle Information, die zu einem Inhalt gehören abgesehen von der Audio-Datei. Der Web Storage speichert alle ids der bisher favorisierten Inhalte in einem Array. Außerdem hat jede id einen eigenen Eintrag im Web Storage, der die Metadaten enthält. Dieser Ansatz hat den Vorteil, dass schnell überprüft werden kann, ob ein Inhalt favorisiert ist oder nicht. Das Abrufen aller favorisierten Inhalte dauert hingegen lange, weil viele verschiedene Einträge aus dem Web Storage geladen werden müssen. Als alternativen Ansatz könnte man den in \autoref{metadaten-array} beschriebenen umsetzten. Hier werden alle Metadaten in einem einzigen Array gespeichert. Das Laden aller Inhalte ist jetzt schneller. Das Speichern oder Laden eines einzelnen Inhalts dauert dagegen länger, weil immer das gesamte Array geladen oder gespeichert werden muss.
@@ -174,8 +174,15 @@ Der Ablauf zum Favorisieren und Abspielen eines Inhaltes bleibt wie in \autoref{
 
 Durch die Verwendung von IndexedDB ist das Abrufen und Speichern der Metadaten nicht synchron, sondern asynchron. Außerdem bietet IndexedDB die Möglichkeit Inhalte zu sortieren und zu filtern. IndexedDB ist in allen relevanten Browsern verfügbar 
 
+\subsubsection{File System API und IndexedDB}
+\bild{architekturen/architektur-file-system-api-indexed-db}{14cm}{Architektur mit File System API und IndexedDB}
+
+In dieser Architektur, welche in \autoref{architekturen/architektur-file-system-api-indexed-db} beschrieben ist, werden Audio-Dateien mit der File System \ac{API} abgespeichert. Metadaten werden in der IndexedDB gespeichert, wo sie auch sortiert und gefiltert werden können. In dem virtuellem Dateisystem wird ein Ordner \textit{favoriten} angelegt. In diesem Ordner gibt es Unterordner für jeden Inhalt, welche die heruntergeladene Audio-Datei enthalten. 
+
+Der Nachteil dieser Architektur ist die Browserkompatibilität. Die File System \ac{API} wird bisher nur in Chrome unterstützt.
+
 \subsubsection{IndexedDB}
-\bild{architekturen/architektur-indexed-db}{14cm}{Architektur mit Cache API und IndexedDB}
+\bild{architekturen/architektur-indexed-db}{14cm}{Architektur mit IndexedDB}
 
 \autoref{architekturen/architektur-indexed-db} zeigt die Architektur nur mit IndexedDB zum Speichern der Daten. Sowohl Metadaten als auch die Audio-Datei werden in der Datenbank abgespeichert. Es werden zwei object stores verwendet. Einer speichert alle Metadaten und einer speichert alle Audio-Dateien. Es wäre auch möglich die Audio-Dateien mit im object store \textit{favoriten} zu speichern, das wäre jedoch schlecht für die Geschwindigkeit der Seite wenn nur die Metadaten ohne die Audio-Datei benötigt werden.
 
@@ -189,10 +196,35 @@ In \autoref{diagramme/ablauf-indexed-db-favorisieren} ist der Ablauf zum Favoris
 
 Das Abrufen und Speichern aller Daten ist nicht synchron, sondern asynchron. Außerdem bietet IndexedDB die Möglichkeit Metadaten sortiert oder gefiltert abzurufen.
 
-\subsubsection{Entscheidung}
-Zum Speichern der Daten wird allein auf IndexedDB gesetzt. Die zusätzliche Verwendung von der Cache \ac{API} bietet keine weiteren Vorteile und die Verwendung vom Web Storage wird aufgrund der Synchronität abgelehnt.  
+\begin{sidewaystable}[h]
+  \renewcommand{\arraystretch}{1.2}
+  \centering
+  \sffamily
+  \begin{footnotesize}
+    \begin{tabularx}{1.0\textwidth}{l L L L l l}
+      \toprule
+      \textbf{Architektur} & \textbf{Datenmenge} & \textbf{Datentypen} & \textbf{(a)synchron} & \textbf{Browsersupport} & \textbf{Unterstützung für Suchen und Filtern} \\
+      \midrule
+      \emph{Cache \ac{API} und Web Storage} & max. 5 \ac{MB} Metadaten & Metadaten müssen in einen String umgewandelt werden & Metadaten nur synchron & alle & nicht vorhanden \\
+      \emph{Cache \ac{API} und IndexedDB} & max. Speicherkapazität des Browsers & \acp{blob} und weitere & synchron und asynchron & alle & vorhanden \\
+      \emph{File System \ac{API} und IndexedDB} & max. Speicherkapazität des Browsers & \acp{blob} und weitere & synchron und asynchron & teilweise & vorhanden \\
+      \emph{IndexedDB} & max. Speicherkapazität des Browsers & \acp{blob} und weitere & asynchron & alle & vorhanden \\
+      \bottomrule
+    \end{tabularx}
+  \end{footnotesize}
+  \rmfamily
+  \caption{Vergleich der Architekturen zur lokalen Datenspeicherung}
+  \label{Kap4:Architekturen-Vergleich}
+\end{sidewaystable}
 
 \clearpage
+
+\subsubsection{Entscheidung}
+In Tabelle~\ref{Kap4:Architekturen-Vergleich} werden alle vorgestellten Architekturen miteinander verglichen. Die Architektur \textit{Cache API und IndexedDB} sowie \textit{IndexedDB} erfüllen alle Kriterien: Es wird die maximal zulässige Speicherkapazität des Browsers ausgenutzt, alle relevanten Datentypen können asynchron geladen und gespeichert werden, alle relevanten Browser unterstützten die \acp{API} und das Filtern / Sortieren wird unterstützt. 
+
+Alle anderen Architekturen erfüllen mindestens ein Kriterium nicht und werden deswegen nicht verwendet.
+
+Für CROSSLOAD wird sich für die Architektur \textit{IndexedDB} entschieden. Die Verwendung von \textit{Cache API und IndexedDB} wäre auch möglich, verkompliziert die Anwendung jedoch unnötig. Das Verwenden von zwei \acp{API} macht den Code für andere Entwickler komplizierter aber bringt keinen Vorteil gegenüber der Verwendung von IndexedDB alleine.
 
 \section{Herunterladen der Audiodaten}
 Favorisierte Inhalten, sollen für den Offline-Gebrauch heruntergeladen werden. Dafür gibt es verschiedene Möglichkeiten. In diesem Kapitel werden verschiedene Funktionen vorgestellt und miteinander verglichen. 
