@@ -131,7 +131,7 @@ Es werden nun mögliche Architekturen vorgestellt und miteinander verglichen.
 \subsubsection{Cache API und Web Storage}
 Die erste Architektur ist in \autoref{architekturen/architektur-cache-api-web-storage} zu sehen. Es wird die Cache \ac{API} zum Speichern der Audio-Dateien und den Web Storage zum Speichern der Metadaten verwendet. Metadaten sind in diesem Fall alle Information, die zu einem Inhalt gehören abgesehen von der Audio-Datei. Der Web Storage speichert alle ids der bisher favorisierten Inhalte in einem Array. Außerdem hat jede id einen eigenen Eintrag im Web Storage, der die Metadaten enthält. Dieser Ansatz hat den Vorteil, dass schnell überprüft werden kann, ob ein Inhalt favorisiert ist oder nicht. Das Abrufen aller favorisierten Inhalte dauert hingegen lange, weil viele verschiedene Einträge aus dem Web Storage geladen werden müssen. Als alternativen Ansatz könnte man den in \autoref{metadaten-array} beschriebenen umsetzten. Hier werden alle Metadaten in einem einzigen Array gespeichert. Das Laden aller Inhalte ist jetzt schneller. Das Speichern oder Laden eines einzelnen Inhalts dauert dagegen länger, weil immer das gesamte Array geladen oder gespeichert werden muss.
 
-\bild{architekturen/architektur-cache-api-web-storage}{13cm}{Architektur mit Cache API und Web Storage}
+\bild{architekturen/architektur-cache-api-web-storage}{14cm}{Architektur mit Cache API und Web Storage}
 
 \begin{lstlisting}[language=JavaScript,caption={Speichern der Metadaten in einem Array},label={metadaten-array}]
     favoriten: [
@@ -156,27 +156,38 @@ In \autoref{diagramme/ablauf-cache-api-locale-storage-abspielen} wird der Ablauf
 
 \bild{diagramme/ablauf-cache-api-locale-storage-abspielen}{14cm}{Ablauf für das Abspielen mit Cache API und Web Storage}
 
-Der Vorteil dieser Architektur liegt in der Einfachheit der benutzten \acp{API}. Sowohl die WebStorage \ac{API}, sowie die Cache \ac{API} sind sehr einfach zu verstehen und zu verwenden. Die Nachteile dieser Architektur überwiegen jedoch:
+Der Vorteil dieser Architektur liegt in der Einfachheit der benutzten \acp{API}. Sowohl die WebStorage \ac{API}, sowie die Cache \ac{API} sind sehr einfach zu verstehen und zu verwenden. Außerdem sind beide Technologien in allen relevanten Browsern verfügbar. Die Nachteile dieser Architektur sind:
 
 \begin{itemize}
 \item Der Zugriff auf den Web Storage ist synchron. Bei vielen Daten kann dies zu längeren Ladezeiten kommen und währenddessen ist das Portal nicht bedienbar. 
 \item Durch die Verwendung des Web Storages werden entweder Aktualisierungen der Metadaten oder das Abrufen aller Metadaten ineffizient. 
+\item Das Speicherlimit des Web Storages beträgt 5 \ac{MB}. Bei Metadaten bis zu 50 \ac{kB} können bis zu 100 Einträge gespeichert werden. 
 \item Wenn Inhalte durchsucht oder gefiltert werden müssen, muss dies manuell nach dem Laden aller Metadaten erfolgen.
 \end{itemize}
 
 \subsubsection{Cache API und IndexedDB}
-Die Architektur bleibt wie in ???, mit dem Unterschied, dass Web Storage durch IndexedDB ersetzt wird. Durch das Ersetzen vom Web Storage durch IndexedDB, fallen viele Nachteile weg. Das Abrufen und Speichern der Metadaten ist nicht synchron, sondern asynchron. Außerdem bietet IndexedDB die Möglichkeit Inhalte zu sortieren und zu filtern, was für CROSSLOAD auch interessant ist. Der Nachteil ist die hinzugekommene Komplexität. 
+\bild{architekturen/architektur-cache-api-indexed-db}{14cm}{Architektur mit Cache API und IndexedDB}
 
-Die Komplexität kann verringert werden, indem weniger verschiedene \acp{API} eingesetzt werden. Auf IndexedDB soll nicht verzichtet werden, weil diese Vorteile wie Sortierung und Filterung bietet. 
+\autoref{architekturen/architektur-cache-api-indexed-db} zeigt die Architektur mit Cache \ac{API} und IndexedDB. Die Cache \ac{API} wird zum Speichern der Audio-Dateien verwendet und in der IndexedDB werden alle Metadaten gespeichert.
+
+Der Ablauf zum Favorisieren und Abspielen eines Inhaltes bleibt wie in \autoref{diagramme/ablauf-cache-api-locale-storage-favorisieren} und \autoref{diagramme/ablauf-cache-api-locale-storage-abspielen} beschrieben mit dem kleinen Unterschied, dass der Web Storage durch IndexedDB ersetzt wird. 
+
+Durch die Verwendung von IndexedDB ist das Abrufen und Speichern der Metadaten nicht synchron, sondern asynchron. Außerdem bietet IndexedDB die Möglichkeit Inhalte zu sortieren und zu filtern. IndexedDB ist in allen relevanten Browsern verfügbar 
 
 \subsubsection{IndexedDB}
-??? zeigt die Architektur nur mit IndexedDB zum Speichern der Daten. Sowohl Metadaten als auch die Audio-Datei werden in der Datenbank abgespeichert. 
+\bild{architekturen/architektur-indexed-db}{14cm}{Architektur mit Cache API und IndexedDB}
 
-\bild{diagramme/ablauf-indexed-db-favorisieren}{13cm}{Ablauf für das Favorisieren mit IndexedDB}
+\autoref{architekturen/architektur-indexed-db} zeigt die Architektur nur mit IndexedDB zum Speichern der Daten. Sowohl Metadaten als auch die Audio-Datei werden in der Datenbank abgespeichert. Es werden zwei object stores verwendet. Einer speichert alle Metadaten und einer speichert alle Audio-Dateien. Es wäre auch möglich die Audio-Dateien mit im object store \textit{favoriten} zu speichern, das wäre jedoch schlecht für die Geschwindigkeit der Seite wenn nur die Metadaten ohne die Audio-Datei benötigt werden.
 
-\bild{diagramme/ablauf-indexed-db-abspielen}{13cm}{Ablauf für das Abspielen mit IndexedDB}
+\autoref{diagramme/ablauf-indexed-db-abspielen} zeigt dies am Beispiel für das Abspielen eines Inhalts auf CROSSLOAD. Wenn der Nutzer sich alle Inhalte anzeigen lässt werden zuerst nur die Metadaten benötigt und sobald ein Inhalt ausgewählt wurde wird eine Audio-Datei zu einem Inhalt benötigt. 
 
-Durch das Ersetzen von der Cache \ac{API} durch IndexedDB sind keine Nachteile entstanden. Die Komplexität des Webportals wird nicht erhöht, sondern eher etwas verringert, weil nicht mehr so viele verschiedene \acp{API} verwendet werden.
+\bild{diagramme/ablauf-indexed-db-abspielen}{14cm}{Ablauf für das Abspielen mit IndexedDB}
+
+In \autoref{diagramme/ablauf-indexed-db-favorisieren} ist der Ablauf zum Favorisieren eines Inhaltes gezeigt. Sowohl Metadaten als auch die Audio-Datei wird in der IndexedDB gespeichert.
+
+\bild{diagramme/ablauf-indexed-db-favorisieren}{14cm}{Ablauf für das Favorisieren mit IndexedDB}
+
+Das Abrufen und Speichern aller Daten ist nicht synchron, sondern asynchron. Außerdem bietet IndexedDB die Möglichkeit Metadaten sortiert oder gefiltert abzurufen.
 
 \subsubsection{Entscheidung}
 Zum Speichern der Daten wird allein auf IndexedDB gesetzt. Die zusätzliche Verwendung von der Cache \ac{API} bietet keine weiteren Vorteile und die Verwendung vom Web Storage wird aufgrund der Synchronität abgelehnt.  
