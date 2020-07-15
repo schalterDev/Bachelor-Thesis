@@ -227,19 +227,28 @@ Alle anderen Architekturen erfüllen mindestens ein Kriterium nicht und werden d
 Für CROSSLOAD wird sich für die Architektur \textit{IndexedDB} entschieden. Die Verwendung von \textit{Cache API und IndexedDB} wäre auch möglich, verkompliziert die Anwendung jedoch unnötig. Das Verwenden von zwei \acp{API} macht den Code für andere Entwickler komplizierter aber bringt keinen Vorteil gegenüber der Verwendung von IndexedDB alleine.
 
 \section{Herunterladen der Audiodaten}
-Favorisierte Inhalten, sollen für den Offline-Gebrauch heruntergeladen werden. Dafür gibt es verschiedene Möglichkeiten. In diesem Kapitel werden verschiedene Funktionen vorgestellt und miteinander verglichen. 
+Favorisierte Inhalten, sollen für den Offline-Gebrauch heruntergeladen werden. Dafür gibt es verschiedene Möglichkeiten. In diesem Kapitel werden verschiedene Funktionen vorgestellt und miteinander verglichen. Zum Vergleichen dienen die Kriterien: Wie welchen Browsern ist die \ac{API} kompatibel und kann der Download auch im Hintergrund stattfinden.
 
 \subsection{Fetch API}
 Die Fetch \ac{API} bietet die Möglichkeit XMLHttpRequests zu verschicken, also Ressourcen von einem Server anzufragen \autocite{Rojas2020}. Verwendet wird die \ac{API} mit Promises, ist also asynchron und bietet eine einfachere Fehlerbehandlung \autocite{Rojas2020} \autocite{mdn-fetch}. 
 
-Diese \ac{API} ist sehr flexibel und kann deswegen sehr gut in service workern oder mit der Cache \ac{API} verwendet werden \autocite{mdn-fetch}. Außerdem unterstützt jeder relevante Browser diese Funktion \autocite{mdn-fetch}. 
+Außerdem unterstützt jeder relevante Browser diese Funktion \autocite{mdn-fetch}. Die Fetch-API kann sowohl in Service Workern, als auch im \ac{DOM} verwendet werden \autocite{mdn-fetch}. Damit eine Netzwerkanfrage abgeschickt und empfangen werden kann muss der Browser aktiv sein. Sobald der Browser geschlossen wird kann keine Netzwerkanfrage mehr versendet werden, weil dann auch keine Service Worker mehr aktiv sind.
 
-Damit eine Netzwerkfrage abgeschickt und empfangen werden kann muss das Browserfenster aber geöffnet sein. Es ist nicht möglich eine Anfrage zu schicken und dann den Browser zu verlassen.
+Ein Service Worker kann vom Browser zu jeder Zeit beendet werden, selbst wenn ein Event noch nicht beendet wurde \autocite{service-worker-spec}. Die Ausführungsdauer für ein Event sollte sehr kurz sein und ist nicht für langanhaltende Downloads gedacht \autocite{service-worker-spec}.
 
-In Angular werden Netzwerkanfragen mit dem HttpService verschickt. Dies ist in diesem Vergleich mit der Fetch \ac{API} gleichzusetzen, weil die gleichen Funktionen vorhanden sind und auch die gleichen Einschränkungen gelten.
+\subsection{HttpClient}
+In Angular können Netzwerkanfragen mit dem HttpClient verschickt werden \autocite{httpClient}. Bei einem Request kann die URL, Header, Parameter und vieles mehr angepasst werden \autocite{httpClient}. Die Antwort eines Request wird als Observable zurück gegeben, auch mit der Option zwischendurch einen Fortschritt des Requests abzufragen \autocite{httpClient}. Dadurch, dass der HttpClient teil von Angular ist funktioniert er in allen relevanten Browsern. 
+
+Der HttpClient kann in allen Angular Komponenten und Services per Dependecie Injection genutzt werden \autocite{httpClient}. Service Worker können beliebig zur Anwendung hinzugefügt werden aber angularspezifische Teile können nicht verwendet werden, somit ist auch der HttpClient in service workern nicht nutzbar \autocite{service-worker-angular}.
 
 \subsection{Background Sync}
-Mit Background Sync können Netzwerk Anfragen abgeschickt werden, selbst wenn keine Internetverbindung besteht. Die Anfrage wird gespeichert, bis eine Internetverbindung besteht und dann abgeschickt \autocite{wicg-background-sync}. Diese Funktionalität ist Teil von Service Workern und funktioniert solange ein Service Worker läuft \autocite{wicg-background-sync}. 
+\bild{diagramme/background-sync}{14cm}{Ablauf für Background Sync}
+
+Mit Background Sync können Netzwerk Anfragen abgeschickt werden, selbst wenn keine Internetverbindung besteht. Die Anfrage wird gespeichert, und sobald eine Internetverbindung besteht abgeschickt \autocite{wicg-background-sync} \autocite{Rojas2020}. 
+
+\autoref{diagramme/background-sync} zeigt den Ablauf wenn ein Sync-Event gesendet wird. Wenn bereits eine Netzwerkverbindung besteht wird das Event sofort ausgeführt. Ansonsten wird auf eine Netzwerkverbindung gewartet. Das Ausführen des Event kann zum Beispiel durch einen Netzwerkfehler scheitern. Wenn nach mehrmaligen Versuchen das Event nicht geklappt hat wird ein \textit{lastChance} Event gefeuert \autocite{Rojas2020}.
+
+Diese Funktionalität ist Teil von Service Workern und funktioniert solange ein Service Worker läuft \autocite{wicg-background-sync}. Auch das Event für Background Sync hat nur eine begrenzte Lebensdauer und kann jederzeit vom Browser beendet werden \autocite{service-worker-spec}.
 
 Im Moment wird diese Funktion nur von Chrome unterstützt \autocite{caniuse-background-sync}, in Firefox ist sie aber schon in Entwicklung \autocite{status-mozilla-background-sync}.
 
@@ -251,7 +260,9 @@ Diese \ac{API} bietet die Möglichkeit große Dateien hoch- oder herunterzuladen
 Diese \ac{API} ist im Moment nur in Chrome verfügbar \autocite{google-background-fetch}.
 
 \subsection{Entscheidung}
-Die einzige \ac{API}, die von allen relevanten Browsern unterstützt wird, ist die Fetch \ac{API} und wird deswegen auch verwendet. Als Ergänzung kann später Background Sync oder Background Fetch implementiert werden, da diese auch wenn die Website geschlossen ist Inhalte herunterladen können. Background Sync wird wahrscheinlich schneller eine größere Browserunterstützung finden und sollte deswegen bevorzugt werden.
+Um alle relevanten Browser abzudecken muss die Fetch \ac{API} oder der HttpClient verwendet werden. Da die Fetch \ac{API} auch in einem Service Worker verwendet werden kann, wird diese ausgewählt. 
+
+Als Ergänzung kann später Background Fetch implementiert werden, weil damit auch Inhalte heruntergeladen werden können wenn die Website geschlossen ist. Background Sync bietet in diesem Fall keine großen Vorteile gegenüber der Fetch \ac{API}, weil die Laufzeit beider \acp{API} gleich ist. Der Vorteil bei Background Sync wäre das automatische Starten des Downloads sobald nach einem Verbindungsabbruch die Verbindung wiederhergestellt ist. Diese Funktionalität kann aber auch in Angular implementiert werden.
 
 \section{Verbindungsstaus auslesen}
 Um eine gute Nutzererfahrung bieten zu können, muss man zu jeder Zeit wissen, ob gerade eine Internetverbindung besteht oder nicht. Außerdem möchte man so schnell wie möglich eine Änderung der Verbindung mitbekommen.
