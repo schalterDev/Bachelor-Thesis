@@ -1,6 +1,5 @@
 \chapter{Grundlagen}
 \label{Kap2}
-
 Alle relevanten Grundlagen zum Verständnis dieser Thesis werden in diesem Kapitel erklärt. Dabei geht es um verwendete Begriffe, Technologien sowie Frameworks. Zuletzt wird CROSSLOAD, das zu erweiternde Webportal beschrieben und gezeigt.
 
 \section{Service Worker}
@@ -31,6 +30,15 @@ Angular ist ein Framework zum Entwickeln von Webanwendungen für alle Plattforme
 Typescript erweitert Javascript um einige Funktionen wie zum Beispiel Typisierung \autocite{typescript-org}. Die Flexibilität von Javascript bleibt trotzdem erhalten, weil der Nutzer selbst entscheiden kann wann er typisieren möchte oder nicht \autocite{typescript-org}. Typescript kann vor dem Ausliefern in reines Javascript kompiliert werden und ist somit in allen gängigen Browsern oder auch auf Servern mit Node.js ausführbar \autocite{typescript-org}.
 
 Die Kombination aus Angular und Typescript bietet eine sehr gute Basis zum Entwickeln von großen, schnellen und skalierbaren Anwendungen \autocite{angular-io}. Durch die statische Typisierung sind zum Beispiel Refactorings mit den vielen verfügbaren Tools schnell und sicher durchzuführen \autocite{typescript-org} \autocite{angular-io}. In der großen Community findet man auf sehr viele Fragen sofort eine Antwort.
+
+\section{Publish Subscribe Pattern}
+In Angular wird sehr oft mit Observables gearbeitet und damit das Publish-Subscribe Pattern oder auch Observer-Pattern genannt umgesetzt. 
+
+\bild{diagramme/publish-subscribe}{12cm}{Publish-Subscribe Pattern UML \autocite{Mezzalira2018}}
+
+\autoref{diagramme/publish-subscribe} zeigt den Aufbau des Publish-Subscribe Pattern. Es gibt ein \textit{Subject} welches eine Liste an Observern hält \autocite{Mezzalira2018}. Ein Observer kann über \textit{subscribe(observer)} hinzugefügt werden und über \textit{unsubscribe(observer)} auch wieder entfernt werden \autocite{Mezzalira2018}. Sobald beim Subject die Methode \textit{notifiy(notification)} aufgerufen wird, wird bei allen Observern die \textit{update(notification)} Methode aufgerufen \autocite{Mezzalira2018}. Üblicherweise gibt es ein Interface Observer und dazu mindestens eine Implementierung \autocite{Mezzalira2018}.
+
+Dieses Pattern bietet den Vorteil, dass mehrere Werte an mehrere Subscriber gesendet werden können. 
 
 \section{CROSSLOAD}
 CROSSLOAD ist ein Webportal das christliche Medien, im Moment hauptsächlich Predigten, zur Verfügung stellt \autocite{crossload-org}. Diese Medien können durchsucht, angehört und heruntergeladen werden. Die Entwicklung befindet sich im Moment in der Beta-Phase (https://beta.crossload.org) und wird vor allem von Ehrenamtlichen vorangetrieben. In \autoref{crossload-mobil-neuste-inhalte} ist die mobile Seite mit den neusten Inhalten auf CROSSLOAD zu sehen. \autoref{crossload-detailansicht} zeigt die Detailansicht einer Predigt.
