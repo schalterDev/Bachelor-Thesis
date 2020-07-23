@@ -20,3 +20,13 @@
 tex/thesis.bcf
 
 tex/thesis.run.xml
+
+*.glg
+
+*.glo
+
+*.glsdefs
+
+*.ist
+
+*.gls

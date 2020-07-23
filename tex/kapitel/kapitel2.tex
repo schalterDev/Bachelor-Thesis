@@ -8,7 +8,7 @@ Service Worker laufen in einem Browser und können JavaScript ausführen \autoci
 \bild{service-worker-funktionsweise}{10cm}{Service Worker Architektur \autocite{Sheppard2017}}
 
 \section{Progressive Web App}
-Eine \ac{PWA} ist eine Anwendung, die in modernen Webbrowsern läuft und dem Nutzer dabei eine Erfahrung ähnlich zu bekannten nativen Apps bietet \autocite{Sheppard2017} \autocite{Rojas2020}. Die wichtigsten Funktionen dabei sind:
+Eine \ac{PWA} ist eine Anwendung, die in modernen Webbrowsern läuft und dem Nutzer dabei eine Erfahrung ähnlich zu bekannten nativen Apps bietet \autocite{Sheppard2017} \autocite{Rojas2020}. Die wichtigsten Eigenschaften und Funktionen dabei sind:
 
 \begin{itemize}
   \item Schnell: Die App startet schnell und bietet schnell die Möglichkeit zur Interaktion \autocite{Hajian2019} \autocite{Sheppard2017}
@@ -38,7 +38,7 @@ In Angular wird sehr oft mit Observables gearbeitet und damit das Publish-Subscr
 
 \autoref{diagramme/publish-subscribe} zeigt den Aufbau des Publish-Subscribe Pattern. Es gibt ein \textit{Subject} welches eine Liste an Observern hält \autocite{Mezzalira2018}. Ein Observer kann über \textit{subscribe(observer)} hinzugefügt werden und über \textit{unsubscribe(observer)} auch wieder entfernt werden \autocite{Mezzalira2018}. Sobald beim Subject die Methode \textit{notifiy(notification)} aufgerufen wird, wird bei allen Observern die \textit{update(notification)} Methode aufgerufen \autocite{Mezzalira2018}. Üblicherweise gibt es ein Interface Observer und dazu mindestens eine Implementierung \autocite{Mezzalira2018}.
 
-Dieses Pattern bietet den Vorteil, dass mehrere Werte an mehrere Subscriber gesendet werden können. 
+Dieses Pattern bietet den Vorteil, dass beliebig viele Observer über neue Werte benachrichtigt werden können. 
 
 \section{CROSSLOAD}
 CROSSLOAD ist ein Webportal das christliche Medien, im Moment hauptsächlich Predigten, zur Verfügung stellt \autocite{crossload-org}. Diese Medien können durchsucht, angehört und heruntergeladen werden. Die Entwicklung befindet sich im Moment in der Beta-Phase (https://beta.crossload.org) und wird vor allem von Ehrenamtlichen vorangetrieben. In \autoref{crossload-mobil-neuste-inhalte} ist die mobile Seite mit den neusten Inhalten auf CROSSLOAD zu sehen. \autoref{crossload-detailansicht} zeigt die Detailansicht einer Predigt.

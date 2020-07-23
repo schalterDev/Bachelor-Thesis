@@ -6,7 +6,7 @@
     headsepline=true,       % Trennlinie am Kopf der Seite
     footsepline=false,      % Keine Trennlinie am Fuß der Seite
     bibliography=totoc,     % Literaturverzeichnis in das Inhaltsverzeichnis aufnehmen
-    twoside=on,             % Doppelseitiger Druck - auf off stellen für einseitig
+    twoside=off,             % Doppelseitiger Druck - auf off stellen für einseitig
     DIV=7,                  % Verhältnis der Ränder zum bedruckten Bereich
     chapterprefix=true,     % Kapitel x vor dem Kapitelnamen
     cleardoublepage=plain]{scrbook}
@@ -18,6 +18,7 @@
 \usepackage[T1]{fontenc}          % Zeichenkodierung
 \usepackage{graphicx}             % Bilder einbinden
 \usepackage{enumitem}             % Eigene Listen definieren können
+\usepackage{glossaries}			  % Glossar
 
 % Setzen von Optionen abhängig von der gewählten Sprache. Die Sprache wird
 % in thesis.tex gesetzt.
@@ -243,3 +244,7 @@
 % Checklisten mit zwei Ebenen
 \newlist{checklist}{itemize}{2}
 \setlist[checklist]{label=$\square$}
+
+\renewcommand{\glossarysection}[2][]{}
+\makeglossaries
+\input{kapitel/glossar}
