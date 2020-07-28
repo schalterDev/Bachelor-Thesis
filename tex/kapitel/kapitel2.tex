@@ -11,11 +11,11 @@ Service Worker laufen in einem Browser und können JavaScript ausführen \autoci
 Eine \ac{PWA} ist eine Anwendung, die in modernen Webbrowsern läuft und dem Nutzer dabei eine Erfahrung ähnlich zu bekannten nativen Apps bietet \autocite{Sheppard2017} \autocite{Rojas2020}. Die wichtigsten Eigenschaften und Funktionen dabei sind:
 
 \begin{itemize}
-  \item Schnell: Die App startet schnell und bietet schnell die Möglichkeit zur Interaktion \autocite{Hajian2019} \autocite{Sheppard2017}
-  \item Zuverlässig: auf älteren Geräten funktionsfähig und auch ohne Internetverbindung nutzbar. Außerdem passt sich das Design an verschiedene Bildschirmgrößen an (responsive design) \autocite{Hajian2019} \autocite{Sheppard2017}
-  \item Installierbar: nach dem Installieren wird ein Icon auf dem Homescreen angezeigt \autocite{Hajian2019} \autocite{Sheppard2017} \autocite{Rojas2020}
-  \item Benachrichtigungen: der Nutzer kann Benachrichtigungen empfangen, obwohl er die App nicht offen hat \autocite{Hajian2019} \autocite{Sheppard2017}. Eine Messenger-App könnte zum Beispiel eine Benachrichtigung schicken, sobald der Nutzer eine Nachricht bekommt. Dafür ist es nicht erforderlich, dass der Bildschirm an ist oder die App geöffnet ist.
-  \item Native-like Funktionen: Zugriff auf Hardware wie zum Beispiel die Kamera \autocite{Hajian2019}
+  \item Schnell: Die App startet schnell und bietet schnell die Möglichkeit zur Interaktion \autocite{Hajian2019} \autocite{Sheppard2017}.
+  \item Zuverlässig: Auf älteren Geräten funktionsfähig und auch ohne Internetverbindung nutzbar. Außerdem passt sich das Design an verschiedene Bildschirmgrößen an (responsive design) \autocite{Hajian2019} \autocite{Sheppard2017}.
+  \item Installierbar: Nach dem Installieren wird ein Icon auf dem Homescreen angezeigt \autocite{Hajian2019} \autocite{Sheppard2017} \autocite{Rojas2020}.
+  \item Benachrichtigungen: Der Nutzer kann Benachrichtigungen empfangen, obwohl er die App nicht offen hat \autocite{Hajian2019} \autocite{Sheppard2017}. Eine Messenger-App könnte zum Beispiel eine Benachrichtigung schicken, sobald der Nutzer eine Nachricht bekommt. Dafür ist es nicht erforderlich, dass der Bildschirm an ist oder die App geöffnet ist.
+  \item Native-like Funktionen: Zugriff auf Hardware wie zum Beispiel die Kamera ist möglich \autocite{Hajian2019}.
 \end{itemize}
 
 Bei der Nutzung bzw. der Entwicklung einer \ac{PWA} entstehen viele Vorteile für die Entwickler und Nutzer. Webtechnologien sind weit verbreitet und für jedes Betriebssystem sind moderne Browser verfügbar, wodurch die Anwendung sehr leicht an eine große Nutzergruppe ausgeliefert werden kann \autocite{Rojas2020}. Das Ausliefern an die Nutzer ist zudem sehr einfach, weil diese nur eine URL benötigen \autocite{KHAN2019289} und eine neue Version der App automatisch beim Start der App heruntergeladen wird \autocite{Rojas2020}. Außerdem ist die Entwicklung mit Webtechnologien weit verbreitet, man findet viele Ressourcen und Tools, die bei der Entwicklung helfen \autocite{Rojas2020}. Beim Vergleichen von nativen Apps mit einer \ac{PWA} fällt zudem auf, dass die \ac{PWA} sehr wenig Speicherplatz nach der Installation benötigt \autocite{biorn2017} \autocite{KHAN2019289}. Die Geschwindigkeit einer \ac{PWA} auf Android kann im Vergleich zu anderen Cross-Plattform Ansätzen mithalten oder ist sogar schneller \autocite{biorn2017}.
@@ -24,12 +24,12 @@ Eine \ac{PWA} hat nicht nur Vorteile, sondern auch Nachteile. Ein Nachteil ist d
 
 Damit aus einer Website eine \ac{PWA} wird, sind mindestens zwei Dinge erforderlich. Erstens wird eine Manifest-Datei benötigt, welche Informationen über das Icon, den Namen und vieles mehr enthält, um die App installieren zu können \autocite{Hajian2019} \autocite{Rojas2020}. Als zweites wird ein Service Worker benötigt, der unter anderem für die Offline-Fähigkeit verantwortlich ist \autocite{Rojas2020}. Der Service Worker speichert alle nötigen Dateien einer Website zwischen und stellt diese zur Verfügung, wenn keine Internetverbindung besteht \autocite{Rojas2020}.
 
-\section{Angular und Typescript}
-Angular ist ein Framework zum Entwickeln von Webanwendungen für alle Plattformen \autocite{angular-io}. Das Framework ist Open Source, getrieben von einer großen Community, wird aber auch von Firmen wie Google weiterentwickelt und genutzt \autocite{angular-io}. Angularanwendungen bestehen unter anderem aus Modulen, Komponenten und Services \autocite{angular-start}. Module fassen mehrere Komponenten zusammen, um diese zu verwalten \autocite{angular-start}. Komponenten sind kleine Bestandteile der Anwendung, die sich vor allem um die Darstellung eines bestimmten Bereichs auf der Seite kümmern \autocite{angular-start}. In Services liegt die Logik der Anwendung \autocite{angular-start}. Dort werden zum Beispiel Netzwerkanfragen gesendet oder Daten zwischengespeichert. Als Programmiersprache ist Typescript vorgesehen. 
+\section{Angular und TypeScript}
+Angular ist ein Framework zum Entwickeln von Webanwendungen für alle Plattformen \autocite{angular-io}. Das Framework ist Open Source, getrieben von einer großen Community, wird aber auch von Firmen wie Google weiterentwickelt und genutzt \autocite{angular-io}. Angularanwendungen bestehen unter anderem aus Modulen, Komponenten und Services \autocite{angular-start}. Module fassen mehrere Komponenten zusammen, um diese zu verwalten \autocite{angular-start}. Komponenten sind kleine Bestandteile der Anwendung, die sich vor allem um die Darstellung eines bestimmten Bereichs auf der Seite kümmern \autocite{angular-start}. In Services liegt die Logik der Anwendung \autocite{angular-start}. Dort werden zum Beispiel Netzwerkanfragen gesendet oder Daten zwischengespeichert. Als Programmiersprache ist TypeScript vorgesehen. 
 
-Typescript erweitert Javascript um einige Funktionen wie zum Beispiel Typisierung \autocite{typescript-org}. Die Flexibilität von Javascript bleibt trotzdem erhalten, weil der Nutzer selbst entscheiden kann, wann er typisieren möchte oder nicht \autocite{typescript-org}. Typescript kann vor dem Ausliefern in reines Javascript kompiliert werden und ist somit in allen gängigen Browsern oder auch auf Servern mit Node.js ausführbar \autocite{typescript-org}.
+TypeScript erweitert JavaScript um einige Funktionen wie zum Beispiel Typisierung \autocite{typescript-org}. Die Flexibilität von JavaScript bleibt trotzdem erhalten, weil der Nutzer selbst entscheiden kann, wann er typisieren möchte oder nicht \autocite{typescript-org}. TypeScript kann vor dem Ausliefern in reines JavaScript kompiliert werden und ist somit in allen gängigen Browsern oder auch auf Servern mit Node.js ausführbar \autocite{typescript-org}.
 
-Die Kombination aus Angular und Typescript bietet eine sehr gute Basis zum Entwickeln von großen, schnellen und skalierbaren Anwendungen \autocite{angular-io}. Durch die statische Typisierung sind zum Beispiel Refactorings mit den vielen verfügbaren Tools schnell und sicher durchzuführen \autocite{typescript-org} \autocite{angular-io}. In der großen Community findet man außerdem auf sehr viele Fragen sofort eine Antwort.
+Die Kombination aus Angular und TypeScript bietet eine sehr gute Basis zum Entwickeln von großen, schnellen und skalierbaren Anwendungen \autocite{angular-io}. Durch die statische Typisierung sind zum Beispiel Refactorings mit den vielen verfügbaren Tools schnell und sicher durchzuführen \autocite{typescript-org} \autocite{angular-io}. In der großen Community findet man außerdem auf sehr viele Fragen sofort eine Antwort.
 
 \section{Publish Subscribe Pattern}
 In Angular wird häufig mit Observables gearbeitet, um das Publish-Subscribe Pattern, auch Observer-Pattern genannt, umzusetzen. 
@@ -43,17 +43,17 @@ Dieses Pattern bietet den Vorteil, dass beliebig viele Observer über neue Werte
 \section{CROSSLOAD}
 CROSSLOAD ist ein Webportal, welches christliche Medien, im Moment hauptsächlich Predigten, zur Verfügung stellt \autocite{crossload-org}. Diese Medien können durchsucht, angehört und heruntergeladen werden. Die Entwicklung befindet sich im derzeit in der Beta-Phase (https://beta.crossload.org) und wird vor allem von Ehrenamtlichen vorangetrieben. In \autoref{crossload-mobil-neuste-inhalte} ist die mobile Seite mit den neusten Inhalten auf CROSSLOAD zu sehen. \autoref{crossload-detailansicht} zeigt die Detailansicht, welche sich beim Klick auf eine Predigt öffnet.
 
-Im Frontend wird Angular mit Typescript zum Entwickeln verwendet. Das Backend besteht aus mehreren Services, die mit unterschiedlichen Sprachen und Frameworks entwickelt werden. \autoref{diagramme/crossload-architektur} zeigt die Architektur. Das Frontend ist in drei Teile aufgeteilt:
+Im Frontend wird Angular mit TypeScript zum Entwickeln verwendet. Das Backend besteht aus mehreren Services, die mit unterschiedlichen Sprachen und Frameworks entwickelt werden. \autoref{diagramme/crossload-architektur} zeigt die Architektur. Das Frontend ist in drei Teile aufgeteilt:
 \begin{itemize}
-\item Components zeigen dem Nutzer Inhalte an. In Components werden keine Berechnungen durchgeführt oder Daten manipuliert
-\item Pages sind für die Datenaufbereitung zuständig, bekommen Daten von Services und geben Daten an Components weiter
-\item Services sind die Schnittstelle zu externen \acp{API}, um Daten abzurufen
+\item Components zeigen dem Nutzer Inhalte an. In Components werden keine Berechnungen durchgeführt oder Daten manipuliert.
+\item Pages sind für die Datenaufbereitung zuständig, bekommen Daten von Services und geben Daten an Components weiter.
+\item Services sind die Schnittstelle zu externen \acp{API}, um Daten abzurufen.
 \end{itemize}
 Viele Bilder von CROSSLOAD werden von der lizentfreien Fotoplattform Unsplash zur Verfügung gestellt. Für die Suche wird Solr verwendet und Dateien werden in Amazon S3 abgelegt.
 
 \bild{diagramme/crossload-architektur}{14cm}{Architektur von CROSSLOAD}
 
-Das Webportal erfüllt bereits alle Anforderungen einer \ac{PWA}: Es besitzt eine Manifest-´Datei und kann somit auf den Startbildschirm des Smartphones hinzugefügt werden. Statische Inhalte werden mit Hilfe eines Service Workers zwischengespeichert und sind somit auch offline verfügbar. 
+Das Webportal erfüllt bereits alle Anforderungen einer \ac{PWA}: Es besitzt eine Manifest-Datei und kann somit auf den Startbildschirm des Smartphones hinzugefügt werden. Statische Inhalte werden mit Hilfe eines Service Workers zwischengespeichert und sind somit auch offline verfügbar. 
 
 \bild{crossload-mobil-neuste-inhalte}{8cm}{CROSSLOAD - Mobile Ansicht der neusten Inhalte}
 

@@ -14,29 +14,29 @@ Vergleichskriterien zur lokalen Datenspeicherung ergeben sich aus den Anforderun
 \end{enumerate}
 
 \subsection{Web Storage}
-Die Web Storage \ac{API} bietet die Möglichkeit, Schlüssel / Wert Paare im Browser zu speichern \autocite{mdn-web-storage}. Werte werden immer mit einem Schlüssel gespeichert oder über einen Schlüssel geladen \autocite{mdn-web-storage}.
+Die Web Storage \ac{API} bietet die Möglichkeit, Schlüssel-Wert-Paare im Browser zu speichern \autocite{mdn-web-storage}. Werte werden immer mit einem Schlüssel gespeichert oder über einen Schlüssel geladen \autocite{mdn-web-storage}.
 
 Alle relevanten Browser implementieren diese \ac{API} \autocite{mdn-web-storage}, es gibt aber auch einige Einschränkungen:
 \begin{itemize}
-	\item Zugriffe sind nur synchron möglich \autocite{Hajian2019}. Das heißt: wenn große Datenmengen gespeichert oder geladen werden, kann das Browserfenster für eine Zeit lang einfrieren
+	\item Zugriffe sind nur synchron möglich \autocite{Hajian2019}. Das heißt: Wenn große Datenmengen gespeichert oder geladen werden, kann das Browserfenster für eine Zeit lang einfrieren
 	\item Als Schlüssel und Werte können jeweils nur Strings gespeichert werden \autocite{Hajian2019}. Sollen JavaScript-Objekte gespeichert werden müssen diese in JSON umgewandelt werden.
 	\item Es können maximal 5 \ac{MB} an Daten gespeichert werden \autocite{mdn-web-storage}
 \end{itemize}
 
 \bild{architekturen/web-storage}{14cm}{Aufbau der Web Storage \ac{API}}
 
-\autoref{architekturen/web-storage} zeigt die Web Storage \ac{API} mit SessionStorage und LocalStorage. Diese beiden Speicher unterscheiden sich nur darin, wie lange Daten gespeichert werden \autocite{Hajian2019} \autocite{mdn-web-storage}. Die Daten vom SessionStorage werden gelöscht, sobald die Sitzung auf der Website vorbei ist, das heißt der Browser oder der Tab geschlossen wird \autocite{Hajian2019} \autocite{mdn-web-storage}. Der LocalStorage bleibt über mehrere Sitzungen erhalten und wird nicht automatisch gelöscht \autocite{Hajian2019} \autocite{mdn-web-storage}. In beiden Speichern können Schlüssel-Wert Paare als Text gespeichert werden \autocite{Hajian2019} \autocite{mdn-web-storage}.
+\autoref{architekturen/web-storage} zeigt die Web Storage \ac{API} mit SessionStorage und LocalStorage. Diese beiden Speicher unterscheiden sich nur darin, wie lange Daten gespeichert werden \autocite{Hajian2019} \autocite{mdn-web-storage}. Die Daten vom SessionStorage werden gelöscht, sobald die Sitzung auf der Website vorbei ist, das heißt der Browser oder der Tab geschlossen wird \autocite{Hajian2019} \autocite{mdn-web-storage}. Der LocalStorage bleibt über mehrere Sitzungen erhalten und wird nicht automatisch gelöscht \autocite{Hajian2019} \autocite{mdn-web-storage}. In beiden Speichern können Schlüssel-Wert-Paare als Text gespeichert werden \autocite{Hajian2019} \autocite{mdn-web-storage}.
 
-\subsection{File System API}
-Die File System \ac{API} und FileWrite \ac{API} bieten dem Browser die Möglichkeit, Dateien in ein virtuelles Dateisystem abzulegen und von dort wieder zu laden \autocite{Hajian2019} \autocite{storage-for-the-web}. Das \ac{MDN} nennt diese \ac{API} File and Directory Entries \ac{API} \autocite{mdn-file-system}. 
+\subsection{Filesystem API}
+Die Filesystem \ac{API} und FileWriter \ac{API} bieten dem Browser die Möglichkeit, Dateien in ein virtuelles Dateisystem abzulegen und von dort wieder zu laden \autocite{Hajian2019} \autocite{storage-for-the-web}. Das \ac{MDN} nennt diese \ac{API} File and Directory Entries \ac{API} \autocite{mdn-file-system}. 
 
-\bild{architekturen/file-system-api}{14cm}{Struktur der File System \ac{API}}
+\bild{architekturen/file-system-api}{14cm}{Struktur der Filesystem \ac{API}}
 
-In \autoref{architekturen/file-system-api} ist die Struktur der File System \ac{API} zu sehen. Es gibt Ordner und Dateien. Ein Ordner kann Dateien und Unterordner enthalten. Die \ac{API} erlaubt eine Navigation in den Ordnern, wie zum Beispiel: gehe in den übergeordneten Ordner \autocite{mdn-file-system}. Außerdem lassen sich alle Dateien und Unterordner eines Ordners auflisten \autocite{mdn-file-system}. Dateien können geladen und gespeichert werden \autocite{mdn-file-system}. Diese Dateien und Ordner liegen nur in einem virtuellen Dateisystem und sind in dieser Ordnerstruktur nicht auf der Festplatte des Benutzers wiederzufinden \autocite{mdn-file-system}.
+In \autoref{architekturen/file-system-api} ist die Struktur der Filesystem \ac{API} zu sehen. Es gibt Ordner und Dateien. Ein Ordner kann Dateien und Unterordner enthalten. Die \ac{API} erlaubt eine Navigation in den Ordnern, wie zum Beispiel: gehe in den übergeordneten Ordner \autocite{mdn-file-system}. Außerdem lassen sich alle Dateien und Unterordner eines Ordners auflisten \autocite{mdn-file-system}. Dateien können geladen und gespeichert werden \autocite{mdn-file-system}. Diese Dateien und Ordner liegen nur in einem virtuellen Dateisystem und sind in dieser Ordnerstruktur nicht auf der Festplatte des Benutzers wiederzufinden \autocite{mdn-file-system}.
 
 Der Vorteil dieser \ac{API} ist der Umgang mit \acp{blob}, wie zum Beispiel Audiodateien. Diese können leicht gespeichert, geladen und manipuliert werden \autocite{mdn-file-system}. Es können ebenso andere Datentypen wie Strings gespeichert werden \autocite{mdn-file-system}. Außerdem gibt es eine \ac{API} für synchrone und asynchrone Zugriffe \autocite{Hajian2019}. 
 
-Es gibt keinen offiziellen Standard \autocite{mdn-file-system} \autocite{caniuse-filesystem}, deswegen unterstützen noch nicht sehr viele Browser diese \ac{API}. Bisher ist in Chrome und in allen Chromium basierten Browser diese Funktion verfügbar \autocite{caniuse-filesystem}.
+Diese \ac{API} wurde noch nicht standardisiert \autocite{mdn-file-system} \autocite{caniuse-filesystem}, deswegen unterstützen noch nicht sehr viele Browser diese \ac{API}. Bisher ist in Chrome und in allen Chromium basierten Browser diese Funktion verfügbar \autocite{caniuse-filesystem}.
 
 \subsection{Web SQL}
 Web SQL ist eine \ac{API}, die es erlaubt Daten in einer Datenbank zu speichern und diese Daten mit einer SQL ähnlichen Sprache zu durchsuchen \autocite{w3-web-sql}. Alle Anfragen sind asynchron \autocite{Hajian2019}.
@@ -48,7 +48,7 @@ Aufgrund der Tatsache, dass Web SQL deprecated ist, wird diese Technologie auch 
 \subsection{IndexedDB}
 IndexedDB ist eine key-value NoSQL objekt-orientierte Datenbank zum Speichern von großen und vielen Dateien \autocite{Hajian2019}. Konkret heißt das, dass Objekte mit einem Schlüssel in der Datenbank abgelegt werden können und diese über den angegebenen Schlüssel wieder auffindbar sind. Dabei werden viele unterschiedliche Datentypen (boolean, number, string, date, object, array, regexp, undefined, null, \ac{blob}) \autocite{mdn-indexeddb}, Transaktionen und Indexe zum schnelleren Durchsuchen und Filtern unterstützt \autocite{Sheppard2017}. 
 
-\autoref{architekturen/indexedDB} zeigt den Aufbau von IndexedDB. Es können mehrere Datenbanken erstellt werden und jede Datenbank hat mehrere Object stores \autocite{mdn-indexeddb}. Ein Object store ist mit einer Tabelle in einer relationalen Datenbank vergleichbar. Transaktionen sind innerhalb einer Datenbank über mehrere Object stores möglich \autocite{mdn-indexeddb}. Jeder Object store kann key-value Paare speichern \autocite{Sheppard2017}. Als Werte können JavaScript Objekte, Zahlen, Texte, Bilder, Audiodateien und vieles mehr gespeichert werden \autocite{mdn-indexeddb}. Wenn Werte JavaScript Objekte sind, kann auf ein Attribut ein Index gelegt werden \autocite{mdn-indexeddb}. In diesem Beispiel könnte das Attribut \textit{id} oder \textit{titel} oder auch beide indexiert werden.
+\autoref{architekturen/indexedDB} zeigt den Aufbau von IndexedDB. Es können mehrere Datenbanken erstellt werden und jede Datenbank hat mehrere object stores \autocite{mdn-indexeddb}. Ein object store ist mit einer Tabelle in einer relationalen Datenbank vergleichbar. Transaktionen sind innerhalb einer Datenbank über mehrere object stores möglich \autocite{mdn-indexeddb}. Jeder object store kann Schlüssel-Wert-Paare speichern \autocite{Sheppard2017}. Als Werte können JavaScript-Objekte, Zahlen, Texte, Bilder, Audiodateien und vieles mehr gespeichert werden \autocite{mdn-indexeddb}. Wenn Werte JavaScript-Objekte sind, kann auf ein Attribut ein Index gelegt werden \autocite{mdn-indexeddb}. In diesem Beispiel könnte das Attribut \textit{id} oder \textit{titel} oder auch beide indexiert werden.
 
 \bild{architekturen/indexedDB}{14cm}{Architektur der IndexedDB}
 
@@ -63,7 +63,7 @@ Die Cache \ac{API} bietet die Möglichkeit, Netzwerkanfragen zwischenzuspeichern
 
 \bild{architekturen/cache-api}{14cm}{Aufbau der Cache \ac{API}}
 
-\autoref{architekturen/cache-api} zeigt den Aufbau der Cache \ac{API}: Es können mehrere Caches angelegt werden \autocite{mdn-cache-api}. In einem Cache können mehrere Request-Response Paare gespeichert werden \autocite{mdn-cache-api}. Ein Request-Objekt enthält die URL, die Methode (GET, POST, PUT, ...), einen body und optional noch mehr Parameter \autocite{mdn-request}. Das Response-Objekt ist ähnlich aufgebaut, enthält aber zum Beispiel auch einen Statuscode \autocite{mdn-response}.
+\autoref{architekturen/cache-api} zeigt den Aufbau der Cache \ac{API}: Es können mehrere Caches angelegt werden \autocite{mdn-cache-api}. In einem Cache können mehrere Request-Response-Paare gespeichert werden \autocite{mdn-cache-api}. Ein Request-Objekt enthält die URL, die Methode (GET, POST, PUT, ...), einen body und optional noch mehr Parameter \autocite{mdn-request}. Das Response-Objekt ist ähnlich aufgebaut, enthält aber zum Beispiel auch einen Statuscode \autocite{mdn-response}.
 
 Die \ac{API} ist in allen relevanten Browsern verfügbar \autocite{mdn-cache-api}. Oft wird die Cache \ac{API} in Verbindung mit Service Workern verwendet. Die maximale Speicherkapazität des Caches hängt vom Browser ab und wird in Kapitel~\ref{Kap4:Datenmenge} näher erläutert. 
 
@@ -110,7 +110,7 @@ In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten z
       \textbf{Technologie} & \textbf{Datenmenge} & \textbf{Datentypen} & \textbf{(a)synchron} & \textbf{Browsersupport} & \textbf{Unterstützung für Suchen und Filtern} & \textbf{Anmerkung} \\
       \midrule
       \emph{Web Storage \ac{API}} & max. 5 \ac{MB} & String & nur synchron & alle & nicht vorhanden & \\
-      \emph{File System \ac{API}} & max. Speicherkapazität des Browsers & \acp{blob} und weitere & synchron und asynchron & nur Chrome & nicht vorhanden &  \\
+      \emph{Filesystem \ac{API}} & max. Speicherkapazität des Browsers & \acp{blob} und weitere & synchron und asynchron & nur Chrome & nicht vorhanden &  \\
       \emph{Web SQL} & - & . & synchron und asynchron & teilweise & vorhanden & veraltet \\
       \emph{IndexedDB} & max. Speicherkapazität des Browsers & einfache Datentypen, Objekte, \acp{blob} & asynchron & alle & vorhanden & \\
       \emph{Cache \ac{API}} & max. Speicherkapazität des Browsers & Request- und Response-Objekte & asynchron & alle & nicht vorhanden & \\
@@ -124,12 +124,12 @@ In Tabelle~\ref{Kap4:Datenspeicherung} werden die vorgestellten Möglichkeiten z
 
 \clearpage
 
-Web SQL ist deprecated und soll deswegen in CROSSLOAD keine Anwendung finden. Außerdem ist das Speichern von großen Datenmengen dringend erforderlich, weshalb jede Architektur mindestens eine der folgenden Technologien benutzen muss: File System \ac{API}, IndexedDB, Cache \ac{API}.
+Web SQL ist deprecated und soll deswegen in CROSSLOAD keine Anwendung finden. Außerdem ist das Speichern von großen Datenmengen dringend erforderlich, weshalb jede Architektur mindestens eine der folgenden Technologien benutzen muss: Filesystem \ac{API}, IndexedDB, Cache \ac{API}.
 
 Es werden nun mögliche Architekturen vorgestellt und miteinander verglichen. Als Kriterien gelten die selben wie bisher: maximale Datenmenge, mögliche Datentypen, synchron / asynchron, Browsersupport, Aufwand für Suchen und Filtern.
 
 \subsubsection{Cache API und Web Storage}
-Die erste Architektur ist in \autoref{architekturen/architektur-cache-api-web-storage} zu sehen. Es wird die Cache \ac{API} zum Speichern der Audio-Dateien und der Web Storage zum Speichern der Metadaten verwendet. Metadaten sind in diesem Fall alle Information, die zu einem Inhalt gehören, abgesehen von der Audio-Datei. Der Web Storage speichert alle IDs der bisher favorisierten Inhalte in einem Array. Außerdem hat jede ID einen eigenen Eintrag im Web Storage, der die Metadaten enthält. Dieser Ansatz hat den Vorteil, dass schnell überprüft werden kann, ob ein Inhalt favorisiert ist oder nicht. Das Abrufen aller favorisierten Inhalte dauert hingegen lange, weil viele verschiedene Einträge aus dem Web Storage geladen werden müssen. Als alternativen Ansatz könnte man den in \autoref{metadaten-array} beschriebenen umsetzten. Hier werden alle Metadaten in einem einzigen Array gespeichert. Das Laden aller Inhalte ist jetzt schneller. Das Speichern oder Laden eines einzelnen Inhalts dauert dagegen länger, weil immer das gesamte Array geladen oder gespeichert werden muss.
+Die erste Architektur ist in \autoref{architekturen/architektur-cache-api-web-storage} zu sehen. Es wird die Cache \ac{API} zum Speichern der Audiodateien und der Web Storage zum Speichern der Metadaten verwendet. Metadaten sind in diesem Fall alle Information, die zu einem Inhalt gehören, abgesehen von der Audiodatei. Der Web Storage speichert alle Ids der bisher favorisierten Inhalte in einem Array. Außerdem hat jede Id einen eigenen Eintrag im Web Storage, der die Metadaten enthält. Dieser Ansatz hat den Vorteil, dass schnell überprüft werden kann, ob ein einzelner Inhalt favorisiert ist oder nicht. Das Abrufen aller favorisierten Inhalte dauert hingegen lange, weil viele verschiedene Einträge aus dem Web Storage geladen werden müssen. Als alternativen Ansatz könnte man den in \autoref{metadaten-array} beschriebenen umsetzten. Hier werden alle Metadaten in einem einzigen Array gespeichert. Das Laden aller Inhalte ist jetzt schneller. Das Speichern oder Laden eines einzelnen Inhalts dauert dagegen länger, weil immer das gesamte Array geladen oder gespeichert werden muss.
 
 \bild{architekturen/architektur-cache-api-web-storage}{14cm}{Architektur mit Cache API und Web Storage}
 
@@ -148,11 +148,11 @@ Die erste Architektur ist in \autoref{architekturen/architektur-cache-api-web-st
     ]
 \end{lstlisting}
 
-In \autoref{diagramme/ablauf-cache-api-locale-storage-favorisieren} ist der Ablauf dargestellt, wenn ein Nutzer einen Inhalt favorisiert. Sobald der Nutzer einen Inhalt favorisiert, werden die Metadaten abgerufen und direkt abgespeichert. Anschließend beginnt der Download der Audio-Datei, welche in der Cache \ac{API} gespeichert wird. Sobald das Herunterladen und Speichern erfolgreich war, wird dies in den Metadaten aktualisiert und der Nutzer wird benachrichtigt.
+In \autoref{diagramme/ablauf-cache-api-locale-storage-favorisieren} ist der Ablauf dargestellt, wenn ein Nutzer einen Inhalt favorisiert. Sobald der Nutzer einen Inhalt favorisiert, werden die Metadaten abgerufen und direkt abgespeichert. Anschließend beginnt der Download der Audiodatei, welche in der Cache \ac{API} gespeichert wird. Sobald das Herunterladen und Speichern erfolgreich war, wird dies in den Metadaten aktualisiert und der Nutzer wird benachrichtigt.
 
 \bild{diagramme/ablauf-cache-api-locale-storage-favorisieren}{14cm}{Ablauf für das Favorisieren mit Cache API und Web Storage}
 
-In \autoref{diagramme/ablauf-cache-api-locale-storage-abspielen} wird der Ablauf für das Abspielen eines Inhaltes gezeigt. Damit der Nutzer auf den abzuspielenden Inhalt kommt, lässt er sich alle favorisierten Inhalte anzeigen. Die Metadaten aller Inhalte müssen dementsprechend aus dem Web Storage geladen werden und anschließend angezeigt werden. Der Nutzer wählt einen dieser Inhalte aus. Die Audio-Datei wird nun aus der Cache \ac{API} geladen und abgespielt.
+In \autoref{diagramme/ablauf-cache-api-locale-storage-abspielen} wird der Ablauf für das Abspielen eines Inhaltes gezeigt. Damit der Nutzer auf den abzuspielenden Inhalt kommt, lässt er sich alle favorisierten Inhalte anzeigen. Die Metadaten aller Inhalte müssen dementsprechend aus dem Web Storage geladen werden und anschließend angezeigt werden. Der Nutzer wählt einen dieser Inhalte aus. Die Audiodatei wird nun aus der Cache \ac{API} geladen und abgespielt.
 
 \bild{diagramme/ablauf-cache-api-locale-storage-abspielen}{14cm}{Ablauf für das Abspielen mit Cache API und Web Storage}
 
@@ -161,36 +161,36 @@ Der Vorteil dieser Architektur liegt in der Einfachheit der benutzten \acp{API}.
 \begin{itemize}
 \item Der Zugriff auf den Web Storage ist synchron. Bei vielen Daten kann dies zu längeren Ladezeiten kommen und währenddessen ist das Portal nicht bedienbar. 
 \item Durch die Verwendung des Web Storages werden entweder Aktualisierungen der Metadaten oder das Abrufen aller Metadaten ineffizient. 
-\item Das Speicherlimit des Web Storages beträgt 5 \ac{MB}. Bei Metadaten bis zu 50 \ac{kB} können bis zu 100 Einträge gespeichert werden. 
+\item Das Speicherlimit des Web Storages beträgt 5 \ac{MB}. Bei Metadaten, die bis zu 50 \ac{kB} groß sind, können im schlechtesten Fall 100 Einträge gespeichert werden. 
 \item Wenn Inhalte durchsucht oder gefiltert werden müssen, muss dies manuell nach dem Laden aller Metadaten erfolgen.
 \end{itemize}
 
 \subsubsection{Cache API und IndexedDB}
 \bild{architekturen/architektur-cache-api-indexed-db}{14cm}{Architektur mit Cache API und IndexedDB}
 
-\autoref{architekturen/architektur-cache-api-indexed-db} zeigt die Architektur mit Cache \ac{API} und IndexedDB. Die Cache \ac{API} wird zum Speichern der Audio-Dateien verwendet und in der IndexedDB werden alle Metadaten gespeichert.
+\autoref{architekturen/architektur-cache-api-indexed-db} zeigt die Architektur mit Cache \ac{API} und IndexedDB. Die Cache \ac{API} wird zum Speichern der Audiodateien verwendet und in der IndexedDB werden alle Metadaten gespeichert.
 
 Der Ablauf zum Favorisieren und Abspielen eines Inhaltes bleibt wie in \autoref{diagramme/ablauf-cache-api-locale-storage-favorisieren} und \autoref{diagramme/ablauf-cache-api-locale-storage-abspielen} beschrieben mit dem kleinen Unterschied, dass der Web Storage durch IndexedDB ersetzt wird. 
 
 Durch die Verwendung von IndexedDB ist das Abrufen und Speichern der Metadaten nicht synchron, sondern asynchron. Außerdem bietet IndexedDB die Möglichkeit, Inhalte zu sortieren und zu filtern. IndexedDB ist in allen relevanten Browsern verfügbar .
 
-\subsubsection{File System API und IndexedDB}
-\bild{architekturen/architektur-file-system-api-indexed-db}{14cm}{Architektur mit File System API und IndexedDB}
+\subsubsection{Filesystem API und IndexedDB}
+\bild{architekturen/architektur-file-system-api-indexed-db}{14cm}{Architektur mit Filesystem API und IndexedDB}
 
-In dieser Architektur, welche in \autoref{architekturen/architektur-file-system-api-indexed-db} beschrieben ist, werden Audio-Dateien mit der File System \ac{API} abgespeichert. Metadaten werden in der IndexedDB gespeichert, wo sie auch sortiert und gefiltert werden können. In dem virtuellen Dateisystem wird ein Ordner \textit{favoriten} angelegt. In diesem Ordner gibt es Unterordner für jeden Inhalt, welche die heruntergeladene Audio-Datei enthalten. 
+In dieser Architektur, welche in \autoref{architekturen/architektur-file-system-api-indexed-db} beschrieben ist, werden Audiodateien mit der Filesystem \ac{API} abgespeichert. Metadaten werden in der IndexedDB gespeichert, wo sie auch sortiert und gefiltert werden können. In dem virtuellen Dateisystem wird ein Ordner \textit{favoriten} angelegt. In diesem Ordner gibt es Unterordner für jeden Inhalt, welche die heruntergeladene Audiodatei enthalten. 
 
-Der Nachteil dieser Architektur ist die Browserkompatibilität. Die File System \ac{API} wird bisher nur in Chrome unterstützt.
+Der Nachteil dieser Architektur ist die Browserkompatibilität. Die Filesystem \ac{API} wird bisher nur in Chrome unterstützt.
 
 \subsubsection{IndexedDB}
 \bild{architekturen/architektur-indexed-db}{14cm}{Architektur mit IndexedDB}
 
-\autoref{architekturen/architektur-indexed-db} zeigt die Architektur zum Speichern der Metadaten und Audio-Datien mit IndexedDB. Sowohl Metadaten als auch die Audio-Datei werden in der Datenbank abgespeichert. Es werden zwei object stores verwendet. Ein object store speichert alle Metadaten, während der andere alle Audio-Dateien speichert. Es wäre auch möglich, die Audio-Dateien mit im object store \textit{favoriten} zu speichern. Dies wäre jedoch schlecht für die Geschwindigkeit der Seite, wenn nur die Metadaten ohne die Audio-Datei benötigt werden.
+\autoref{architekturen/architektur-indexed-db} zeigt die Architektur zum Speichern der Metadaten und Audiodaten mit IndexedDB. Sowohl Metadaten als auch die Audiodatei werden in der Datenbank abgespeichert. Es werden zwei object stores verwendet. Ein object store speichert alle Metadaten, während der andere alle Audiodateien speichert. Es wäre auch möglich, die Audiodateien mit im object store \textit{favoriten} zu speichern. Dies wäre jedoch schlecht für die Geschwindigkeit der Seite, wenn nur die Metadaten ohne die Audiodatei benötigt werden.
 
-\autoref{diagramme/ablauf-indexed-db-abspielen} zeigt dies am Beispiel für das Abspielen eines Inhalts auf CROSSLOAD. Wenn der Nutzer sich alle Inhalte anzeigen lässt, werden zuerst nur die Metadaten benötigt. Erst wenn ein Inhalt ausgewählt wurde, wird die Audio-Datei zu einem Inhalt benötigt. 
+\autoref{diagramme/ablauf-indexed-db-abspielen} zeigt dies am Beispiel für das Abspielen eines Inhalts auf CROSSLOAD. Wenn der Nutzer sich alle Inhalte anzeigen lässt, werden zuerst nur die Metadaten benötigt. Erst wenn ein Inhalt ausgewählt wurde, wird die Audiodatei zu einem Inhalt benötigt. 
 
 \bild{diagramme/ablauf-indexed-db-abspielen}{14cm}{Ablauf für das Abspielen mit IndexedDB}
 
-In \autoref{diagramme/ablauf-indexed-db-favorisieren} ist der Ablauf zum Favorisieren eines Inhalts gezeigt. Sowohl die Metadaten als auch die Audio-Datei wird in der IndexedDB gespeichert.
+In \autoref{diagramme/ablauf-indexed-db-favorisieren} ist der Ablauf zum Favorisieren eines Inhalts gezeigt. Sowohl die Metadaten als auch die Audiodatei wird in der IndexedDB gespeichert.
 
 \bild{diagramme/ablauf-indexed-db-favorisieren}{14cm}{Ablauf für das Favorisieren mit IndexedDB}
 
@@ -207,7 +207,7 @@ Das Abrufen und Speichern aller Daten geschieht nicht synchron, sondern asynchro
       \midrule
       \emph{Cache \ac{API} und Web Storage} & max. 5 \ac{MB} Metadaten & Metadaten müssen in einen String umgewandelt werden & Metadaten nur synchron & alle & nicht vorhanden \\
       \emph{Cache \ac{API} und IndexedDB} & max. Speicherkapazität des Browsers & \acp{blob} und weitere & synchron und asynchron & alle & vorhanden \\
-      \emph{File System \ac{API} und IndexedDB} & max. Speicherkapazität des Browsers & \acp{blob} und weitere & synchron und asynchron & teilweise & vorhanden \\
+      \emph{Filesystem \ac{API} und IndexedDB} & max. Speicherkapazität des Browsers & \acp{blob} und weitere & synchron und asynchron & teilweise & vorhanden \\
       \emph{IndexedDB} & max. Speicherkapazität des Browsers & \acp{blob} und weitere & asynchron & alle & vorhanden \\
       \bottomrule
     \end{tabularx}
@@ -227,7 +227,7 @@ Alle anderen Architekturen erfüllen mindestens ein Kriterium nicht und werden d
 Für CROSSLOAD wird sich für die Architektur \textit{IndexedDB} entschieden. Die Verwendung von \textit{Cache API und IndexedDB} wäre auch möglich, verkompliziert die Anwendung jedoch unnötig. Das Verwenden von zwei \acp{API} macht den Code für andere Entwickler komplizierter aber bringt keinen Vorteil gegenüber der Verwendung von IndexedDB alleine.
 
 \section{Herunterladen der Audiodaten}
-Favorisierte Inhalte sollen für den offline-Gebrauch heruntergeladen werden. Dafür gibt es verschiedene Möglichkeiten. In diesem Kapitel werden verschiedene Funktionen vorgestellt und miteinander verglichen. Zum Vergleichen dienen die Kriterien: Mit welchen Browsern ist die \ac{API} kompatibel, wie ist die Lebensdauer des Downloads (nur wenn der Tab geöffnet ist, Lebensdauer eines Service Workers, ...) und wie leicht ist die Technologie in die bestehende Anwendung integrierbar.
+Favorisierte Inhalte sollen für den Offline-Gebrauch heruntergeladen werden. Dafür gibt es verschiedene Möglichkeiten. In diesem Kapitel werden verschiedene Funktionen vorgestellt und miteinander verglichen. Zum Vergleichen dienen die Kriterien: Mit welchen Browsern ist die \ac{API} kompatibel, wie ist die Lebensdauer des Downloads (nur wenn der Tab geöffnet ist, Lebensdauer eines Service Workers, ...) und wie leicht ist die Technologie in die bestehende Anwendung integrierbar.
 
 \subsection{Fetch API}
 Die Fetch \ac{API} bietet die Möglichkeit, XMLHttpRequests zu verschicken, also Ressourcen von einem Server anzufragen \autocite{Rojas2020}. Verwendet wird die \ac{API} mit Promises, ist also asynchron und bietet eine einfachere Fehlerbehandlung \autocite{Rojas2020} \autocite{mdn-fetch}. 
@@ -250,7 +250,7 @@ Mit Background Sync können Netzwerkanfragen abgeschickt werden, selbst wenn kei
 
 \autoref{diagramme/background-sync} zeigt den Ablauf, wenn ein Sync-Event gesendet wird. Wenn bereits eine Netzwerkverbindung besteht, wird das Event sofort ausgeführt. Ansonsten wird auf eine Netzwerkverbindung gewartet. Das Ausführen des Events kann zum Beispiel durch einen Netzwerkfehler scheitern. Wenn nach mehrmaligen Versuchen das Event nicht geklappt hat, wird ein \textit{Last-Chance-Event} gefeuert \autocite{Rojas2020}.
 
-Diese Funktionalität ist Teil von Service Workern und funktioniert, solange ein Service Worker läuft \autocite{wicg-background-sync}. Auch das Event für Background Sync hat nur eine begrenzte Lebensdauer und kann jederzeit vom Browser beendet werden \autocite{service-worker-spec}. Auch diese Funktionalität von Service Workern ist noch nicht in Angular integriert. Bei der Verwendung dieser Funktionalität können also keine Angular Komponenten, beziehungsweise Funktionen zum Einsatz kommen.
+Diese Funktionalität ist Teil von Service Workern und funktioniert, solange ein Service Worker läuft \autocite{wicg-background-sync}. Auch das Event für Background Sync hat nur eine begrenzte Lebensdauer und kann jederzeit vom Browser beendet werden \autocite{service-worker-spec}. Auch diese Funktionalität von Service Workern ist noch nicht in Angular integriert. Bei der Verwendung dieser Funktionalität können also keine Angular-Komponenten, beziehungsweise Funktionen zum Einsatz kommen.
 
 Im Moment wird diese Funktion nur von Chrome unterstützt \autocite{caniuse-background-sync}, in Firefox ist sie aber bereits in Entwicklung \autocite{status-mozilla-background-sync}.
 
@@ -293,16 +293,16 @@ Als Technologie wird für CROSSLOAD der HttpClient ausgewählt. Dieser ist am ei
 Als Ergänzung kann später Background Fetch implementiert werden, weil damit auch Inhalte heruntergeladen werden können, wenn die Website geschlossen ist. Dies ist jedoch nicht Teil dieser Thesis.
 
 \section{Verbindungsstaus auslesen}
-In Anforderung 3 und 6 in \autoref{Kap3:Anforderungen} wurden Anforderungen definiert, die ein Auslesen des Verbindungsstatus erfordern. Dazu gehört die Frage, ob überhaupt eine Internetverbindung besteht und auch, ob der Nutzer über Mobile Daten oder Wifi verbunden ist. Außerdem soll auf eine Änderung dieser Werte möglichst schnell reagiert werden können.
+In Anforderung 3 und 6 in \autoref{Kap3:Anforderungen} wurden Anforderungen definiert, die ein Auslesen des Verbindungsstatus erfordern. Dazu gehört die Frage, ob überhaupt eine Internetverbindung besteht und auch, ob der Nutzer über Mobile Daten oder WLAN verbunden ist. Außerdem soll auf eine Änderung dieser Werte möglichst schnell reagiert werden können.
 
 In diesem Kapitel wird untersucht, ob Funktionen zum Auslesen dieser Daten existieren und welche Browser diese unterstützen. 
 
 \subsection{Online / Offline}
 Mit \emph{navigator.onLine} gibt es in allen relevanten Browsern \autocite{caniuse-online} eine Funktion, um zu überprüfen, ob eine Internetverbindung besteht oder nicht \autocite{Sheppard2017} \autocite{mdn-online}. Diese \ac{API} arbeitet jedoch nicht ganz genau. Wenn eine Verbindung zu einem Netzwerk besteht, in diesem Netzwerk aber kein Internetzugriff möglich ist, gibt \emph{navigator.onLine} in manchen Fällen true zurück und signalisiert eine Internetverbindung \autocite{Sheppard2017}. Es kann aber nicht vorkommen, dass der Nutzer offline ist und die \ac{API} true zurück liefert. Dies ist eine zu vernachlässigende Ungenauigkeit, weil dieser Fall nur sehr selten auftritt. 
 
-Wenn eine zuverlässigere Methode benötigt wird, kann ein einfacher Request abgeschickt werden. Wenn ein Ergebnis zurück kommt, existiert eine Verbindung, wenn ein Fehler geworfen wird, existiert keine Verbindung. 
+Wenn eine zuverlässigere Methode benötigt wird, kann ein einfacher Netzwerk-Request abgeschickt werden. Wenn ein Ergebnis zurück kommt, existiert eine Verbindung, wenn ein Fehler geworfen wird, existiert keine Verbindung. 
 
 Des Weiteren gibt es auch eine Möglichkeit, einen Verbindungsstatuswechsel mitzubekommen. Es gibt zwei Events, auf die man reagieren kann: \emph{online} wenn der Browser eine Internetverbindung herstellen konnte und \emph{offline} wenn eine bestehende Internetverbindung abbricht \autocite{mdn-online}. Auch hier treffen die Limitierungen von \emph{navigator.onLine} zu.
 
 \subsection{Verbindungsart}
-Zusätzlich ist es erforderlich, die aktuelle Verbindungsart des Gerätes auslesen zu können. Das könnte zum Beispiel Wifi oder Mobilfunk sein. In Anforderung 3 aus \autoref{Kap3:Anforderungen} wird mit einem Download so lange gewartet, bis eine Wifi-Verbindung besteht oder der Nutzer zugestimmt hat. Mit \emph{navigator.connection.type} gibt es eine \ac{API} dies zu erreichen \autocite{network-type-mdn}. Der Wert \textit{cellular} wird zurückgegeben, wenn eine Mobilfunkverbindung besteht \autocite{network-type-mdn}. Es ist auch möglich, auf ein Event zu hören, sobald sich dieser Status ändert \autocite{network-information-mdn}. Diese \ac{API} ist aber noch nicht in allen relevanten Browsern verfügbar. Nur Nutzer die Chrome verwenden, können von dieser \ac{API} profitieren \autocite{network-type-mdn}.
+Zusätzlich ist es erforderlich, die aktuelle Verbindungsart des Gerätes auslesen zu können. Das könnte zum Beispiel WLAN oder Mobilfunk sein. In Anforderung 3 aus \autoref{Kap3:Anforderungen} wird mit einem Download so lange gewartet, bis eine WLAN-Verbindung besteht oder der Nutzer zugestimmt hat. Mit \emph{navigator.connection.type} gibt es eine \ac{API} dies zu erreichen \autocite{network-type-mdn}. Der Wert \textit{cellular} wird zurückgegeben, wenn eine Mobilfunkverbindung besteht \autocite{network-type-mdn}. Es ist auch möglich, auf ein Event zu hören, sobald sich dieser Status ändert \autocite{network-information-mdn}. Diese \ac{API} ist aber noch nicht in allen relevanten Browsern verfügbar. Nur Nutzer die Chrome verwenden, können von dieser \ac{API} profitieren \autocite{network-type-mdn}.
