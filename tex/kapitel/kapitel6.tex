@@ -1,18 +1,18 @@
 \chapter{Evaluation und Reflexion}
 \label{Kap6}
-In diesem Kapitel wird die Arbeit kritisch reflektiert. Welche Anforderungen konnten erfüllt werden und wo ist noch Verbesserungspotenzial.
+In diesem Kapitel wird die Arbeit kritisch reflektiert. Welche Anforderungen konnten erfüllt werden und wo ist noch Verbesserungspotenzial?
 
 \section{Kann durch die PWA eine native APP ersetzt werden?}
-Moderne Webtechnologien können in vielen Fällen eine eigene Native App für Android, iOS oder andere Systeme ersetzten. Ob dies für CROSSLOAD auch der Fall ist wird in diesem Kapitel untersucht. Dabei wird nur die Offline-Funktionalität berücksichtigt.
+Moderne Webtechnologien können in vielen Fällen eine eigene Native App für Android, iOS oder andere Systeme ersetzten. Ob dies für CROSSLOAD auch der Fall ist, wird in diesem Kapitel untersucht. Dabei wird nur die Offline-Funktionalität berücksichtigt.
 
-Durch das Überprüfen aller Anforderungen aus \autoref{Kap3:Anforderungen} kann festgestellt werden, ob eine \ac{PWA} für CROSSLOAD ausreicht oder nicht. Im Nachfolgendem wird jede Anforderung einzeln bewertet. Folgende Bewertungen gibt es:
+Durch das Überprüfen aller Anforderungen aus \autoref{Kap3:Anforderungen} kann festgestellt werden, ob eine \ac{PWA} für CROSSLOAD ausreicht oder nicht. Im Nachfolgenden wird jede Anforderung einzeln bewertet. Folgende Bewertungen gibt es:
 \begin{itemize}
 \item erfüllt: Die Anforderung ist ohne Einschränkungen erfüllt
 \item teilweise erfüllt: Teile der Anforderung können erfüllt werden oder nur in manchen Browsern
-\item nicht erfüllt: Es ist mit einer \ac{PWA} nicht möglich diese Anforderung zu erfüllen.
+\item nicht erfüllt: Es ist mit einer \ac{PWA} nicht möglich, diese Anforderung zu erfüllen.
 \end{itemize}
 
-Wenn durch die Verwendung einer nativen App Vorteile für den Nutzer entstehen würden werden diese auch genannt. \autoref{Anforderungen-Tabelle} zeigt diesen Vergleich.
+Wenn durch die Verwendung einer nativen App Vorteile für den Nutzer entstehen würden, werden diese auch genannt. \autoref{Anforderungen-Tabelle} zeigt diesen Vergleich.
 
 \begin{sidewaystable}[h]
   \renewcommand{\arraystretch}{1.2}
@@ -42,11 +42,13 @@ Wenn durch die Verwendung einer nativen App Vorteile für den Nutzer entstehen w
   \label{Anforderungen-Tabelle}
 \end{sidewaystable}
 
-Bis auf die Anforderung 3 konnten alle Anforderungen erfüllt werden. Eine native App bietet in vielen Fällen eine bessere Nutzererfahrung ist aber für die reine Funktionalität nicht notwendig. Für CROSSLOAD ist eine \ac{PWA} eine gute alternative zu einer nativen App. Der Aufwand für jede Plattform eine eigene App zu schreiben ist nicht angemessen, um Anforderung 3 für alle Nutzer zu erfüllen. 
+\clearpage
+
+Bis auf die Anforderung 3 konnten alle Anforderungen erfüllt werden. Eine native App bietet in vielen Fällen eine bessere Nutzererfahrung, ist aber für die reine Funktionalität nicht notwendig. Für CROSSLOAD ist eine \ac{PWA} eine gute Alternative zu einer nativen App. Der Aufwand für jede Plattform eine eigene App zu schreiben, ist nicht angemessen, um Anforderung 3 für alle Nutzer zu erfüllen. 
 
 \section{Nutzerfreundlichkeit}
-Generell bieten die neuen Funktionen, welche in dieser Thesis entwickelt wurden, einen Mehrwert für die Nutzer. Ob diese Funktion angenommen und wie sie genutzt wird, wird sich erst in ein paar Monaten zeigen. 
+Generell bieten die neuen Funktionen, welche in dieser Thesis entwickelt wurden, einen Mehrwert für die Nutzer. Ob diese Funktion angenommen und wie sie genutzt wird, wird sich jedoch erst in ein paar Monaten zeigen. 
 
-Es gibt einen Punkt der noch zu verbessern ist und wofür noch keine gute Lösung gefunden wurde. Die hier entwickelten Offline-Funktionalitäten speichern Audio-Dateien im Browser in einer Datenbank. Auf CROSSLOAD gibt es aber auch die Möglichkeit die Audio-Datei als mp3-Datei auf das Endgerät herunterzuladen. Die heruntergeladene Audio-Datei kann dann mit anderen geteilt werden. Das Speichern im Browser hat den Vorteil der Übersichtlichkeit: Alle verfügbaren Inhalte sind direkt einsehbar und auch verwaltbar. Weil beide Funktionen Vorteile haben, sollen beide Funktionen erhalten bleiben. Für den Nutzer ist es auf den ersten Blick aber sehr schwer zu verstehen was der Unterschied der beiden Optionen ist. Für diesen Zweck wurde eine Erklärseite eingeführt, die dem Nutzer diese Funktion erklärt wenn er sich dafür interessiert. Es besteht jedoch das Problem dass viele Nutzer diese Erklärung nicht lesen und deswegen die neuen Offline-Funktionalitäten nicht kennenlernen und davon profitieren können. 
+Es gibt einen Punkt, der noch zu verbessern ist und wofür noch keine gute Lösung gefunden wurde. Die hier entwickelten Offline-Funktionalitäten speichern Audio-Dateien im Browser in einer Datenbank. Auf CROSSLOAD gibt es aber auch die Möglichkeit, die Audio-Datei als mp3-Datei auf das Endgerät herunterzuladen. Die heruntergeladene Audio-Datei kann dann mit anderen geteilt werden. Das Speichern im Browser hat den Vorteil der Übersichtlichkeit: Alle verfügbaren Inhalte sind direkt einsehbar und auch verwaltbar. Weil beide Funktionen Vorteile haben, sollen beide Funktionen erhalten bleiben. Für den Nutzer ist es auf den ersten Blick aber sehr schwer zu verstehen, was der Unterschied der beiden Optionen (offline verfügbar machen und herunterladen) ist. Für diesen Zweck wurde eine Erklärseite eingeführt, die dem Nutzer diese Funktion erklärt, wenn er sich dafür interessiert. Es könnte jedoch das Problem auftreten, dass viele Nutzer diese Erklärung nicht lesen und deswegen die neuen Offline-Funktionalitäten nicht kennenlernen und davon profitieren können. 
 
-Deswegen ist es sehr wichtig das Verhalten der Nutzer auf der Seite zu analysieren und gegebenenfalls eine andere Möglichkeit zu finden, dem Nutzer die neuen Offline-Funktionalitäten zu erklären.
+Deswegen ist es sehr wichtig, das Verhalten der Nutzer auf der Seite zu analysieren und gegebenenfalls eine andere Möglichkeit zu finden, dem Nutzer die neuen Offline-Funktionalitäten zu erklären.
