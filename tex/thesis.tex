@@ -126,27 +126,27 @@
 \pagenumbering{roman}
 \setcounter{page}{\value{frontmatterpage}}
 
-% Abkürzungsverzeichnis
-\addchap{\hsmaabbreviations}
-\input{kapitel/abkuerzungen}
-
 % Glossar
 \addchap{\hsmaglossar}
 \glsaddallunused
 \setglossarysection{section}
 \printglossary[title=Glossar]
 
-% Tabellenverzeichnis erzeugen
-\cleardoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{\hsmalistoftables}
-\listoftables
+% Abkürzungsverzeichnis
+\addchap{\hsmaabbreviations}
+\input{kapitel/abkuerzungen}
 
 % Abbildungsverzeichnis erzeugen
 \cleardoublepage
 \phantomsection
 \addcontentsline{toc}{chapter}{\hsmalistoffigures}
 \listoffigures
+
+% Tabellenverzeichnis erzeugen
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\hsmalistoftables}
+\listoftables
 
 % Listingverzeichnis erzeugen. Wenn Sie keine Listings haben,
 % entfernen Sie einfach diesen Teil.
