@@ -12,6 +12,13 @@ Service Worker laufen in einem Browser und können JavaScript ausführen \autoci
 
 \bild{service-worker-funktionsweise}{10cm}{Service Worker Architektur \autocite{Sheppard2017}}
 
+Service Worker werden sehr oft dafür verwendet Daten zwischenzuspeichern. Dadurch sind die zwischengespeicherten Daten auch verfügbar wenn keine Netzwerkverbindung besteht und auch wenn eine Netzwerkverbindung stehen die Daten schneller zur Verfügung, weil nicht erst auf die Antwort der Netzwerkressource gewartet werden muss. In Angular unterstützen Service Worker deswegen zwei Cache Strategien die hier erklärt werden:
+
+\begin{enumerate}
+\item \textit{freshness}: Die zwischengespeicherten Daten werden nur geladen wenn keine Netzwerkverbindung besteht \autocite{angular-service-worker}. Ansonsten wird auf die Antwort von der Netzwerkanfrage gewartet. Dadurch ist die Anwendung offlinefähig und erhält immer die aktuellsten Daten.
+\item \textit{performance}: Wenn zwischengespeicherte Daten zur Verfügung stehen werden diese bevorzugt geladen und keine Netzwerkanfrage geschickt \autocite{angular-service-worker}. Dadurch wird eine optimale Geschwindigkeit gewährleistet, jedoch sind die Daten nicht immer aktuell. Es ist möglich ein maximales Alter der zwischengespeicherten Daten festzulegen \autocite{angular-service-worker}. Wenn dieses Alter überschritten wurde, werden die Daten von der Netzwerkressource geladen.
+\end{enumerate}
+
 \section{Progressive Web App}
 Eine \ac{PWA} ist eine Anwendung, die in modernen Webbrowsern läuft und dem Nutzer dabei eine Erfahrung ähnlich zu bekannten nativen Apps bietet \autocite{Sheppard2017} \autocite{Rojas2020}. Die wichtigsten Eigenschaften und Funktionen dabei sind:
 
@@ -30,7 +37,7 @@ Eine \ac{PWA} hat nicht nur Vorteile, sondern auch Nachteile. Ein Nachteil ist d
 Damit aus einer Website eine \ac{PWA} wird, sind mindestens zwei Dinge erforderlich. Erstens wird eine Manifest-Datei benötigt, welche Informationen über das Icon, den Namen und vieles mehr enthält, um die App installieren zu können \autocite{Hajian2019} \autocite{Rojas2020}. Als zweites wird ein Service Worker benötigt, der unter anderem für die Offline-Fähigkeit verantwortlich ist \autocite{Rojas2020}. Der Service Worker speichert alle nötigen Dateien einer Website zwischen und stellt diese zur Verfügung, wenn keine Internetverbindung besteht \autocite{Rojas2020}.
 
 \section{Angular und TypeScript}
-Angular ist ein Framework zum Entwickeln von Webanwendungen für alle Plattformen \autocite{angular-io}. Das Framework ist Open Source, getrieben von einer großen Community, wird aber auch von Firmen wie Google weiterentwickelt und genutzt \autocite{angular-io}. Angularanwendungen bestehen unter anderem aus Modulen, Komponenten und Services \autocite{angular-start}. Module fassen mehrere Komponenten zusammen, um diese zu verwalten \autocite{angular-start}. Komponenten sind kleine Bestandteile der Anwendung, die sich vor allem um die Darstellung eines bestimmten Bereichs auf der Seite kümmern \autocite{angular-start}. In Services liegt die Logik der Anwendung \autocite{angular-start}. Dort werden zum Beispiel Netzwerkanfragen gesendet oder Daten zwischengespeichert. Als Programmiersprache ist TypeScript vorgesehen. 
+Angular ist ein Framework zum Entwickeln von Webanwendungen für alle Plattformen \autocite{angular-io}. Das Framework ist Open Source, getrieben von einer großen Community, wird aber auch von Firmen wie Google weiterentwickelt und genutzt \autocite{angular-io}. Angularanwendungen bestehen unter anderem aus Modulen, Komponenten und Services \autocite{angular-start}. Module fassen mehrere Komponenten zusammen, um diese zu verwalten \autocite{angular-start}. Komponenten sind kleine Bestandteile der Anwendung, die sich vor allem um die Darstellung eines bestimmten Bereichs auf der Seite kümmern \autocite{angular-start} \autocite{Kotaru2020}. In Services liegt die Logik der Anwendung \autocite{angular-start}. Dort werden zum Beispiel Netzwerkanfragen gesendet oder Daten zwischengespeichert. Als Programmiersprache ist TypeScript vorgesehen. 
 
 TypeScript erweitert JavaScript um einige Funktionen wie zum Beispiel Typisierung \autocite{typescript-org}. Die Flexibilität von JavaScript bleibt trotzdem erhalten, weil der Nutzer selbst entscheiden kann, wann er typisieren möchte oder nicht \autocite{typescript-org}. TypeScript kann vor dem Ausliefern in reines JavaScript kompiliert werden und ist somit in allen gängigen Browsern oder auch auf Servern mit Node.js ausführbar \autocite{typescript-org}.
 

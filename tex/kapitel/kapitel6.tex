@@ -19,21 +19,24 @@ Wenn durch die Verwendung einer nativen App Vorteile für den Nutzer entstehen w
   \centering
   \sffamily
   \begin{footnotesize}
-    \begin{tabularx}{1.0\textwidth}{l l X X}
+    \begin{tabularx}{1.0\textwidth}{X l X X}
       \toprule
       \textbf{Anforderung} & \textbf{Erfüllt} & \textbf{Anmerkung} & \textbf{Verbesserung durch native App} \\
       \midrule
-      \emph{1} & erfüllt & - & - \\
-      \emph{2} & erfüllt & - & Der verfügbare Speicher im Browser ist begrenzt und nutzt nicht die ganze Festplatte. Bei sehr geringem freien Speicher könnte eine native App mehr Inhalte speichern. \\
-      \emph{3} & teilweise & Die Verbindungsart kann nicht in allen Browsern ausgelesen werden & In einer nativen App können alle Netzwerkinformationen ausgelesen werden \\
-      \emph{4} & erfüllt & - & Es gibt in einer \ac{PWA} Einschränkungen, die eine native App nicht hat: Das Browserfenster muss geöffnet bleiben wenn ein Download stattfindet. Durch die Verwendung von Background Fetch, was aber nur in Chrome verfügbar ist, wird dieser Nachteil wieder ausgeglichen. \\
-      \emph{5} & erfüllt & - & - \\
-      \emph{6} & erfüllt & - & - \\
-      \emph{7} & erfüllt & - & - \\
-      \emph{8} & erfüllt & Eine performante Volltextsuche ist nicht möglich & In einer nativen App ist auch eine performante Volltextsuche möglich \\
-      \emph{9} & erfüllt & - & - \\
-      \emph{10} & erfüllt & - & - \\
-      \emph{11} & erfüllt & - & Eine native App würde hier den Vorteil einer konfigurierbaren Benachrichtigung bieten. Über diese Benachrichtigung könnte man dann die Predigt stoppen oder zum nächsten Inhalt springen. \\
+      \emph{1: Ein Inhalt kann favorisiert werden} & erfüllt & - & - \\
+      \emph{2: Herunterladen eines Inhalts anhand der Verbindungsart} & teilweise & Die Verbindungsart kann nicht in allen Browsern ausgelesen werden & In einer nativen App können alle Netzwerkinformationen ausgelesen werden \\
+      \emph{3: Fortschrittsanzeige des Downloads} & erfüllt & - & - \\
+      \emph{4: Erkennung eines Verbindungsabbruches} & erfüllt & - & - \\
+      \emph{5: Übersicht aller heruntergeladenen Inhalte} & erfüllt & - & - \\
+      \emph{6: Sortierung und Filterung aller heruntergeladenen Inhalte} & erfüllt & Eine performante Volltextsuche ist nicht möglich & In einer nativen App ist auch eine performante Volltextsuche möglich \\
+      \emph{7: Heruntergeladene Inhalte können gelöscht werden} & erfüllt & - & - \\
+      \emph{8: Herausfinden, ob ein bestimmter Inhalt offline verfügbar ist} & erfüllt & - & - \\
+	  \emph{9: Metadaten zu einem Inhalt speichern} & erfüllt & - & - \\   
+	  \emph{10: Anhören des heruntergeladenen Inhalts} & erfüllt & - & Eine native App würde hier den Vorteil einer konfigurierbaren Benachrichtigung bieten. Über diese Benachrichtigung könnte man dann die Predigt stoppen oder zum nächsten Inhalt springen. \\   
+      \emph{11: Eine Audiodatei ist bis zu 100 \ac{MB} groß} & erfüllt & - & - \\
+      \emph{12: Die Metadaten zu einem Inhalt sind bis zu 50 \ac{kB} groß} & erfüllt & - & - \\
+      \emph{13: Möglichst viele Inhalte speichern} & erfüllt & - & Der verfügbare Speicher im Browser ist begrenzt und nutzt nicht die ganze Festplatte. Bei sehr geringem freien Speicher könnte eine native App mehr Inhalte speichern \\
+      \emph{14: Download im Hintergrund} & erfüllt & - & Es gibt in einer \ac{PWA} Einschränkungen, die eine native App nicht hat: Das Browserfenster muss geöffnet bleiben wenn ein Download stattfindet. Durch die Verwendung von Background Fetch, was aber nur in Chrome verfügbar ist, wird dieser Nachteil wieder ausgeglichen. \\
       \bottomrule
     \end{tabularx}
   \end{footnotesize}
@@ -44,11 +47,11 @@ Wenn durch die Verwendung einer nativen App Vorteile für den Nutzer entstehen w
 
 \clearpage
 
-Bis auf die Anforderung 3 konnten alle Anforderungen erfüllt werden. Eine native App bietet in vielen Fällen eine bessere Nutzererfahrung, ist aber für die reine Funktionalität nicht notwendig. Für CROSSLOAD ist eine \ac{PWA} eine gute Alternative zu einer nativen App. Der Aufwand für jede Plattform eine eigene App zu schreiben, ist nicht angemessen, um Anforderung 3 für alle Nutzer zu erfüllen. 
+Bis auf die Anforderung 2 konnten alle Anforderungen erfüllt werden. Eine native App bietet in vielen Fällen eine bessere Nutzererfahrung, ist aber für die reine Funktionalität nicht notwendig. Für CROSSLOAD ist eine \ac{PWA} eine gute Alternative zu einer nativen App. Der Aufwand für jede Plattform eine eigene App zu schreiben, ist nicht angemessen, um Anforderung 2 für alle Nutzer zu erfüllen. Außerdem verbessert sich die Unterstützung neuer \acp{API} kontinuierlich in allen Browsern. Dadurch ist zu erwarten, dass die Einschränkungen in Anforderung 2 in Zukunft nicht mehr vorhanden sein werden.
 
 \section{Nutzerfreundlichkeit}
-Generell bieten die neuen Funktionen, welche in dieser Thesis entwickelt wurden, einen Mehrwert für die Nutzer. Ob diese Funktion angenommen und wie sie genutzt wird, wird sich jedoch erst in ein paar Monaten zeigen. 
+Generell bieten die neuen Offline-Funktionen, welche in dieser Thesis entwickelt wurden, einen Mehrwert für die Nutzer. Wie intensiv die Funktionen genutzt werden, wird sich jedoch erst in den nächsten Monaten zeigen in der Praxis zeigen. 
 
-Es gibt einen Punkt, der noch zu verbessern ist und wofür noch keine gute Lösung gefunden wurde. Die hier entwickelten Offline-Funktionalitäten speichern Audiodateien im Browser in einer Datenbank. Auf CROSSLOAD gibt es aber auch die Möglichkeit, die Audiodatei als mp3-Datei auf das Endgerät herunterzuladen. Die heruntergeladene Audiodatei kann dann mit anderen geteilt werden. Das Speichern im Browser hat den Vorteil der Übersichtlichkeit: Alle verfügbaren Inhalte sind direkt einsehbar und auch verwaltbar. Weil beide Funktionen Vorteile haben, sollen beide Funktionen erhalten bleiben. Für den Nutzer ist es auf den ersten Blick aber sehr schwer zu verstehen, was der Unterschied der beiden Optionen (offline verfügbar machen und herunterladen) ist. Für diesen Zweck wurde eine Erklärseite eingeführt, die dem Nutzer diese Funktion erklärt, wenn er sich dafür interessiert. Es könnte jedoch das Problem auftreten, dass viele Nutzer diese Erklärung nicht lesen und deswegen die neuen Offline-Funktionalitäten nicht kennenlernen und davon profitieren können. 
+Es gibt einen Punkt, der noch zu verbessern ist und wofür noch keine gute Lösung gefunden wurde. Die hier entwickelten Offline-Funktionalitäten speichern Audiodateien im Browser in einer Datenbank. Auf CROSSLOAD gibt es aber auch die Möglichkeit, die Audiodatei als mp3-Datei auf das Endgerät herunterzuladen. Die heruntergeladene mp3-Datei kann dann zum Beispiel an andere Personen per Mail oder Bluetooth verschickt werden. Andererseits hat das Speichern im Browser den Vorteil der Übersichtlichkeit: Alle verfügbaren Inhalte sind direkt einsehbar und auch verwaltbar. Weil beide Funktionen Vorteile haben, sollen beide Funktionen erhalten bleiben. Für den Nutzer ist es auf den ersten Blick aber sehr schwer zu verstehen, was der Unterschied der beiden Optionen (offline verfügbar machen und herunterladen) ist. Für diesen Zweck wurde eine Erklärseite eingeführt, die dem Nutzer diese Funktion erklärt, wenn er sich dafür interessiert. Es könnte jedoch das Problem auftreten, dass viele Nutzer diese Erklärung nicht lesen und deswegen die neuen Offline-Funktionalitäten nicht kennenlernen und davon profitieren können. 
 
 Deswegen ist es sehr wichtig, das Verhalten der Nutzer auf der Seite zu analysieren und gegebenenfalls eine andere Möglichkeit zu finden, dem Nutzer die neuen Offline-Funktionalitäten zu erklären.

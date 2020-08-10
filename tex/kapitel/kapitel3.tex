@@ -64,7 +64,7 @@ Ablauf:
 	\item Benutzer favorisiert sich mehrere Inhalte
 	\item Der Download der Inhalte startet
 	\item Sobald der Download fertig ist, wird das dem Benutzer angezeigt
-	\item Benutzer geht außer Haus in sein Auto
+	\item Benutzer geht außer Haus in sein Auto und möchte dort eine favorisierte Predigt hören
 	\item Benutzer bekommt alle favorisierten Inhalte angezeigt
 	\item Benutzer wählt einen favorisierten Inhalt aus und sieht die Übersichtsseite des Inhalts
 	\item Benutzer hört sich die Predigt an und benötigt dafür kein Internet
@@ -103,9 +103,10 @@ Ablauf:
 \label{Kap3:Anforderungen}
 Aus den Diskussionen mit Mitarbeitern von CROSSLOAD haben sich einige Anforderungen herausgestellt, die in diesem Kapitel aufgelistet sind. Für diese Thesis sind nur Audioinhalte auf CROSSLOAD relevant. 
 
+\subsection{Funktionale Anforderungen}
+
 \begin{enumerate}
-    \item Die Länge der Audioinhalte liegt zwischen wenigen Minuten bis zu 120 Minuten. Eine Audiodatei ist bis zu 100 \ac{MB} groß. 
-	\item Der Benutzer kann sich einen Inhalt vormerken, auch favorisieren genannt. Dabei gibt es keine Begrenzung, wie viele Inhalte insgesamt favorisiert werden können. 
+	\item Der Benutzer kann sich einen Inhalt vormerken, auch favorisieren genannt.  
 	\item Der vorgemerkte Inhalt wird automatisch anhand der Verbindungsart heruntergeladen. Der genaue Ablauf ist in einem Aktivitätsdiagramm in \autoref{diagramme/anforderung-konnektivitaet} zu sehen.
 	
 	\begin{itemize}
@@ -116,14 +117,13 @@ Aus den Diskussionen mit Mitarbeitern von CROSSLOAD haben sich einige Anforderun
 	
 \bild{diagramme/anforderung-konnektivitaet}{15cm}{Aktivitätsdiagramm: Download des Inhalt abhängig von der Verbindungsart}
 
-	\item Ein Download findet im Hintergrund statt ohne die Bedienung des Portals einzuschränken wie zum Beispiel durch Einfrieren der Oberfläche
 	\item Der Benutzer wird über den Fortschritt des Downloads informiert. Folgende Status sind möglich: gestartet, wird heruntergeladen, heruntergeladen, Fehler
 	\item Das Portal erkennt, wenn die Internetverbindung unterbrochen wird und zeigt dem Benutzer einen Hinweis an
 	\item Die zurzeit heruntergeladenen Inhalte können in einer Übersicht gesehen werden
 	\item Die Inhalte sollen gefiltert oder sortiert werden könnten. Zum Beispiel nach Download-Datum
  	\item Die zurzeit heruntergeladenen Inhalte können gelöscht werden. Einzeln oder alle auf einmal
 	\item Es soll möglich sein, für einen bestimmten Inhalt herauszufinden, ob dieser offline verfügbar ist
-	\item Die Inhalte der Detailseite eines heruntergeladenen Inhalts werden gespeichert. Dazu gehören zum Beispiel: Id, Titel, Autor oder Vorschaubild. Diese Daten sind pro Inhalt bis zu 50 \ac{kB} groß.
+	\item Die Inhalte der Detailseite eines heruntergeladenen Inhalts werden gespeichert. Dazu gehören zum Beispiel: Id, Titel, Autor oder Vorschaubild
 	\item Der heruntergeladene Inhalt kann angehört werden
 	\begin{itemize}
 		\item Wenn ein Inhalt angehört werden soll, der bereits heruntergeladen ist, sollen die heruntergeladenen Daten verwendet werden, um Netzwerkverkehr zu vermeiden
@@ -131,6 +131,18 @@ Aus den Diskussionen mit Mitarbeitern von CROSSLOAD haben sich einige Anforderun
 	
 \end{enumerate}
 
+\subsection{Nichtfunktionale Anforderungen}
+Um in den nächsten Kapitel die Anforderungen besser referenzieren zu können, wird die Nummerierung der funktionalen Anforderungen hier fortgesetzt.
+
+\begin{enumerate}
+	\setcounter{enumi}{10}
+    \item Die Länge der Audioinhalte liegt zwischen wenigen Minuten bis zu 120 Minuten. Eine Audiodatei ist bis zu 100 \ac{MB} groß
+    \item Die Metadaten zu einem Inhalt können bis zu 50 \ac{kB} groß sein
+    \item Es sollen möglichst viele Inhalte favorisiert werden können
+    \item Ein Download findet im Hintergrund statt ohne die Bedienung des Portals einzuschränken wie zum Beispiel durch Einfrieren der Oberfläche
+\end{enumerate}
+
+\subsection{Use Cases}
 \autoref{diagramme/use-cases} zeigt alle Use Cases in einem Diagramm. Netzwerk-Service steht für eine \ac{API} zum Herunterladen eines Inhalts. Welche \ac{API} das sein wird, wird in den nächsten Kapiteln erarbeitet. Auch welche \ac{API} zur Datenverwaltung benutzt wird, steht noch nicht fest. Inhalte können vorgemerkt und dadurch heruntergeladen werden. Außerdem gespeichert, abgerufen, durchsucht, gelöscht und angehört werden.
 
 \bild{diagramme/use-cases}{14cm}{Use Case Diagramm der Offline-Funktionalitäten von CROSSLOAD}
