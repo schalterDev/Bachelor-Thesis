@@ -9,6 +9,7 @@ cp literatur.bib $OUTPUT_DIR
 pdflatex -output-directory="$OUTPUT_DIR" -synctex=1 -interaction=nonstopmode ${FILE}.tex
 cd $OUTPUT_DIR
 biber ${FILE}
+makeglossaries ${FILE}
 makeindex ${FILE}.idx
 cd ../tex
 pdflatex -output-directory="$OUTPUT_DIR" -synctex=1 -interaction=nonstopmode ${FILE}.tex

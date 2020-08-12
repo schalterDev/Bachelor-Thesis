@@ -27,6 +27,9 @@ Für die Verwaltung der Literaturliste wird das BibTeX-Format verwendet (Datei `
 
 Achten Sie darauf, die Dokumente im UTF-8-Format abzulegen. Nur so ist eine plattformunabhängige Verwendung gewährleistet. 
 
+### Texmaker
+Bei der Verwendung von Texmaker kann folgende Zeile in den Einstellungen bein schnellem Übersetzen eingefügt werden: `pdflatex -interaction=nonstopmode %.tex|biber %|pdflatex -interaction=nonstopmode %.tex|makeglossaries %|pdflatex -interaction=nonstopmode %.tex|pdflatex %.tex|evince %.pdf`
+
 ## Aufbau der Vorlage
 
   * `thesis.tex` - Hauptdokument. Hier werden weitere Kapitel aus dem Ordner `kapitel` inkludieren.
