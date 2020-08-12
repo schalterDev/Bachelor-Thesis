@@ -7,7 +7,7 @@ Moderne Webbrowser stellen viele verschiedene Lösungen zum lokalen Speichern vo
 Vergleichskriterien zur lokalen Datenspeicherung ergeben sich aus den Anforderungen. Hinter jedem Kriterium steht in Klammern die Nummer der Anforderung aus \autoref{Kap3:Anforderungen}:
 \begin{enumerate}
 	\item Ist die \ac{API} asynchron oder nur synchron nutzbar? Eine nur synchron nutzbare Lösung könnte zum Einfrieren der Nutzeroberfläche führen (Anforderung 14)
-	\item Maximal zulässige Speichermenge (Anforderung 11, 12, und 13)
+	\item Maximal zulässige Speichermenge (Anforderung 2, 11, 12, und 13)
 	\item Mögliche Datentypen. Können Bilder, Audiodateien und Text abgespeichert werden? (Anforderung 9 und 11)
 	\item Wie gut wird das Durchsuchen, Filtern und Löschen von Inhalten unterstützt? (Anforderung 5, 6, 7 und 8)
 	\item Welche Browser unterstützten diese Funktionalitäten?
@@ -305,6 +305,6 @@ Wenn eine zuverlässigere Methode benötigt wird, kann ein einfacher Netzwerk-Re
 Des Weiteren gibt es auch eine Möglichkeit, einen Verbindungsstatuswechsel mitzubekommen. Es gibt zwei Events, auf die man reagieren kann: \emph{online} wenn der Browser eine Internetverbindung herstellen konnte und \emph{offline} wenn eine bestehende Internetverbindung abbricht \autocite{mdn-online} \autocite{Freeman2020}. Auch hier treffen die Limitierungen von \emph{navigator.onLine} zu.
 
 \subsection{Verbindungsart}
-Zusätzlich ist es erforderlich, die aktuelle Verbindungsart des Gerätes auslesen zu können. Das könnte zum Beispiel WLAN oder Mobilfunk sein. In Anforderung 2 aus \autoref{Kap3:Anforderungen} wird mit einem Download so lange gewartet, bis eine WLAN-Verbindung besteht oder der Nutzer zugestimmt hat. Mit \emph{navigator.connection.type} gibt es eine \ac{API} dies zu erreichen \autocite{network-type-mdn}. Der Wert \textit{cellular} wird zurückgegeben, wenn eine Mobilfunkverbindung besteht \autocite{network-type-mdn}. Es ist auch möglich, auf ein Event zu hören, sobald sich dieser Status ändert \autocite{network-information-mdn}. Diese \ac{API} ist aber noch nicht in allen relevanten Browsern verfügbar. Nur Nutzer die Chrome verwenden, können von dieser \ac{API} profitieren \autocite{network-type-mdn}.
+Zusätzlich ist es erforderlich, die aktuelle Verbindungsart des Gerätes auslesen zu können. Das könnte zum Beispiel WLAN oder Mobilfunk sein. In Anforderung 2 aus \autoref{Kap3:Anforderungen} wird mit einem Download so lange gewartet, bis eine WLAN-Verbindung besteht oder der Nutzer zugestimmt hat, den Inhalt über Mobilfunk herunterzuladen. Mit \emph{navigator.connection.type} gibt es eine \ac{API} dies zu erreichen \autocite{network-type-mdn}. Der Wert \textit{cellular} wird zurückgegeben, wenn eine Mobilfunkverbindung besteht \autocite{network-type-mdn}. Es ist auch möglich, auf ein Event zu hören, sobald sich dieser Status ändert \autocite{network-information-mdn}. Diese \ac{API} ist aber noch nicht in allen relevanten Browsern verfügbar. Nur Nutzer, die Chrome verwenden, können von dieser \ac{API} profitieren \autocite{network-type-mdn}.
 
-Auch wenn nur Nutzer von Chrome diese \ac{API} nutzen können wird das Herunterladen anhand der Verbindungsart in CROSSLOAD umgesetzt werden. Es ist wahrscheinlich, dass andere Browser die fehlende \ac{API} in Zukunft auch unterstützten werden.
+Auch wenn nur Nutzer von Chrome diese \ac{API} nutzen können, wird das Herunterladen anhand der Verbindungsart in CROSSLOAD umgesetzt werden. Es ist wahrscheinlich, dass andere Browser die fehlende \ac{API} in Zukunft auch unterstützten werden.

@@ -1,15 +1,15 @@
 \chapter{Evaluation und Reflexion}
 \label{Kap6}
-In diesem Kapitel wird die Arbeit kritisch reflektiert. Welche Anforderungen konnten erfüllt werden und wo ist noch Verbesserungspotenzial?
+In diesem Kapitel wird die Arbeit kritisch reflektiert. Welche Anforderungen konnten erfüllt werden und wo gibt es noch Verbesserungspotenzial?
 
 \section{Kann durch die PWA eine native APP ersetzt werden?}
 Moderne Webtechnologien können in vielen Fällen eine eigene Native App für Android, iOS oder andere Systeme ersetzten. Ob dies für CROSSLOAD auch der Fall ist, wird in diesem Kapitel untersucht. Dabei wird nur die Offline-Funktionalität berücksichtigt.
 
-Durch das Überprüfen aller Anforderungen aus \autoref{Kap3:Anforderungen} kann festgestellt werden, ob eine \ac{PWA} für CROSSLOAD ausreicht oder nicht. Im Nachfolgenden wird jede Anforderung einzeln bewertet. Folgende Bewertungen gibt es:
+Durch das Überprüfen aller Anforderungen aus \autoref{Kap3:Anforderungen} kann festgestellt werden, ob eine \ac{PWA} für CROSSLOAD ausreichend ist oder nicht. Im Nachfolgenden wird jede Anforderung einzeln bewertet. Folgende Bewertungen wurden hierfür festgelegt:
 \begin{itemize}
 \item erfüllt: Die Anforderung ist ohne Einschränkungen erfüllt
-\item teilweise erfüllt: Teile der Anforderung können erfüllt werden oder nur in manchen Browsern
-\item nicht erfüllt: Es ist mit einer \ac{PWA} nicht möglich, diese Anforderung zu erfüllen.
+\item teilweise erfüllt: Teile der Anforderung können erfüllt werden oder die Anforderung kann nur in manchen Browsern erfüllt werden
+\item nicht erfüllt: Es ist mit einer \ac{PWA} nicht möglich, diese Anforderung zu erfüllen
 \end{itemize}
 
 Wenn durch die Verwendung einer nativen App Vorteile für den Nutzer entstehen würden, werden diese auch genannt. \autoref{Anforderungen-Tabelle} zeigt diesen Vergleich.
@@ -47,11 +47,11 @@ Wenn durch die Verwendung einer nativen App Vorteile für den Nutzer entstehen w
 
 \clearpage
 
-Bis auf die Anforderung 2 konnten alle Anforderungen erfüllt werden. Eine native App bietet in vielen Fällen eine bessere Nutzererfahrung, ist aber für die reine Funktionalität nicht notwendig. Für CROSSLOAD ist eine \ac{PWA} eine gute Alternative zu einer nativen App. Der Aufwand für jede Plattform eine eigene App zu schreiben, ist nicht angemessen, um Anforderung 2 für alle Nutzer zu erfüllen. Außerdem verbessert sich die Unterstützung neuer \acp{API} kontinuierlich in allen Browsern. Dadurch ist zu erwarten, dass die Einschränkungen in Anforderung 2 in Zukunft nicht mehr vorhanden sein werden.
+Bis auf die Anforderung 2 konnten alle Anforderungen erfüllt werden. Eine native App bietet in vielen Fällen eine bessere Nutzererfahrung, ist aber für die reine Funktionalität nicht notwendig. Für CROSSLOAD ist eine \ac{PWA} eine gute Alternative zu einer nativen App. Der Aufwand, für jede Plattform eine eigene App zu schreiben, ist nicht angemessen, um Anforderung 2 für alle Nutzer zu erfüllen. Außerdem verbessert sich die Unterstützung neuer \acp{API} kontinuierlich in allen Browsern. Dadurch ist zu erwarten, dass die Einschränkungen in Anforderung 2 in Zukunft nicht mehr vorhanden sein werden.
 
 \section{Nutzerfreundlichkeit}
-Generell bieten die neuen Offline-Funktionen, welche in dieser Thesis entwickelt wurden, einen Mehrwert für die Nutzer. Wie intensiv die Funktionen genutzt werden, wird sich jedoch erst in den nächsten Monaten zeigen in der Praxis zeigen. 
+Generell bieten die neuen Offline-Funktionen, welche in dieser Thesis entwickelt wurden, einen Mehrwert für die Nutzer. Wie intensiv die Funktionen genutzt werden, wird sich jedoch erst in den nächsten Monaten in der Praxis zeigen. 
 
-Es gibt einen Punkt, der noch zu verbessern ist und wofür noch keine gute Lösung gefunden wurde. Die hier entwickelten Offline-Funktionalitäten speichern Audiodateien im Browser in einer Datenbank. Auf CROSSLOAD gibt es aber auch die Möglichkeit, die Audiodatei als mp3-Datei auf das Endgerät herunterzuladen. Die heruntergeladene mp3-Datei kann dann zum Beispiel an andere Personen per Mail oder Bluetooth verschickt werden. Andererseits hat das Speichern im Browser den Vorteil der Übersichtlichkeit: Alle verfügbaren Inhalte sind direkt einsehbar und auch verwaltbar. Weil beide Funktionen Vorteile haben, sollen beide Funktionen erhalten bleiben. Für den Nutzer ist es auf den ersten Blick aber sehr schwer zu verstehen, was der Unterschied der beiden Optionen (offline verfügbar machen und herunterladen) ist. Für diesen Zweck wurde eine Erklärseite eingeführt, die dem Nutzer diese Funktion erklärt, wenn er sich dafür interessiert. Es könnte jedoch das Problem auftreten, dass viele Nutzer diese Erklärung nicht lesen und deswegen die neuen Offline-Funktionalitäten nicht kennenlernen und davon profitieren können. 
+Es gibt einen Punkt, der noch zu verbessern ist und wofür noch keine gute Lösung gefunden wurde. Die hier entwickelten Offline-Funktionalitäten speichern Audio\-dateien im Browser in einer Datenbank. Auf CROSSLOAD gibt es aber auch die Möglichkeit, die Audiodatei als mp3-Datei auf das Endgerät herunterzuladen. Die heruntergeladene mp3-Datei kann dann zum Beispiel an andere Personen per Mail oder Bluetooth verschickt werden. Andererseits hat das Speichern im Browser den Vorteil der Übersichtlichkeit: Alle verfügbaren Inhalte sind direkt einsehbar und auch verwaltbar. Weil beide Funktionen Vorteile haben, sollen beide Funktionen erhalten bleiben. Für den Nutzer ist es auf den ersten Blick jedoch sehr schwer zu verstehen, was der Unterschied der beiden Optionen (offline verfügbar machen und herunterladen) ist. Für diesen Zweck wurde eine Erklärseite eingeführt, die dem Nutzer diese Funktion erklärt, wenn er sich dafür interessiert. Es könnte jedoch das Problem auftreten, dass viele Nutzer diese Erklärung nicht lesen und deswegen die neuen Offline-Funktionalitäten nicht kennenlernen und davon profitieren können. 
 
 Deswegen ist es sehr wichtig, das Verhalten der Nutzer auf der Seite zu analysieren und gegebenenfalls eine andere Möglichkeit zu finden, dem Nutzer die neuen Offline-Funktionalitäten zu erklären.
